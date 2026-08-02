@@ -10,6 +10,7 @@ import {
   fetchZolPages,
   estimateSuning,
   estimateJd,
+  estimateJdBrowser,
   fetchJdQr,
   checkJdQr,
   finishJdQrLogin,
@@ -51,6 +52,7 @@ const cookieFile = path.join(cacheDir, 'jd-cookie.json');
 const jdLoginFile = path.join(cacheDir, 'jd-login.json');
 
 let qrSession = null;
+let estimateProgress = {};
 
 async function readJdCookie() {
   if (!(await fileExists(cookieFile))) return null;
@@ -115,12 +117,31 @@ async function loadZolItems(kind) {
 async function priceEstimatesFor(kind) {
   const cacheFile = path.join(cacheDir, `estimate-${kind}-${dayStamp()}.json`);
   if (await fileExists(cacheFile)) {
-    return readJson(cacheFile);
+    const cached = await readJson(cacheFile);
+    estimateProgress[kind] = {
+      running: false,
+      total: cached.total || 0,
+      done: cached.total || 0,
+      estimated: cached.estimated || 0,
+      cookieConfigured: !!cached.cookieConfigured,
+      cookieInvalid: !!cached.cookieInvalid,
+      notice: cached.notice || '',
+    };
+    return cached;
   }
   const base = await ensureMemory();
   const rows = base[kind].filter((r) => r.price && !r.shopPrice);
   const estimates = {};
   const cookie = await readJdCookie();
+  estimateProgress[kind] = {
+    running: true,
+    total: rows.length,
+    done: 0,
+    estimated: 0,
+    cookieConfigured: !!cookie,
+    cookieInvalid: false,
+    notice: '',
+  };
   let cursor = 0;
   let browserError = false;
   let jdError = null;
@@ -140,6 +161,22 @@ async function priceEstimatesFor(kind) {
             jdError = err.message;
           }
         }
+        if (!est && cookie) {
+          try {
+            est = await estimateJdBrowser(
+              query,
+              cookie,
+              token,
+              kind,
+              path.join(
+                cacheDir,
+                'chrome-jd-' + workerIndex + '-' + Date.now() + '-' + Math.floor(Math.random() * 1e4)
+              )
+            );
+          } catch (err) {
+            if (/Chrome|Edge/.test(err.message)) browserError = true;
+          }
+        }
         if (!est) {
           try {
             est = await estimateSuning(query, token, kind, path.join(cacheDir, 'chrome-w' + workerIndex));
@@ -151,29 +188,51 @@ async function priceEstimatesFor(kind) {
       } catch (err) {
         estimates[row.slug] = { name: row.name, error: err.message };
       }
+      const progress = estimateProgress[kind];
+      if (progress) {
+        progress.done = Math.min(cursor, rows.length);
+        progress.estimated = Object.values(estimates).filter((e) => e && e.price).length;
+      }
     }
   };
   const workerCount = Math.min(6, Math.max(1, rows.length));
   await Promise.all(Array.from({ length: workerCount }, (_, i) => worker(i)));
+  const jdSources = Object.values(estimates).filter((e) => e && e.price && /^jd/.test(e.source || ''));
+  const cookieInvalid = !!cookie && /登录|验证/.test(jdError || '') && jdSources.length === 0;
   const payload = {
     kind,
     updatedAt: new Date().toISOString(),
     total: rows.length,
     estimated: Object.values(estimates).filter((e) => e.price).length,
     estimates,
+    cookieConfigured: !!cookie,
+    cookieInvalid,
   };
   if (payload.estimated === 0 && payload.total > 0) {
     if (browserError) {
-      payload.notice = '未找到 Chrome/Edge，无法抓取估价，仍显示参考价';
+      payload.notice = '未找到 Chrome/Edge，无法抓取估价';
+    } else if (cookieInvalid) {
+      payload.notice = '京东 Cookie 无效或已过期，未获取到电商价';
+    } else if (!cookie) {
+      payload.notice = '未配置京东 Cookie，未获取到电商价';
     } else if (cookie && jdError) {
-      payload.notice = '京东登录可能已失效，苏宁也未匹配到，仍显示参考价';
+      payload.notice = '京东登录可能已失效，苏宁也未匹配到';
     } else if (cookie) {
-      payload.notice = '京东与苏宁均未匹配到价格，仍显示参考价';
-    } else {
-      payload.notice = '未配置京东登录，苏宁也未匹配到，仍显示参考价';
+      payload.notice = '京东与苏宁均未匹配到价格';
     }
+  } else if (payload.estimated < payload.total) {
+    payload.notice = '部分型号未匹配到电商价';
   }
   await writeJson(cacheFile, payload);
+  estimateProgress[kind] = {
+    running: false,
+    total: rows.length,
+    done: rows.length,
+    estimated: payload.estimated,
+    cookieConfigured: !!cookie,
+    cookieInvalid,
+    notice: payload.notice || '',
+  };
   console.log(`[estimate] ${kind}: ${payload.estimated}/${payload.total} estimated`);
   return payload;
 }
@@ -245,6 +304,22 @@ const server = createServer(async (req, res) => {
       sendJson(res, payload);
       return;
     }
+    if (url.pathname === '/api/estimate-progress' && req.method === 'GET') {
+      const kind = url.searchParams.get('kind') === 'cpu' ? 'cpu' : 'gpu';
+      sendJson(
+        res,
+        estimateProgress[kind] || {
+          running: false,
+          total: 0,
+          done: 0,
+          estimated: 0,
+          cookieConfigured: !!(await readJdCookie()),
+          cookieInvalid: false,
+          notice: '',
+        }
+      );
+      return;
+    }
     if (url.pathname === '/api/jd-cookie' && req.method === 'GET') {
       sendJson(res, { hasCookie: !!(await readJdCookie()) });
       return;
@@ -314,7 +389,7 @@ const server = createServer(async (req, res) => {
       return;
     }
     if (url.pathname === '/api/jd-login-status' && req.method === 'GET') {
-      sendJson(res, { loggedIn: await fileExists(jdLoginFile) });
+      sendJson(res, { loggedIn: (await fileExists(jdLoginFile)) || !!(await readJdCookie()) });
       return;
     }
     if (url.pathname === '/api/jd-login' && req.method === 'DELETE') {

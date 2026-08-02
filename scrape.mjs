@@ -1,8 +1,8 @@
-import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, access, rm } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { execFile } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
@@ -266,6 +266,178 @@ async function estimateJd(query, cookie) {
   }
   if (lastErr && /登录|验证/.test(lastErr.message)) throw lastErr;
   return null;
+}
+
+async function renderJdSearch(query, cookie, profileDir) {
+  const browser = await findBrowser();
+  if (!browser) throw new Error('未找到 Chrome/Edge，无法抓取京东估价');
+  await mkdir(profileDir, { recursive: true });
+  const url = 'https://search.jd.com/Search?keyword=' + encodeURIComponent(query) + '&enc=utf-8';
+  const port = 9300 + Math.floor(Math.random() * 500);
+  const chrome = spawn(
+    browser,
+    [
+      '--headless=new',
+      '--disable-gpu',
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--window-size=1400,1200',
+      `--remote-debugging-port=${port}`,
+      `--user-data-dir=${profileDir}`,
+      'about:blank',
+    ],
+    { stdio: 'ignore', windowsHide: true }
+  );
+  try {
+    let version = null;
+    for (let i = 0; i < 40 && !version; i++) {
+      try {
+        const res = await fetch(`http://127.0.0.1:${port}/json/version`, {
+          signal: AbortSignal.timeout(3000),
+        });
+        if (res.ok) version = await res.json();
+      } catch (err) {}
+      if (!version) await sleep(250);
+    }
+    if (!version) throw new Error('Chrome 调试端口未就绪');
+    const targetRes = await fetch(
+      `http://127.0.0.1:${port}/json/new?${encodeURIComponent('about:blank')}`,
+      { method: 'PUT', signal: AbortSignal.timeout(5000) }
+    );
+    const target = await targetRes.json();
+    const ws = new WebSocket(target.webSocketDebuggerUrl);
+    let nextId = 1;
+    const pending = new Map();
+    ws.onmessage = (ev) => {
+      const msg = JSON.parse(ev.data);
+      if (msg.id && pending.has(msg.id)) {
+        const p = pending.get(msg.id);
+        pending.delete(msg.id);
+        if (msg.error) p.reject(new Error(msg.error.message));
+        else p.resolve(msg.result);
+      }
+    };
+    await new Promise((resolve, reject) => {
+      ws.onopen = resolve;
+      ws.onerror = reject;
+    });
+    const send = (method, params = {}) =>
+      Promise.race([
+        new Promise((resolve, reject) => {
+          const id = nextId++;
+          pending.set(id, { resolve, reject });
+          ws.send(JSON.stringify({ id, method, params }));
+        }),
+        new Promise((resolve, reject) =>
+          setTimeout(() => reject(new Error('CDP 响应超时')), 10000)
+        ),
+      ]);
+    await send('Network.enable');
+    await send('Page.enable');
+    await send('Network.setUserAgentOverride', { userAgent: UA });
+    const pairs = cookie
+      .split(';')
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .map((p) => {
+        const eq = p.indexOf('=');
+        return { name: p.slice(0, eq).trim(), value: p.slice(eq + 1).trim() };
+      });
+    for (const p of pairs) {
+      try {
+        await send('Network.setCookie', {
+          name: p.name,
+          value: p.value,
+          domain: '.jd.com',
+          path: '/',
+          url: 'https://www.jd.com/',
+        });
+      } catch (err) {}
+    }
+    await send('Page.navigate', { url });
+    let count = 0;
+    for (let i = 0; i < 20; i++) {
+      await sleep(1000);
+      const evalRes = await send('Runtime.evaluate', {
+        expression: 'document.querySelectorAll("[data-sku]").length',
+        returnByValue: true,
+      });
+      count = (evalRes.result && evalRes.result.value) || 0;
+      if (count > 0) break;
+    }
+    const itemsRes = await send('Runtime.evaluate', {
+      expression: `(() => [...document.querySelectorAll('[data-sku]')].map((el) => {
+        let title = '';
+        const t = el.querySelector('[title]');
+        if (t) title = (t.getAttribute('title') || t.textContent || '').trim();
+        if (!title) title = (el.querySelector('[class*="goods_title"], .p-name') || {}).textContent || '';
+        let price = 0;
+        const txt = el.innerText || '';
+        const m = txt.match(/¥\\s*([0-9][0-9,]*)/);
+        if (m) price = Number(m[1].replace(/,/g, ''));
+        return { sku: el.getAttribute('data-sku'), title, price };
+      }))()`,
+      returnByValue: true,
+    });
+    ws.close();
+    return (itemsRes.result && itemsRes.result.value) || [];
+  } finally {
+    try {
+      chrome.kill();
+    } catch (err) {}
+    if (process.platform === 'win32') {
+      try {
+        await execFileAsync('taskkill', ['/pid', String(chrome.pid), '/T', '/F'], { windowsHide: true });
+      } catch (err) {}
+    }
+    await rm(profileDir, { recursive: true, force: true }).catch(() => {});
+  }
+}
+
+function filterJdTitle(title, token, kind) {
+  if (!title) return false;
+  if (
+    /广告|推广|整机|台式机|主机|一体机|笔记本|游戏本|服务器|组装机|内存|固态硬盘|DDR|SSD|NVME|显卡坞|Ultra \d|i[3579]-|锐龙|Ryzen|酷睿|赛扬|奔腾|电脑(?!独立显卡)/i.test(title)
+  ) {
+    return false;
+  }
+  if (kind === 'gpu') {
+    if (!/\b(rtx|gtx|rx|arc|geforce|radeon|pro)\b/i.test(title)) return false;
+  }
+  if (kind === 'cpu' && /显卡|RTX|GTX|\bRX\b|Arc /i.test(title)) return false;
+  if (token && !title.toLowerCase().includes(token)) return false;
+  return true;
+}
+
+async function estimateJdBrowser(query, cookie, token, kind, profileDir) {
+  const rows = await renderJdSearch(query, cookie, profileDir);
+  const items = rows.filter((r) => filterJdTitle(r.title, token, kind) && r.price > 0);
+  const prices = items.map((i) => i.price);
+  if (!prices.length) return null;
+  const counts = new Map();
+  for (const p of prices) {
+    const k = Math.round(p * 100) / 100;
+    counts.set(k, (counts.get(k) || 0) + 1);
+  }
+  let mode = null;
+  let modeCount = 0;
+  for (const [k, c] of counts) {
+    if (c > modeCount) {
+      mode = k;
+      modeCount = c;
+    }
+  }
+  const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+  return {
+    price: modeCount >= 2 ? mode : average,
+    mode,
+    modeCount,
+    average,
+    count: prices.length,
+    samples: prices.slice(0, 12),
+    source: 'jd-browser',
+    searchUrl: 'https://search.jd.com/Search?keyword=' + encodeURIComponent(query) + '&enc=utf-8',
+  };
 }
 
 async function fetchJdQr() {
@@ -600,6 +772,8 @@ export {
   fetchZolPages,
   estimateSuning,
   estimateJd,
+  estimateJdBrowser,
+  renderJdSearch,
   fetchJdQr,
   checkJdQr,
   finishJdQrLogin,

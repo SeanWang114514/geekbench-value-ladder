@@ -199,6 +199,18 @@
   }
   .summary b { color: var(--ink); font-weight: 700; }
 
+  .fetch-line {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border: 1px solid #f0d18a;
+    background: #fff8e6;
+    color: #7a5b12;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .fetch-line b { font-weight: 700; }
+
   .list { margin-top: 12px; }
   .row {
     display: block;
@@ -563,7 +575,7 @@
   <div class="settings-row">
     <div>
       <div class="settings-label">隐藏参考价</div>
-      <div class="settings-hint">隐藏时，仅有参考价的型号会用京东估价代替</div>
+      <div class="settings-hint">隐藏时仅有参考价的型号会抓取京东估价；抓取中显示进度，Cookie 无效时从性价比榜移除</div>
     </div>
     <div class="settings-seg" id="refSeg">
       <button class="settings-seg-btn" data-ref="1">隐藏</button>
@@ -638,6 +650,8 @@
 
   <section class="summary" id="summary"></section>
 
+  <section class="fetch-line" id="fetchLine" hidden></section>
+
   <section class="list" id="list"></section>
 
   <div class="load-more-wrap"><button class="load-more" id="loadMore">加载更多</button></div>
@@ -646,7 +660,7 @@
     <div>跑分数据：Geekbench，来源 cpuranklist.com（抓取时间见页脚）</div>
     <div>价格数据：中关村在线 ZOL 参考价 / 京东·天猫在售价（人民币），同一型号取最低价</div>
     <div>性价比排行只展示已匹配到价格的桌面型号；性能排行包含全部跑分型号</div>
-    <div>设置中隐藏参考价后，仅有参考价的型号会用京东估价（扫码登录）代替，失败时回退苏宁易购</div>
+    <div>设置中隐藏参考价后，仅有参考价的型号会抓取京东估价；抓取中显示“正在抓取”，未配置或 Cookie 无效时给出说明并从性价比榜移除</div>
   </section>
 
   <footer>
@@ -659,8 +673,8 @@
 </main>
 
 <script id="app-data" type="application/json">{
-  "fetchedAt": "2026-08-02T09:24:59.970Z",
-  "scoresUpdatedAt": "2026-08-02T08:57:31.346Z",
+  "fetchedAt": "2026-08-02T10:30:14.475Z",
+  "scoresUpdatedAt": "2026-08-02T09:50:13.514Z",
   "pricesUpdatedAt": "2026-08-02T07:37:33.067Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
@@ -7564,7 +7578,7 @@
   }
   const state = { kind: 'gpu', view: 'score', brand: 'all', query: '', shown: 100, hideRef: true };
   let jdEstimates = { gpu: {}, cpu: {} };
-  let jdLoading = false;
+  let jdLoading = { gpu: false, cpu: false };
 
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
@@ -7592,12 +7606,13 @@
     if (row.shopPrice) return { price: row.shopPrice, tag: '电商价' };
     const est = jdEstimates[state.kind] && jdEstimates[state.kind][row.slug];
     if (est && est.price) return { price: est.price, tag: '估价' };
+    if (jdLoading[state.kind]) return { pending: true };
     return null;
   }
 
   function ratio(row) {
     const p = shownPrice(row);
-    return p ? row.score / p.price : 0;
+    return p && p.price ? row.score / p.price : 0;
   }
 
   function visibleRows() {
@@ -7624,12 +7639,14 @@
     const val = view === 'score' ? row.score : ratio(row);
     const width = Math.max(8, Math.round((val / maxVal) * 100));
     const priceInfo = shownPrice(row);
-    const hasPrice = !!priceInfo;
+    const pending = !!(priceInfo && priceInfo.pending);
+    const hasPrice = !!priceInfo && !pending;
     const cls = ['row', 'row-' + vendorKey(row.name), !hasPrice && view === 'score' ? 'ghost' : ''].filter(Boolean).join(' ');
-    const valueText = hasPrice ? ratio(row).toFixed(2) + ' 分/元' : '暂无电商价';
-    const tag = hasPrice ? priceInfo.tag : '';
+    const valueText = pending ? '正在抓取' : hasPrice ? ratio(row).toFixed(2) + ' 分/元' : '暂无电商价';
+    const tag = pending ? '抓取中' : hasPrice ? priceInfo.tag : '';
     const source = row.priceFrom ? `取自 ${row.priceFrom}` : '';
-    const barText = view === 'score' ? fmt(row.score) : ratio(row).toFixed(2) + ' 分/元';
+    const barText = view === 'score' ? fmt(row.score) : pending ? '正在抓取' : ratio(row).toFixed(2) + ' 分/元';
+    const priceText = pending ? '正在抓取…' : hasPrice ? '¥' + fmt(priceInfo.price) : '暂无电商价';
     return `
       <a class="${cls}" title="${row.name} · ${tag}${tag === '估价' ? '（京东估价）' : ''} · ${source}">
         <div class="row-top">
@@ -7640,7 +7657,7 @@
           <div class="row-fill" style="width:${width}%"><span class="row-score">${barText}</span></div>
         </div>
         <div class="row-meta">
-          ${hasPrice ? `<span class="price">¥${fmt(priceInfo.price)}</span>` : '<span>暂无电商价</span>'}
+          <span class="price">${priceText}</span>
           ${tag ? `<span class="tag">${tag}</span>` : ''}
           <span class="val">${view === 'score' ? '性价比 ' + valueText : '跑分 ' + fmt(row.score) + ' · ' + valueText}</span>
         </div>
@@ -7653,7 +7670,10 @@
     const maxVal = maxOf(state.kind, state.view);
     const kindLabel = state.kind === 'gpu' ? 'GPU' : 'CPU';
     const total = DATA[state.kind].length;
-    const priced = DATA[state.kind].filter((r) => shownPrice(r)).length;
+    const priced = DATA[state.kind].filter((r) => {
+      const p = shownPrice(r);
+      return p && !p.pending;
+    }).length;
 
     $('#pageTitle').textContent = kindLabel + (state.view === 'score' ? ' Geekbench 性能排行' : ' Geekbench 性价比排行');
     $('#pageSub').textContent =
@@ -7769,25 +7789,54 @@
   }
 
   async function fetchJdEstimates() {
-    if (jdLoading) return;
-    jdLoading = true;
+    const kind = state.kind;
+    if (jdLoading[kind]) return;
+    jdLoading[kind] = true;
     const status = $('#jdStatus');
-    status.textContent = '正在获取估价…';
+    const fetchLine = $('#fetchLine');
+    status.textContent = '正在抓取京东 Cookie/估价…';
+    fetchLine.hidden = false;
+    fetchLine.innerHTML = '正在抓取京东 Cookie/估价… <b>0/0</b>';
+    render();
+    const timer = setInterval(async () => {
+      try {
+        const res = await fetch('/api/estimate-progress?kind=' + kind, { cache: 'no-store' });
+        if (!res.ok) return;
+        const p = await res.json();
+        if (!p.running) return;
+        const head = p.cookieConfigured
+          ? '正在抓取京东 Cookie/估价…'
+          : '未配置京东 Cookie，正在抓取估价…';
+        const text = `${head} <b>${p.done}/${p.total}</b>（已估价 ${p.estimated}）`;
+        status.textContent = text;
+        fetchLine.innerHTML = text;
+      } catch (err) {}
+    }, 1500);
     try {
-      const res = await fetch('/api/estimate-prices?kind=' + state.kind, { cache: 'no-store' });
+      const res = await fetch('/api/estimate-prices?kind=' + kind, { cache: 'no-store' });
+      clearInterval(timer);
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const payload = await res.json();
-      jdEstimates[state.kind] = payload.estimates || {};
-      const n = Object.values(jdEstimates[state.kind]).filter((e) => e && e.price).length;
+      jdEstimates[kind] = payload.estimates || {};
+      const n = Object.values(jdEstimates[kind]).filter((e) => e && e.price).length;
       const base = payload.updatedAt
         ? '估价 ' + n + ' 个 · ' + fmtTime(payload.updatedAt)
         : '估价已更新 ' + n + ' 个';
-      status.textContent = payload.notice ? payload.notice + '（' + base + '）' : base;
+      let note = payload.notice || '';
+      if (!payload.cookieConfigured) {
+        note = '未配置京东 Cookie，仅有参考价的型号已从性价比榜移除。' + (note ? ' ' + note : '');
+      } else if (payload.cookieInvalid) {
+        note = '京东 Cookie 无效或已过期，仅有参考价的型号已从性价比榜移除。' + (note ? ' ' + note : '');
+      }
+      status.textContent = note ? note + '（' + base + '）' : base;
+      fetchLine.hidden = true;
       render();
     } catch (err) {
+      clearInterval(timer);
       status.textContent = '估价失败：请通过 node server.mjs 本地服务打开';
+      fetchLine.hidden = true;
     } finally {
-      jdLoading = false;
+      jdLoading[kind] = false;
     }
   }
 
