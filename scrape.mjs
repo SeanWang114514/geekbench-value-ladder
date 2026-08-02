@@ -275,7 +275,11 @@ async function fetchJdQr() {
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
-  const cookie = (res.headers.getSetCookie ? res.headers.getSetCookie() : []).join('; ');
+  const setCookies = res.headers.getSetCookie ? res.headers.getSetCookie() : [];
+  const cookie = setCookies
+    .map((c) => c.split(';')[0])
+    .filter(Boolean)
+    .join('; ');
   return { pngBase64: buf.toString('base64'), cookie };
 }
 
@@ -299,16 +303,51 @@ async function checkJdQr(cookie, token) {
   }
 }
 
-async function finishJdQrLogin(cookie, loginUrl) {
-  let u = loginUrl;
+async function resolveJdLoginUrl(cookie, ticket) {
+  const qs = new URLSearchParams({
+    t: ticket,
+    pageSource: 'login2025',
+    pageLocation: '',
+    ReturnUrl: '',
+    h5st: '',
+    _stk: '',
+    firstShowAccountLoginPage: '',
+    ssoDomains: '',
+  });
+  const res = await fetch('https://passport.jd.com/uc/qrCodeTicketValidation?' + qs.toString(), {
+    headers: {
+      'User-Agent': UA,
+      Referer: 'https://passport.jd.com/new/login.aspx',
+      Cookie: cookie,
+    },
+    signal: AbortSignal.timeout(20000),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const text = await res.text();
+  const data = JSON.parse(text);
+  if (data.returnCode !== 0 || !data.url) return null;
+  return data.url;
+}
+
+async function finishJdQrLogin(cookie, ticketOrUrl) {
+  let u = ticketOrUrl;
+  if (u && !/^https?:\/\//i.test(u)) {
+    u = await resolveJdLoginUrl(cookie, u);
+    if (!u) return null;
+  }
   const allCookies = [];
+  let currentCookie = cookie;
   for (let i = 0; i < 6; i++) {
     const res = await fetch(u, {
-      headers: { 'User-Agent': UA, Referer: 'https://passport.jd.com/new/login.aspx', Cookie: cookie },
+      headers: { 'User-Agent': UA, Referer: 'https://passport.jd.com/new/login.aspx', Cookie: currentCookie },
       redirect: 'manual',
       signal: AbortSignal.timeout(20000),
     });
-    if (res.headers.getSetCookie) allCookies.push(...res.headers.getSetCookie());
+    if (res.headers.getSetCookie) {
+      const set = res.headers.getSetCookie();
+      allCookies.push(...set);
+      currentCookie = mergeCookies(currentCookie, set);
+    }
     const loc = res.headers.get('location');
     if (!loc) break;
     u = new URL(loc, u).toString();
@@ -324,6 +363,22 @@ async function finishJdQrLogin(cookie, loginUrl) {
   }
   if (!map['pt_key'] || !map['pt_pin']) return null;
   return `pt_key=${map['pt_key']}; pt_pin=${map['pt_pin']}`;
+}
+
+function mergeCookies(base, setCookies) {
+  const map = new Map();
+  for (const part of base.split(';')) {
+    const eq = part.indexOf('=');
+    if (eq <= 0) continue;
+    map.set(part.slice(0, eq).trim(), part.slice(eq + 1).trim());
+  }
+  for (const c of setCookies) {
+    const first = c.split(';')[0];
+    const eq = first.indexOf('=');
+    if (eq <= 0) continue;
+    map.set(first.slice(0, eq).trim(), first.slice(eq + 1).trim());
+  }
+  return [...map.entries()].map(([k, v]) => `${k}=${v}`).join('; ');
 }
 
 async function readFileIfExists(file) {

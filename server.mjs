@@ -293,11 +293,11 @@ const server = createServer(async (req, res) => {
         return;
       }
       if (data.code === 200) {
-        if (!data.url) {
-          sendJson(res, { status: 'error', msg: '未取得登录地址' });
+        if (!data.ticket && !data.url) {
+          sendJson(res, { status: 'error', msg: '未取得登录票据' });
           return;
         }
-        const cookie = await finishJdQrLogin(qrSession.cookie, data.url);
+        const cookie = await finishJdQrLogin(qrSession.cookie, data.ticket || data.url);
         if (!cookie) {
           sendJson(res, { status: 'error', msg: '未取得登录票据' });
           return;
