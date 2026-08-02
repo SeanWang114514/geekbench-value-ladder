@@ -348,6 +348,26 @@
     color: #1d4ed8;
   }
 
+  .server-warn {
+    max-width: 1080px;
+    margin: 18px auto 0;
+    padding: 12px 16px;
+    background: #fff1f2;
+    border: 1px solid #fda4af;
+    border-radius: 8px;
+    color: #9f1239;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .server-warn code {
+    background: #ffe4e6;
+    border-radius: 4px;
+    padding: 1px 6px;
+  }
+  .server-warn a {
+    color: #1d4ed8;
+  }
+
   .notes {
     margin-top: 26px;
     background: var(--panel);
@@ -536,6 +556,7 @@
 </style>
 </head>
 <body>
+<div class="server-warn" id="serverWarn" hidden>当前不是通过本机 <code>node server.mjs</code> 打开的，保存 Cookie、刷新跑分等在线功能不可用。请先运行 <code>node server.mjs</code>，再访问 <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>。</div>
 <header>
   <div class="header-inner">
     <div class="brand"><span class="brand-dot"></span>Geekbench 性价比天梯图</div>
@@ -685,6 +706,13 @@
     const notice = document.getElementById('templateNotice');
     if (notice) notice.hidden = false;
     return;
+  }
+  const isLocalServer =
+    location.protocol.startsWith('http') &&
+    ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
+  if (!isLocalServer) {
+    const warn = document.getElementById('serverWarn');
+    if (warn) warn.hidden = false;
   }
   const state = { kind: 'gpu', view: 'score', brand: 'all', query: '', shown: 100, hideRef: true };
   let jdEstimates = { gpu: {}, cpu: {} };
@@ -989,7 +1017,8 @@
         status.textContent = '已保存京东 Cookie（仅本机保存）';
       }
     } catch (err) {
-      status.textContent = '保存失败，请确认通过 node server.mjs 打开';
+      const msg = err && err.message ? err.message : '未知错误';
+      status.textContent = '保存失败（' + msg + '），请确认通过 node server.mjs 打开 http://127.0.0.1:8765';
     } finally {
       btn.disabled = false;
     }
