@@ -312,6 +312,16 @@
     padding: 1px 7px;
     font-size: 11px;
   }
+  .row-meta .tag-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: #1d4ed8;
+    background: #e8f0fe;
+  }
+  .row-meta .tag-link:hover {
+    text-decoration: underline;
+    background: #dbe7ff;
+  }
   .empty {
     background: var(--panel);
     border: 1px dashed var(--line);
@@ -677,7 +687,7 @@
 </main>
 
 <script id="app-data" type="application/json">{
-  "fetchedAt": "2026-08-02T13:15:43.751Z",
+  "fetchedAt": "2026-08-02T13:19:29.257Z",
   "scoresUpdatedAt": "2026-08-02T09:50:13.514Z",
   "pricesUpdatedAt": "2026-08-02T12:33:46.029Z",
   "sources": {
@@ -7885,14 +7895,20 @@
     return '估价';
   }
 
+  function zolDetailUrl(row) {
+    const base = state.kind === 'gpu' ? 'vga' : 'cpu';
+    return row.zolId ? `https://detail.zol.com.cn/${base}/index${row.zolId}.shtml` : `https://detail.zol.com.cn/${base}/`;
+  }
+
   function shownPrice(row) {
     if (!row || !row.price) return null;
+    const zolUrl = zolDetailUrl(row);
     if (!state.hideRef) {
-      return row.shopPrice ? { price: row.shopPrice, tag: '电商价' } : { price: row.price, tag: '参考价' };
+      return row.shopPrice ? { price: row.shopPrice, tag: 'ZOL', url: zolUrl } : { price: row.price, tag: '参考价', url: zolUrl };
     }
-    if (row.shopPrice) return { price: row.shopPrice, tag: '电商价' };
+    if (row.shopPrice) return { price: row.shopPrice, tag: 'ZOL', url: zolUrl };
     const est = jdEstimates[state.kind] && jdEstimates[state.kind][row.slug];
-    if (est && est.price) return { price: est.price, tag: sourceLabel(est.source) };
+    if (est && est.price) return { price: est.price, tag: sourceLabel(est.source), url: est.searchUrl };
     if (jdLoading[state.kind]) return { pending: true };
     return null;
   }
@@ -7931,11 +7947,16 @@
     const cls = ['row', 'row-' + vendorKey(row.name), !hasPrice && view === 'score' ? 'ghost' : ''].filter(Boolean).join(' ');
     const valueText = pending ? '正在抓取' : hasPrice ? ratio(row).toFixed(2) + ' 分/元' : '暂无电商价';
     const tag = pending ? '抓取中' : hasPrice ? priceInfo.tag : '';
+    const tagHtml = tag
+      ? priceInfo && priceInfo.url
+        ? `<a class="tag tag-link" href="${esc(priceInfo.url)}" target="_blank" rel="noopener">${tag}</a>`
+        : `<span class="tag">${tag}</span>`
+      : '';
     const source = row.priceFrom ? `取自 ${row.priceFrom}` : '';
     const barText = view === 'score' ? fmt(row.score) : pending ? '正在抓取' : ratio(row).toFixed(2) + ' 分/元';
     const priceText = pending ? '正在抓取…' : hasPrice ? '¥' + fmt(priceInfo.price) : '暂无电商价';
     return `
-      <a class="${cls}" title="${row.name} · ${tag}${tag === '估价' ? '（电商估价）' : ''} · ${source}">
+      <div class="${cls}" title="${row.name} · ${tag}${tag === '估价' ? '（电商估价）' : ''} · ${source}">
         <div class="row-top">
           <span class="rank">#${rankMap.get(row.slug) || i + 1}</span>
           <span class="name">${esc(row.name)}</span>
@@ -7945,10 +7966,10 @@
         </div>
         <div class="row-meta">
           <span class="price">${priceText}</span>
-          ${tag ? `<span class="tag">${tag}</span>` : ''}
+          ${tagHtml}
           <span class="val">${view === 'score' ? '性价比 ' + valueText : '跑分 ' + fmt(row.score) + ' · ' + valueText}</span>
         </div>
-      </a>`;
+      </div>`;
   }
 
   function render() {
