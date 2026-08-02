@@ -10,8 +10,9 @@ import {
   fetchZolPages,
   estimateSuning,
   estimateJd,
-  launchJdLoginWindow,
-  getJdCookies,
+  fetchJdQr,
+  checkJdQr,
+  finishJdQrLogin,
 } from './scrape.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -49,7 +50,7 @@ async function writeJson(file, value) {
 const cookieFile = path.join(cacheDir, 'jd-cookie.json');
 const jdLoginFile = path.join(cacheDir, 'jd-login.json');
 
-let currentJdProfile = null;
+let qrSession = null;
 
 async function readJdCookie() {
   if (!(await fileExists(cookieFile))) return null;
@@ -264,34 +265,56 @@ const server = createServer(async (req, res) => {
       sendJson(res, { ok: true });
       return;
     }
-    if (url.pathname === '/api/jd-login' && req.method === 'POST') {
-      currentJdProfile = path.join(cacheDir, 'jd-login-' + Date.now());
-      await launchJdLoginWindow(currentJdProfile);
-      sendJson(res, { ok: true });
+    if (url.pathname === '/api/jd-qr' && req.method === 'GET') {
+      const { pngBase64, cookie } = await fetchJdQr();
+      const tokenM = cookie.match(/wlfstk_smdl=([^;]+)/);
+      if (!tokenM) throw new Error('未取得二维码票据');
+      qrSession = { cookie, token: tokenM[1], createdAt: Date.now() };
+      sendJson(res, { ok: true, qr: pngBase64 });
+      return;
+    }
+    if (url.pathname === '/api/jd-qr-status' && req.method === 'GET') {
+      if (!qrSession) {
+        sendJson(res, { status: 'none' });
+        return;
+      }
+      if (Date.now() - qrSession.createdAt > 3 * 60 * 1000) {
+        qrSession = null;
+        sendJson(res, { status: 'expired' });
+        return;
+      }
+      const data = await checkJdQr(qrSession.cookie, qrSession.token);
+      if (data.code === 201) {
+        sendJson(res, { status: 'waiting' });
+        return;
+      }
+      if (data.code === 202) {
+        sendJson(res, { status: 'scanned' });
+        return;
+      }
+      if (data.code === 200) {
+        if (!data.url) {
+          sendJson(res, { status: 'error', msg: '未取得登录地址' });
+          return;
+        }
+        const cookie = await finishJdQrLogin(qrSession.cookie, data.url);
+        if (!cookie) {
+          sendJson(res, { status: 'error', msg: '未取得登录票据' });
+          return;
+        }
+        await writeJson(cookieFile, { cookie, savedAt: new Date().toISOString() });
+        await writeJson(jdLoginFile, { loggedIn: true, checkedAt: new Date().toISOString() });
+        for (const k of ['gpu', 'cpu']) {
+          await rm(path.join(cacheDir, `estimate-${k}-${dayStamp()}.json`), { force: true });
+        }
+        sendJson(res, { status: 'ok' });
+        return;
+      }
+      sendJson(res, { status: 'error', msg: data.msg || '二维码已失效' });
       return;
     }
     if (url.pathname === '/api/jd-login-status' && req.method === 'GET') {
       sendJson(res, { loggedIn: await fileExists(jdLoginFile) });
-      return;
-    }
-    if (url.pathname === '/api/jd-login-confirm' && req.method === 'POST') {
-      if (!currentJdProfile) {
-        res.writeHead(409, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ ok: false, error: '请先点击“扫码登录”' }));
-        return;
-      }
-      const cookie = await getJdCookies(currentJdProfile);
-      if (!cookie) {
-        res.writeHead(409, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ ok: false, error: '未检测到登录，请确认扫码成功后再试' }));
-        return;
-      }
-      await writeJson(cookieFile, { cookie, savedAt: new Date().toISOString() });
-      await writeJson(jdLoginFile, { loggedIn: true, checkedAt: new Date().toISOString() });
-      for (const k of ['gpu', 'cpu']) {
-        await rm(path.join(cacheDir, `estimate-${k}-${dayStamp()}.json`), { force: true });
-      }
-      sendJson(res, { ok: true });
       return;
     }
     if (url.pathname === '/api/jd-login' && req.method === 'DELETE') {

@@ -2,7 +2,7 @@ import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { execFile, spawn } from 'node:child_process';
+import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
@@ -268,92 +268,61 @@ async function estimateJd(query, cookie) {
   return null;
 }
 
-async function launchJdLoginWindow(profileDir) {
-  const browser = await findBrowser();
-  if (!browser) throw new Error('未找到 Chrome/Edge');
-  await mkdir(profileDir, { recursive: true });
-  const child = spawn(
-    browser,
-    [
-      '--new-window',
-      `--user-data-dir=${profileDir}`,
-      '--remote-debugging-port=0',
-      '--no-first-run',
-      '--no-default-browser-check',
-      'https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F',
-    ],
-    { detached: true, stdio: 'ignore', windowsHide: false }
-  );
-  child.unref();
-}
-
-async function readDevToolsPort(profileDir) {
-  const file = path.join(profileDir, 'DevToolsActivePort');
-  for (let i = 0; i < 30; i++) {
-    try {
-      const text = await readFile(file, 'utf8');
-      const port = Number(text.split('\n')[0].trim());
-      if (port > 0) return port;
-    } catch (err) {}
-    await sleep(500);
-  }
-  return null;
-}
-
-async function cdpCall(wsUrl, method) {
-  return new Promise((resolve, reject) => {
-    let ws;
-    const timer = setTimeout(() => {
-      try {
-        ws && ws.close();
-      } catch (err) {}
-      reject(new Error('CDP 超时'));
-    }, 10000);
-    ws = new WebSocket(wsUrl);
-    ws.onopen = () => ws.send(JSON.stringify({ id: 1, method }));
-    ws.onmessage = (e) => {
-      let msg;
-      try {
-        msg = JSON.parse(e.data);
-      } catch (err) {
-        return;
-      }
-      if (msg.id === 1) {
-        clearTimeout(timer);
-        try {
-          ws.close();
-        } catch (err) {}
-        resolve(msg);
-      }
-    };
-    ws.onerror = () => {
-      clearTimeout(timer);
-      reject(new Error('无法连接调试端口'));
-    };
+async function fetchJdQr() {
+  const res = await fetch('https://qr.m.jd.com/show?appid=133&size=300&t=' + Date.now(), {
+    headers: { 'User-Agent': UA, Referer: 'https://passport.jd.com/new/login.aspx' },
+    signal: AbortSignal.timeout(20000),
   });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  const cookie = (res.headers.getSetCookie ? res.headers.getSetCookie() : []).join('; ');
+  return { pngBase64: buf.toString('base64'), cookie };
 }
 
-async function getJdCookies(profileDir) {
-  const port = await readDevToolsPort(profileDir);
-  if (!port) return null;
-  let targets;
+async function checkJdQr(cookie, token) {
+  const cb = 'jQuery' + Math.floor(Math.random() * 1e6);
+  const url =
+    `https://qr.m.jd.com/check?appid=133&callback=${cb}` +
+    `&token=${encodeURIComponent(token)}&_=${Date.now()}`;
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA, Referer: 'https://passport.jd.com/new/login.aspx', Cookie: cookie },
+    signal: AbortSignal.timeout(15000),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const text = await res.text();
+  const m = text.match(/\{[\s\S]*\}/);
+  if (!m) return { code: -1, msg: '响应异常' };
   try {
-    targets = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
+    return JSON.parse(m[0]);
   } catch (err) {
-    return null;
+    return { code: -1, msg: '响应异常' };
   }
-  const page =
-    targets.find((t) => t.type === 'page' && /jd\.com/.test(t.url)) ||
-    targets.find((t) => t.type === 'page');
-  if (!page || !page.webSocketDebuggerUrl) return null;
-  const res = await cdpCall(page.webSocketDebuggerUrl, 'Storage.getCookies');
-  const cookies = (res.result && res.result.cookies) || [];
-  const jd = cookies.filter(
-    (c) => /jd\.com/.test(c.domain) && (c.name === 'pt_key' || c.name === 'pt_pin')
-  );
-  if (jd.length < 2) return null;
+}
+
+async function finishJdQrLogin(cookie, loginUrl) {
+  let u = loginUrl;
+  const allCookies = [];
+  for (let i = 0; i < 6; i++) {
+    const res = await fetch(u, {
+      headers: { 'User-Agent': UA, Referer: 'https://passport.jd.com/new/login.aspx', Cookie: cookie },
+      redirect: 'manual',
+      signal: AbortSignal.timeout(20000),
+    });
+    if (res.headers.getSetCookie) allCookies.push(...res.headers.getSetCookie());
+    const loc = res.headers.get('location');
+    if (!loc) break;
+    u = new URL(loc, u).toString();
+  }
   const map = {};
-  for (const c of jd) map[c.name] = c.value;
+  for (const c of allCookies) {
+    const eq = c.indexOf('=');
+    if (eq <= 0) continue;
+    const name = c.slice(0, eq);
+    if (name !== 'pt_key' && name !== 'pt_pin') continue;
+    const semi = c.indexOf(';');
+    map[name] = semi === -1 ? c.slice(eq + 1) : c.slice(eq + 1, semi);
+  }
+  if (!map['pt_key'] || !map['pt_pin']) return null;
   return `pt_key=${map['pt_key']}; pt_pin=${map['pt_pin']}`;
 }
 
@@ -576,6 +545,7 @@ export {
   fetchZolPages,
   estimateSuning,
   estimateJd,
-  launchJdLoginWindow,
-  getJdCookies,
+  fetchJdQr,
+  checkJdQr,
+  finishJdQrLogin,
 };
