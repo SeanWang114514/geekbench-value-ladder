@@ -719,6 +719,14 @@
     return 'other';
   }
 
+  function sourceLabel(source) {
+    if (/^jd/.test(source)) return '京东';
+    if (/suning/.test(source)) return '苏宁';
+    if (/zol/.test(source)) return 'ZOL';
+    if (/tmall/.test(source)) return '天猫';
+    return '估价';
+  }
+
   function shownPrice(row) {
     if (!row || !row.price) return null;
     if (!state.hideRef) {
@@ -726,7 +734,7 @@
     }
     if (row.shopPrice) return { price: row.shopPrice, tag: '电商价' };
     const est = jdEstimates[state.kind] && jdEstimates[state.kind][row.slug];
-    if (est && est.price) return { price: est.price, tag: '估价' };
+    if (est && est.price) return { price: est.price, tag: sourceLabel(est.source) };
     if (jdLoading[state.kind]) return { pending: true };
     return null;
   }
