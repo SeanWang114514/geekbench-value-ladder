@@ -559,8 +559,19 @@
   <div class="settings-status" id="jdStatus"></div>
   <div class="settings-row">
     <div>
-      <div class="settings-label">京东登录 Cookie</div>
-      <div class="settings-hint">粘贴 pt_key=...;pt_pin=...，仅保存在本机</div>
+      <div class="settings-label">京东扫码登录</div>
+      <div class="settings-hint">扫码一次自动保存本机，无需复制 Cookie</div>
+    </div>
+    <div class="settings-actions">
+      <button class="settings-btn" id="jdScanBtn">扫码登录</button>
+      <button class="settings-btn ghost" id="jdLoginDone">我已登录</button>
+    </div>
+  </div>
+  <div class="settings-status" id="jdLoginStatus">未登录</div>
+  <div class="settings-row">
+    <div>
+      <div class="settings-label">京东 Cookie（可选）</div>
+      <div class="settings-hint">扫码不可用时手动粘贴 pt_key=...;pt_pin=...</div>
     </div>
     <div class="settings-actions">
       <button class="settings-btn ghost" id="jdCookieToggle">管理</button>
@@ -618,7 +629,7 @@
     <div>跑分数据：Geekbench，来源 cpuranklist.com（抓取时间见页脚）</div>
     <div>价格数据：中关村在线 ZOL 参考价 / 京东·天猫在售价（人民币），同一型号取最低价</div>
     <div>性价比排行只展示已匹配到价格的桌面型号；性能排行包含全部跑分型号</div>
-    <div>设置中关闭“显示电商价”后，仅有参考价的型号会抓取苏宁易购搜索结果并标注为“估价”</div>
+    <div>设置中关闭“显示电商价”后，仅有参考价的型号会优先用京东扫码登录搜索，失败时回退苏宁易购，并标注为“估价”</div>
   </section>
 
   <footer>
@@ -631,8 +642,8 @@
 </main>
 
 <script id="app-data" type="application/json">{
-  "fetchedAt": "2026-08-02T08:48:19.912Z",
-  "scoresUpdatedAt": "2026-08-02T07:38:02.501Z",
+  "fetchedAt": "2026-08-02T08:57:31.382Z",
+  "scoresUpdatedAt": "2026-08-02T08:57:31.382Z",
   "pricesUpdatedAt": "2026-08-02T07:37:33.067Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
@@ -7822,6 +7833,46 @@
     }
   }
 
+  async function checkJdLoginStatus() {
+    const status = $('#jdLoginStatus');
+    try {
+      const res = await fetch('/api/jd-login-status', { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      status.textContent = data.loggedIn ? '已登录京东（本机保存）' : '未登录';
+    } catch (err) {
+      status.textContent = '登录状态获取失败';
+    }
+  }
+
+  async function scanJdLogin() {
+    const status = $('#jdLoginStatus');
+    status.textContent = '正在打开京东登录窗口…';
+    try {
+      const res = await fetch('/api/jd-login', { method: 'POST', cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      status.textContent = '已打开京东窗口：扫码登录后关闭窗口，再点“我已登录”';
+    } catch (err) {
+      status.textContent = '打开失败，请确认通过 node server.mjs 打开';
+    }
+  }
+
+  async function confirmJdLogin() {
+    const status = $('#jdLoginStatus');
+    status.textContent = '正在检查登录状态…';
+    try {
+      const res = await fetch('/api/jd-login-confirm', { method: 'POST', cache: 'no-store' });
+      const data = await res.json();
+      if (!data.ok) throw new Error(data.error || '登录检查失败');
+      status.textContent = state.showShop
+        ? '京东登录已生效'
+        : '京东登录已生效，正在重新估价…';
+      if (!state.showShop) await fetchJdEstimates();
+    } catch (err) {
+      status.textContent = err.message || '登录检查失败';
+    }
+  }
+
   document.addEventListener('click', (e) => {
     const tab = e.target.closest('.tab');
     if (tab) {
@@ -7890,6 +7941,8 @@
   });
   $('#jdCookieSave').addEventListener('click', saveJdCookie);
   $('#jdCookieClear').addEventListener('click', clearJdCookie);
+  $('#jdScanBtn').addEventListener('click', scanJdLogin);
+  $('#jdLoginDone').addEventListener('click', confirmJdLogin);
 
   let savedShop = null;
   try {
@@ -7897,6 +7950,7 @@
   } catch (err) {}
   state.showShop = savedShop === null ? true : savedShop === '1';
   setShowShop(state.showShop);
+  checkJdLoginStatus();
 
   updateTime();
   render();

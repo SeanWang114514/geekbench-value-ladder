@@ -2,7 +2,7 @@ import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { execFile } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
 import { promisify } from 'node:util';
 
 const execFileAsync = promisify(execFile);
@@ -268,6 +268,78 @@ async function estimateJd(query, cookie) {
   return null;
 }
 
+function jdMobileSearchUrl(query) {
+  return (
+    'https://so.m.jd.com/ware/search.action?keyword=' +
+    encodeURIComponent(query) +
+    '&searchType=1&page=1'
+  );
+}
+
+async function openJdLogin(profileDir) {
+  const browser = await findBrowser();
+  if (!browser) throw new Error('未找到 Chrome/Edge');
+  await mkdir(profileDir, { recursive: true });
+  const child = spawn(
+    browser,
+    [
+      '--new-window',
+      `--user-data-dir=${profileDir}`,
+      'https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F',
+    ],
+    { detached: true, stdio: 'ignore', windowsHide: false }
+  );
+  child.unref();
+}
+
+async function checkJdProfile(profileDir) {
+  try {
+    const html = await renderDom(jdMobileSearchUrl('手机'), profileDir);
+    if (/passport\.jd\.com|京东登录|京东验证|安全验证|欢迎登录/.test(html)) return false;
+    return parseJdItems(html).length > 0;
+  } catch (err) {
+    return false;
+  }
+}
+
+async function estimateJdByProfile(query, profileDir) {
+  const urls = [jdMobileSearchUrl(query), `https://search.jd.com/Search?keyword=${encodeURIComponent(query)}&enc=utf-8`];
+  for (const url of urls) {
+    const html = await renderDom(url, profileDir);
+    if (/passport\.jd\.com|京东登录|京东验证|安全验证|欢迎登录/.test(html)) {
+      throw new Error('京东未登录或登录已失效');
+    }
+    const items = parseJdItems(html);
+    const prices = items.map((i) => i.price);
+    if (!prices.length) continue;
+    const counts = new Map();
+    for (const p of prices) {
+      const k = Math.round(p * 100) / 100;
+      counts.set(k, (counts.get(k) || 0) + 1);
+    }
+    let mode = null;
+    let modeCount = 0;
+    for (const [k, c] of counts) {
+      if (c > modeCount) {
+        mode = k;
+        modeCount = c;
+      }
+    }
+    const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+    return {
+      price: modeCount >= 2 ? mode : average,
+      mode,
+      modeCount,
+      average,
+      count: prices.length,
+      samples: prices.slice(0, 12),
+      source: 'jd',
+      searchUrl: url,
+    };
+  }
+  return null;
+}
+
 async function readFileIfExists(file) {
   if (await fileExists(file)) return readFile(file);
   return null;
@@ -487,4 +559,7 @@ export {
   fetchZolPages,
   estimateSuning,
   estimateJd,
+  openJdLogin,
+  checkJdProfile,
+  estimateJdByProfile,
 };

@@ -10,6 +10,9 @@ import {
   fetchZolPages,
   estimateSuning,
   estimateJd,
+  openJdLogin,
+  checkJdProfile,
+  estimateJdByProfile,
 } from './scrape.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -45,6 +48,8 @@ async function writeJson(file, value) {
 }
 
 const cookieFile = path.join(cacheDir, 'jd-cookie.json');
+const jdProfileDir = path.join(cacheDir, 'jd-profile');
+const jdLoginFile = path.join(cacheDir, 'jd-login.json');
 
 async function readJdCookie() {
   if (!(await fileExists(cookieFile))) return null;
@@ -115,6 +120,7 @@ async function priceEstimatesFor(kind) {
   const rows = base[kind].filter((r) => r.price && !r.shopPrice);
   const estimates = {};
   const cookie = await readJdCookie();
+  const useProfile = await fileExists(jdLoginFile);
   let cursor = 0;
   let browserError = false;
   let jdError = null;
@@ -127,7 +133,14 @@ async function priceEstimatesFor(kind) {
         const tokenMatch = query.match(/(\d{3,5}[a-z0-9]*)/i);
         const token = tokenMatch ? tokenMatch[1].toLowerCase() : '';
         let est = null;
-        if (cookie) {
+        if (useProfile) {
+          try {
+            est = await estimateJdByProfile(query, jdProfileDir);
+          } catch (err) {
+            jdError = err.message;
+          }
+        }
+        if (!est && cookie) {
           try {
             est = await estimateJd(query, cookie);
           } catch (err) {
@@ -159,9 +172,9 @@ async function priceEstimatesFor(kind) {
   if (payload.estimated === 0 && payload.total > 0) {
     if (browserError) {
       payload.notice = '未找到 Chrome/Edge，无法抓取估价，仍显示参考价';
-    } else if (cookie && jdError) {
+    } else if ((useProfile || cookie) && jdError) {
       payload.notice = '京东登录可能已失效，苏宁也未匹配到，仍显示参考价';
-    } else if (cookie) {
+    } else if (useProfile || cookie) {
       payload.notice = '京东与苏宁均未匹配到价格，仍显示参考价';
     } else {
       payload.notice = '未配置京东登录，苏宁也未匹配到，仍显示参考价';
@@ -256,6 +269,34 @@ const server = createServer(async (req, res) => {
     }
     if (url.pathname === '/api/jd-cookie' && req.method === 'DELETE') {
       await rm(cookieFile, { force: true });
+      sendJson(res, { ok: true });
+      return;
+    }
+    if (url.pathname === '/api/jd-login' && req.method === 'POST') {
+      await openJdLogin(jdProfileDir);
+      sendJson(res, { ok: true });
+      return;
+    }
+    if (url.pathname === '/api/jd-login-status' && req.method === 'GET') {
+      sendJson(res, { loggedIn: await fileExists(jdLoginFile) });
+      return;
+    }
+    if (url.pathname === '/api/jd-login-confirm' && req.method === 'POST') {
+      const ok = await checkJdProfile(jdProfileDir);
+      if (!ok) {
+        res.writeHead(409, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, error: '未检测到登录，请扫码后关闭京东窗口再试' }));
+        return;
+      }
+      await writeJson(jdLoginFile, { loggedIn: true, checkedAt: new Date().toISOString() });
+      for (const k of ['gpu', 'cpu']) {
+        await rm(path.join(cacheDir, `estimate-${k}-${dayStamp()}.json`), { force: true });
+      }
+      sendJson(res, { ok: true });
+      return;
+    }
+    if (url.pathname === '/api/jd-login' && req.method === 'DELETE') {
+      await rm(jdLoginFile, { force: true });
       sendJson(res, { ok: true });
       return;
     }
