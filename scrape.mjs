@@ -268,15 +268,7 @@ async function estimateJd(query, cookie) {
   return null;
 }
 
-function jdMobileSearchUrl(query) {
-  return (
-    'https://so.m.jd.com/ware/search.action?keyword=' +
-    encodeURIComponent(query) +
-    '&searchType=1&page=1'
-  );
-}
-
-async function openJdLogin(profileDir) {
+async function launchJdLoginWindow(profileDir) {
   const browser = await findBrowser();
   if (!browser) throw new Error('未找到 Chrome/Edge');
   await mkdir(profileDir, { recursive: true });
@@ -285,6 +277,9 @@ async function openJdLogin(profileDir) {
     [
       '--new-window',
       `--user-data-dir=${profileDir}`,
+      '--remote-debugging-port=0',
+      '--no-first-run',
+      '--no-default-browser-check',
       'https://passport.jd.com/new/login.aspx?ReturnUrl=https%3A%2F%2Fwww.jd.com%2F',
     ],
     { detached: true, stdio: 'ignore', windowsHide: false }
@@ -292,52 +287,74 @@ async function openJdLogin(profileDir) {
   child.unref();
 }
 
-async function checkJdProfile(profileDir) {
-  try {
-    const html = await renderDom(jdMobileSearchUrl('手机'), profileDir);
-    if (/passport\.jd\.com|京东登录|京东验证|安全验证|欢迎登录/.test(html)) return false;
-    return parseJdItems(html).length > 0;
-  } catch (err) {
-    return false;
-  }
-}
-
-async function estimateJdByProfile(query, profileDir) {
-  const urls = [jdMobileSearchUrl(query), `https://search.jd.com/Search?keyword=${encodeURIComponent(query)}&enc=utf-8`];
-  for (const url of urls) {
-    const html = await renderDom(url, profileDir);
-    if (/passport\.jd\.com|京东登录|京东验证|安全验证|欢迎登录/.test(html)) {
-      throw new Error('京东未登录或登录已失效');
-    }
-    const items = parseJdItems(html);
-    const prices = items.map((i) => i.price);
-    if (!prices.length) continue;
-    const counts = new Map();
-    for (const p of prices) {
-      const k = Math.round(p * 100) / 100;
-      counts.set(k, (counts.get(k) || 0) + 1);
-    }
-    let mode = null;
-    let modeCount = 0;
-    for (const [k, c] of counts) {
-      if (c > modeCount) {
-        mode = k;
-        modeCount = c;
-      }
-    }
-    const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
-    return {
-      price: modeCount >= 2 ? mode : average,
-      mode,
-      modeCount,
-      average,
-      count: prices.length,
-      samples: prices.slice(0, 12),
-      source: 'jd',
-      searchUrl: url,
-    };
+async function readDevToolsPort(profileDir) {
+  const file = path.join(profileDir, 'DevToolsActivePort');
+  for (let i = 0; i < 30; i++) {
+    try {
+      const text = await readFile(file, 'utf8');
+      const port = Number(text.split('\n')[0].trim());
+      if (port > 0) return port;
+    } catch (err) {}
+    await sleep(500);
   }
   return null;
+}
+
+async function cdpCall(wsUrl, method) {
+  return new Promise((resolve, reject) => {
+    let ws;
+    const timer = setTimeout(() => {
+      try {
+        ws && ws.close();
+      } catch (err) {}
+      reject(new Error('CDP 超时'));
+    }, 10000);
+    ws = new WebSocket(wsUrl);
+    ws.onopen = () => ws.send(JSON.stringify({ id: 1, method }));
+    ws.onmessage = (e) => {
+      let msg;
+      try {
+        msg = JSON.parse(e.data);
+      } catch (err) {
+        return;
+      }
+      if (msg.id === 1) {
+        clearTimeout(timer);
+        try {
+          ws.close();
+        } catch (err) {}
+        resolve(msg);
+      }
+    };
+    ws.onerror = () => {
+      clearTimeout(timer);
+      reject(new Error('无法连接调试端口'));
+    };
+  });
+}
+
+async function getJdCookies(profileDir) {
+  const port = await readDevToolsPort(profileDir);
+  if (!port) return null;
+  let targets;
+  try {
+    targets = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json();
+  } catch (err) {
+    return null;
+  }
+  const page =
+    targets.find((t) => t.type === 'page' && /jd\.com/.test(t.url)) ||
+    targets.find((t) => t.type === 'page');
+  if (!page || !page.webSocketDebuggerUrl) return null;
+  const res = await cdpCall(page.webSocketDebuggerUrl, 'Storage.getCookies');
+  const cookies = (res.result && res.result.cookies) || [];
+  const jd = cookies.filter(
+    (c) => /jd\.com/.test(c.domain) && (c.name === 'pt_key' || c.name === 'pt_pin')
+  );
+  if (jd.length < 2) return null;
+  const map = {};
+  for (const c of jd) map[c.name] = c.value;
+  return `pt_key=${map['pt_key']}; pt_pin=${map['pt_pin']}`;
 }
 
 async function readFileIfExists(file) {
@@ -559,7 +576,6 @@ export {
   fetchZolPages,
   estimateSuning,
   estimateJd,
-  openJdLogin,
-  checkJdProfile,
-  estimateJdByProfile,
+  launchJdLoginWindow,
+  getJdCookies,
 };

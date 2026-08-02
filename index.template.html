@@ -961,7 +961,7 @@
     try {
       const res = await fetch('/api/jd-login', { method: 'POST', cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
-      status.textContent = '已打开京东窗口：扫码登录后关闭窗口，再点“我已登录”';
+      status.textContent = '已打开京东窗口：请用京东 App 扫码登录，完成后点“我已登录”';
     } catch (err) {
       status.textContent = '打开失败，请确认通过 node server.mjs 打开';
     }
