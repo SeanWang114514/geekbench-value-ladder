@@ -208,6 +208,24 @@ async function buildData({ refreshScores = false } = {}) {
     gpu,
     cpu,
   };
+  let estimatesUpdatedAt = null;
+  for (const kind of ['gpu', 'cpu']) {
+    const cacheFile = path.join(cacheDir, `estimate-${kind}-${dayStamp()}.json`);
+    if (!(await fileExists(cacheFile))) continue;
+    try {
+      const cached = await readJson(cacheFile);
+      for (const row of data[kind]) {
+        const est = cached && cached.estimates && cached.estimates[row.slug];
+        if (est && est.price) {
+          row.estimate = { price: est.price, source: est.source, searchUrl: est.searchUrl };
+        }
+      }
+      if (cached && cached.updatedAt && (!estimatesUpdatedAt || cached.updatedAt > estimatesUpdatedAt)) {
+        estimatesUpdatedAt = cached.updatedAt;
+      }
+    } catch (err) {}
+  }
+  if (estimatesUpdatedAt) data.estimatesUpdatedAt = estimatesUpdatedAt;
   memory = data;
   await writeJson(dataFile, data);
   console.log(

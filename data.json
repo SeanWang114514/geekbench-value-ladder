@@ -1,8 +1,7 @@
 {
-  "fetchedAt": "2026-08-02T13:53:07.489Z",
-  "scoresUpdatedAt": "2026-08-02T13:53:07.489Z",
-  "pricesUpdatedAt": "2026-08-02T13:53:07.489Z",
-  "estimatesUpdatedAt": "2026-08-02T13:53:07.489Z",
+  "fetchedAt": "2026-08-02T14:23:56.627Z",
+  "scoresUpdatedAt": "2026-08-02T09:50:13.514Z",
+  "pricesUpdatedAt": "2026-08-02T12:33:46.029Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -7191,5 +7190,6 @@
       "score": 4465,
       "price": null
     }
-  ]
+  ],
+  "estimatesUpdatedAt": "2026-08-02T12:55:46.213Z"
 }
