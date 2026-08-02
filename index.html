@@ -159,6 +159,9 @@
     flex-wrap: wrap;
   }
   .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
     border: 1px solid var(--line);
     background: var(--bg);
     color: #374151;
@@ -173,6 +176,18 @@
     border-color: var(--blue);
     color: #fff;
   }
+  .chip-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+    background: var(--muted);
+  }
+  .chip.active .chip-dot { box-shadow: 0 0 0 2px rgba(255,255,255,0.9); }
+  .dot-nvidia { background: #76b900; }
+  .dot-amd { background: #ed1c24; }
+  .dot-intel { background: #0071c5; }
+  .dot-apple { background: #1d1d1f; border: 1px solid rgba(255,255,255,0.55); }
 
   .summary {
     margin-top: 16px;
@@ -197,12 +212,13 @@
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
     min-height: 66px;
   }
-  .row.score-row { background: linear-gradient(90deg, var(--red-1), var(--red-2)); }
-  .row.value-row { background: linear-gradient(90deg, var(--green-1), var(--green-2)); }
+  .row-nvidia { background: linear-gradient(90deg, #3f7d00, #76b900); }
+  .row-amd { background: linear-gradient(90deg, #b31217, #ed1c24); }
+  .row-intel { background: linear-gradient(90deg, #005da5, #0071c5); }
+  .row-apple { background: linear-gradient(90deg, #1d1d1f, #48484c); }
+  .row-other { background: linear-gradient(90deg, #5b6472, #8a93a3); }
   .row.ghost {
-    background: #d1d5db;
-    text-shadow: none;
-    color: #374151;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55);
   }
   .row-top {
     display: flex;
@@ -262,8 +278,6 @@
     padding: 1px 7px;
     font-size: 11px;
   }
-  .ghost .rank, .ghost .tag { background: rgba(17,24,39,0.1); }
-
   .empty {
     background: var(--panel);
     border: 1px dashed var(--line);
@@ -312,6 +326,95 @@
   footer a { color: var(--blue); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+  .header-meta {
+    max-width: 46vw;
+    line-height: 1.3;
+  }
+  .icon-btn {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 10px;
+    color: #374151;
+    cursor: pointer;
+  }
+  .icon-btn:hover { border-color: var(--blue); color: var(--blue); }
+  .icon-btn svg { width: 19px; height: 19px; }
+  .settings {
+    position: fixed;
+    top: 64px;
+    right: 16px;
+    z-index: 40;
+    width: min(360px, calc(100vw - 32px));
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(17, 24, 39, 0.16);
+    padding: 16px;
+  }
+  .settings-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .settings-close {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+  .settings-label { font-size: 14px; font-weight: 700; }
+  .settings-hint { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .settings-btn {
+    flex: 0 0 auto;
+    border: 1px solid var(--blue);
+    background: var(--blue);
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .settings-btn:disabled { opacity: 0.6; cursor: default; }
+  .settings-status { font-size: 12px; color: var(--muted); min-height: 18px; }
+  .settings-badge {
+    flex: 0 0 auto;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green-1);
+    background: rgba(14, 159, 110, 0.12);
+    border-radius: 999px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+
   @media (max-width: 640px) {
     .hero h1 { font-size: 20px; }
     .tabs { width: 100%; }
@@ -320,6 +423,7 @@
     .seg-btn { flex: 1 1 0; text-align: center; }
     .row { padding: 12px 14px; }
     .score { font-size: 14px; }
+    .settings { top: 56px; right: 10px; }
   }
 </style>
 </head>
@@ -327,18 +431,49 @@
 <header>
   <div class="header-inner">
     <div class="brand"><span class="brand-dot"></span>Geekbench 性价比天梯图</div>
-    <div class="header-meta" id="headerTime"></div>
+    <div class="header-right">
+      <div class="header-meta" id="headerTime"></div>
+      <button class="icon-btn" id="settingsBtn" title="设置" aria-label="设置">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </div>
   </div>
 </header>
+
+<div class="settings" id="settingsPanel" hidden>
+  <div class="settings-head">
+    <span>设置</span>
+    <button class="settings-close" id="closeSettings" aria-label="关闭设置">&times;</button>
+  </div>
+  <div class="settings-row">
+    <div>
+      <div class="settings-label">Geekbench 跑分</div>
+      <div class="settings-hint">默认使用内置数据，不自动抓取</div>
+    </div>
+    <button class="settings-btn" id="refreshScore">重新抓取跑分</button>
+  </div>
+  <div class="settings-status" id="scoreStatus">内置跑分数据</div>
+  <div class="settings-row">
+    <div>
+      <div class="settings-label">价格数据</div>
+      <div class="settings-hint">打开页面时自动更新，每日一次</div>
+    </div>
+    <span class="settings-badge">每日自动</span>
+  </div>
+  <div class="settings-status" id="priceStatus">正在检查…</div>
+</div>
 
 <main>
   <section class="hero">
     <div>
-      <h1 id="pageTitle">显卡 Geekbench 跑分与性价比排行</h1>
+      <h1 id="pageTitle">GPU Geekbench 跑分与性价比排行</h1>
       <p id="pageSub">Geekbench 跑分来自 cpuranklist，价格为 ZOL 参考价与电商最低价，性价比 = 跑分 ÷ 价格（元）。</p>
     </div>
     <div class="tabs">
-      <button class="tab active" data-kind="gpu">显卡</button>
+      <button class="tab active" data-kind="gpu">GPU</button>
       <button class="tab" data-kind="cpu">CPU</button>
     </div>
   </section>
@@ -374,14 +509,16 @@
   <footer>
     <a href="https://cpuranklist.com/gpu-geekbench.php" target="_blank" rel="noopener">GPU Geekbench</a>
     <a href="https://cpuranklist.com/cpu-geekbench.php" target="_blank" rel="noopener">CPU Geekbench</a>
-    <a href="https://detail.zol.com.cn/vga/" target="_blank" rel="noopener">ZOL 显卡报价</a>
+    <a href="https://detail.zol.com.cn/vga/" target="_blank" rel="noopener">ZOL GPU 报价</a>
     <a href="https://detail.zol.com.cn/cpu/" target="_blank" rel="noopener">ZOL CPU 报价</a>
     <span id="footerTime"></span>
   </footer>
 </main>
 
 <script id="app-data" type="application/json">{
-  "fetchedAt": "2026-08-02T06:58:42.777Z",
+  "fetchedAt": "2026-08-02T07:52:04.922Z",
+  "scoresUpdatedAt": "2026-08-02T07:38:02.501Z",
+  "pricesUpdatedAt": "2026-08-02T07:37:33.067Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -7279,12 +7416,16 @@
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   function vendorOf(name) {
+    return { nvidia: 'NVIDIA', amd: 'AMD', intel: 'Intel', apple: 'Apple', other: '其他' }[vendorKey(name)];
+  }
+
+  function vendorKey(name) {
     const n = name.toLowerCase();
-    if (/(nvidia|geforce|rtx|gtx|titan|quadro)/.test(n)) return 'NVIDIA';
-    if (/(amd|radeon|ryzen|instinct)/.test(n)) return 'AMD';
-    if (/(intel|arc|core\s|xeon)/.test(n)) return 'Intel';
-    if (/(apple|m[1-4]\s)/.test(n)) return 'Apple';
-    return '其他';
+    if (/(nvidia|geforce|rtx|gtx|titan|quadro)/.test(n)) return 'nvidia';
+    if (/(amd|radeon|ryzen|instinct)/.test(n)) return 'amd';
+    if (/(intel|arc|core\s|xeon)/.test(n)) return 'intel';
+    if (/(apple|m[1-4]\s)/.test(n)) return 'apple';
+    return 'other';
   }
 
   function ratio(r) { return r.price ? r.score / r.price : 0; }
@@ -7313,7 +7454,7 @@
     const val = view === 'score' ? row.score : ratio(row);
     const width = Math.max(8, Math.round((val / maxVal) * 100));
     const hasPrice = !!row.price;
-    const cls = !hasPrice && view === 'score' ? 'row score-row ghost' : view === 'value' ? 'row value-row' : 'row score-row';
+    const cls = ['row', 'row-' + vendorKey(row.name), !hasPrice && view === 'score' ? 'ghost' : ''].filter(Boolean).join(' ');
     const valueText = hasPrice ? ratio(row).toFixed(2) + ' 分/元' : '暂无价格';
     const tag = hasPrice
       ? (row.shopPrice ? '电商价' : '参考价')
@@ -7338,7 +7479,7 @@
     const rows = visibleRows();
     const shown = rows.slice(0, state.shown);
     const maxVal = maxOf(state.kind, state.view);
-    const kindLabel = state.kind === 'gpu' ? '显卡' : 'CPU';
+    const kindLabel = state.kind === 'gpu' ? 'GPU' : 'CPU';
     const total = DATA[state.kind].length;
     const priced = DATA[state.kind].filter((r) => r.price).length;
 
@@ -7373,16 +7514,70 @@
       .map((b) => {
         const label = b === 'all' ? '全部' : b;
         const count = b === 'all' ? DATA[state.kind].length : counts.get(b) || 0;
-        return `<button class="chip ${state.brand === b ? 'active' : ''}" data-brand="${b}">${label} ${count}</button>`;
+        const dot = b === 'all' ? '' : `<span class="chip-dot dot-${b.toLowerCase()}"></span>`;
+        return `<button class="chip ${state.brand === b ? 'active' : ''}" data-brand="${b}">${dot}${label} ${count}</button>`;
       })
       .join('');
   }
 
+  function fmtTime(iso) {
+    if (!iso) return '';
+    const d = new Date(iso);
+    const p = (n) => String(n).padStart(2, '0');
+    return `${d.getMonth() + 1}月${d.getDate()}日 ${p(d.getHours())}:${p(d.getMinutes())}`;
+  }
+
   function updateTime() {
-    const t = DATA.fetchedAt ? new Date(DATA.fetchedAt) : null;
-    const s = t ? `抓取于 ${t.toLocaleDateString('zh-CN')}` : '';
+    const parts = [];
+    if (DATA.pricesUpdatedAt) parts.push('价格更新于 ' + fmtTime(DATA.pricesUpdatedAt));
+    if (DATA.scoresUpdatedAt) parts.push('跑分更新于 ' + fmtTime(DATA.scoresUpdatedAt));
+    if (!parts.length && DATA.fetchedAt) parts.push('抓取于 ' + fmtTime(DATA.fetchedAt));
+    const s = parts.join(' · ');
     $('#headerTime').textContent = s;
     $('#footerTime').textContent = s;
+  }
+
+  function applyData(data) {
+    if (!data || !Array.isArray(data.gpu) || !Array.isArray(data.cpu)) return false;
+    Object.assign(DATA, data);
+    return true;
+  }
+
+  async function fetchRemote() {
+    $('#priceStatus').textContent = '正在更新价格…';
+    try {
+      const res = await fetch('/api/data', { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      if (!applyData(data)) throw new Error('数据格式不正确');
+      $('#priceStatus').textContent = DATA.pricesUpdatedAt
+        ? '每日自动更新 · ' + fmtTime(DATA.pricesUpdatedAt)
+        : '每日自动更新';
+      updateTime();
+      render();
+    } catch {
+      $('#priceStatus').textContent = '静态模式：显示页面内嵌的价格快照';
+    }
+  }
+
+  async function refreshScores() {
+    const btn = $('#refreshScore');
+    const status = $('#scoreStatus');
+    btn.disabled = true;
+    status.textContent = '正在抓取 Geekbench 跑分…';
+    try {
+      const res = await fetch('/api/refresh-benchmarks', { method: 'POST', cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      if (!applyData(data)) throw new Error('数据格式不正确');
+      status.textContent = '跑分已更新：' + fmtTime(DATA.scoresUpdatedAt);
+      updateTime();
+      render();
+    } catch {
+      status.textContent = '抓取失败：请通过 node server.mjs 本地服务打开';
+    } finally {
+      btn.disabled = false;
+    }
   }
 
   document.addEventListener('click', (e) => {
@@ -7427,8 +7622,23 @@
     }, 180);
   });
 
+  $('#settingsBtn').addEventListener('click', () => {
+    $('#settingsPanel').hidden = !$('#settingsPanel').hidden;
+  });
+  $('#closeSettings').addEventListener('click', () => {
+    $('#settingsPanel').hidden = true;
+  });
+  document.addEventListener('click', (e) => {
+    const panel = $('#settingsPanel');
+    if (!panel.hidden && !e.target.closest('#settingsPanel') && !e.target.closest('#settingsBtn')) {
+      panel.hidden = true;
+    }
+  });
+  $('#refreshScore').addEventListener('click', refreshScores);
+
   updateTime();
   render();
+  fetchRemote();
 </script>
 </body>
 </html>

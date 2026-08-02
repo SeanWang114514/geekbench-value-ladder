@@ -1,7 +1,7 @@
 import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const cacheDir = path.join(__dirname, 'cache');
@@ -245,9 +245,11 @@ async function main() {
   console.log('data.json written');
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}
 
-export { gpuKey, cpuKey, matchProducts, parseZol, normText };
+export { gpuKey, cpuKey, matchProducts, parseZol, normText, fetchBenchmarks, fetchZolPages };
