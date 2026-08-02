@@ -1,7 +1,8 @@
 {
-  "fetchedAt": "2026-08-02T13:16:29.682Z",
-  "scoresUpdatedAt": "2026-08-02T09:50:13.514Z",
-  "pricesUpdatedAt": "2026-08-02T12:33:46.029Z",
+  "fetchedAt": "2026-08-02T13:53:07.489Z",
+  "scoresUpdatedAt": "2026-08-02T13:53:07.489Z",
+  "pricesUpdatedAt": "2026-08-02T13:53:07.489Z",
+  "estimatesUpdatedAt": "2026-08-02T13:53:07.489Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -17,7 +18,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "zolId": "2119967",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
@@ -37,7 +43,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "zolId": "2119967",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-4090",
@@ -47,7 +58,12 @@
       "refPrice": 12999,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 4090 WINDFORCE 24G",
-      "zolId": "1430521"
+      "zolId": "1430521",
+      "estimate": {
+        "price": 33258.43,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%204090%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-h200",
@@ -73,7 +89,12 @@
       "refPrice": 13279,
       "shopPrice": null,
       "priceFrom": "AX电竞叛客RTX 4090 D X3W 24G PunkMax散热，RGB LOGO灯，全尺寸金属背板",
-      "zolId": "2041665"
+      "zolId": "2041665",
+      "estimate": {
+        "price": 33258.43,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%204090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-5070-ti",
@@ -1191,7 +1212,12 @@
       "refPrice": 898,
       "shopPrice": null,
       "priceFrom": "精影GTX 1660 SUPER 6G 高效游戏，畅爽体验，强劲散热",
-      "zolId": "1968973"
+      "zolId": "1968973",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20super%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-gtx-1070-ti",
@@ -1225,7 +1251,12 @@
       "refPrice": 1199,
       "shopPrice": null,
       "priceFrom": "升技GTX 1660 TI 6G D6 风扇散热，超高频率，畅玩游戏",
-      "zolId": "1972508"
+      "zolId": "1972508",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20ti%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "lisuan-7g100-series-graphics",
@@ -1497,7 +1528,12 @@
       "refPrice": 2399,
       "shopPrice": null,
       "priceFrom": "AX电竞叛客RTX 4060 RTX 4060 X2W 8GB 速度升级，金属背板，高规散热",
-      "zolId": "1968874"
+      "zolId": "1968874",
+      "estimate": {
+        "price": 4000,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%204060%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-gtx-980-ti",

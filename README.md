@@ -28,12 +28,18 @@
 
 GitHub Pages（静态快照）：https://SeanWang114514.github.io/geekbench-value-ladder/
 
-GitHub Pages 是纯静态托管，无法运行自动抓取，展示的是最后一次内嵌的数据快照；每日价格更新和电商估价需要本地运行 `node server.mjs`。
+GitHub Pages 是纯静态托管，`http://127.0.0.1:8765/` 只在运行了 `node server.mjs` 的本机可用，换一台电脑无法直接访问。线上页面由 GitHub Actions 自动维护，任何电脑都能直接打开：
+
+- 仓库内置 `.github/workflows/daily-update.yml`，每天北京时间 09:00 自动抓取跑分、ZOL 价格和电商估价，更新 `data.json` / `index.html` 并重新发布 Pages
+- 手动更新：仓库 Actions 页面运行 **Daily data update** 任务；网页“设置”里的刷新按钮在线版会直接打开该任务页面
+- 本地完整交互（页面内实时抓取进度、失败统计等）仍需要运行 `node server.mjs`
 
 ## 文件说明
 
 - `scrape.mjs`：抓取跑分与价格、电商估价、型号匹配
 - `server.mjs`：本地服务，提供每日价格更新、电商估价与手动刷新跑分接口
+- `online-update.mjs`：GitHub Actions 每日更新脚本，抓取并生成带内嵌电商估价的数据
+- `.github/workflows/daily-update.yml`：每日自动抓取并发布 Pages 的工作流
 - `data.json`：抓取结果（跑分、价格、来源、ZOL ID）
 - `index.template.html` + `build.mjs`：生成最终页面
 - `index.html`：最终交付的单文件网页

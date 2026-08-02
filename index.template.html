@@ -565,7 +565,12 @@
 </style>
 </head>
 <body>
-<div class="server-warn" id="serverWarn" hidden>当前不是通过本机 <code>node server.mjs</code> 打开的，刷新跑分、重新爬取等在线功能不可用。请先运行 <code>node server.mjs</code>，再访问 <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>。</div>
+<div class="server-warn" id="serverWarn" hidden>
+  当前为 GitHub Pages 在线版：数据由 GitHub Actions 每日自动更新，网页内不直接抓取。手动更新请打开
+  <a href="https://github.com/SeanWang114514/geekbench-value-ladder/actions/workflows/daily-update.yml" target="_blank" rel="noopener">Daily data update</a>
+  运行任务；需要完整本地功能请运行 <code>node server.mjs</code> 后访问
+  <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>。
+</div>
 <header>
   <div class="header-inner">
     <div class="brand"><span class="brand-dot"></span>Geekbench 性价比天梯图</div>
@@ -589,7 +594,7 @@
   <div class="settings-row">
     <div>
       <div class="settings-label">Geekbench 跑分</div>
-      <div class="settings-hint">默认使用内置数据，不自动抓取</div>
+      <div class="settings-hint">默认使用内置数据；在线版通过 GitHub Actions 更新</div>
     </div>
     <button class="settings-btn" id="refreshScore">重新抓取跑分</button>
   </div>
@@ -605,7 +610,7 @@
   <div class="settings-row">
     <div>
       <div class="settings-label">重新爬取数据</div>
-      <div class="settings-hint">清空今日价格与估价缓存后重新抓取，耗时较长</div>
+      <div class="settings-hint">清空缓存后重新抓取，耗时较长；在线版会打开 GitHub Actions 手动运行</div>
     </div>
     <button class="settings-btn danger" id="refreshDataBtn">重新爬取</button>
   </div>
@@ -707,6 +712,7 @@
     const warn = document.getElementById('serverWarn');
     if (warn) warn.hidden = false;
   }
+  const ONLINE_ACTION_URL = 'https://github.com/SeanWang114514/geekbench-value-ladder/actions/workflows/daily-update.yml';
   const state = { kind: 'gpu', view: 'score', brand: 'all', query: '', shown: 100, hideRef: true };
   let jdEstimates = { gpu: {}, cpu: {} };
   let jdLoading = { gpu: false, cpu: false };
@@ -751,6 +757,8 @@
     if (row.shopPrice) return { price: row.shopPrice, tag: 'ZOL', url: zolUrl };
     const est = jdEstimates[state.kind] && jdEstimates[state.kind][row.slug];
     if (est && est.price) return { price: est.price, tag: sourceLabel(est.source), url: est.searchUrl };
+    const builtin = row.estimate;
+    if (builtin && builtin.price) return { price: builtin.price, tag: sourceLabel(builtin.source), url: builtin.searchUrl };
     if (jdLoading[state.kind]) return { pending: true };
     return null;
   }
@@ -891,6 +899,10 @@
   }
 
   async function fetchRemote() {
+    if (!isLocalServer) {
+      $('#priceStatus').textContent = '在线版：显示最近一次 GitHub Actions 自动更新的数据快照';
+      return;
+    }
     $('#priceStatus').textContent = '正在更新价格…';
     try {
       const res = await fetch('/api/data', { cache: 'no-store' });
@@ -910,6 +922,11 @@
   async function refreshScores() {
     const btn = $('#refreshScore');
     const status = $('#scoreStatus');
+    if (!isLocalServer) {
+      window.open(ONLINE_ACTION_URL, '_blank', 'noopener');
+      status.textContent = '在线版：请到 GitHub Actions 手动运行更新';
+      return;
+    }
     btn.disabled = true;
     status.textContent = '正在抓取 Geekbench 跑分…';
     try {
@@ -930,6 +947,11 @@
   async function refreshData() {
     const btn = $('#refreshDataYes');
     const status = $('#refreshDataStatus');
+    if (!isLocalServer) {
+      window.open(ONLINE_ACTION_URL, '_blank', 'noopener');
+      status.textContent = '在线版：请到 GitHub Actions 手动运行更新';
+      return;
+    }
     btn.disabled = true;
     status.textContent = '正在重新爬取价格，请耐心等待…';
     try {
@@ -968,10 +990,14 @@
 
   async function fetchJdEstimates() {
     const kind = state.kind;
-    if (jdLoading[kind]) return;
-    jdLoading[kind] = true;
     const status = $('#jdStatus');
     const fetchLine = $('#fetchLine');
+    if (!isLocalServer) {
+      status.textContent = '在线版：显示内嵌电商估价（每日自动更新）';
+      return;
+    }
+    if (jdLoading[kind]) return;
+    jdLoading[kind] = true;
     status.textContent = '正在抓取电商价…';
     fetchLine.hidden = false;
     fetchLine.innerHTML = '正在抓取电商价… <b>0/0</b>';
