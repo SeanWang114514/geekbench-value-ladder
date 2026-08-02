@@ -204,48 +204,47 @@
     display: block;
     text-decoration: none;
     position: relative;
+    background: #fff;
+    border: 1px solid var(--line);
     border-radius: 10px;
-    padding: 13px 16px;
+    padding: 13px 16px 14px;
     margin-bottom: 10px;
-    color: #fff;
+    color: #111827;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
     overflow: hidden;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    min-height: 66px;
+    min-height: 96px;
   }
-  .row-nvidia { background: linear-gradient(90deg, #3f7d00, #76b900); }
-  .row-amd { background: linear-gradient(90deg, #b31217, #ed1c24); }
-  .row-intel { background: linear-gradient(90deg, #005da5, #0071c5); }
-  .row-apple { background: linear-gradient(90deg, #1d1d1f, #48484c); }
-  .row-other { background: linear-gradient(90deg, #5b6472, #8a93a3); }
-  .row.ghost {
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.55);
-  }
-  .row > .bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.16);
-    pointer-events: none;
-  }
+  .row-nvidia .name { color: #4d7c0f; }
+  .row-amd .name { color: #b31217; }
+  .row-intel .name { color: #005da5; }
+  .row-apple .name { color: #1d1d1f; }
+  .row-other .name { color: #5b6472; }
+  .row-nvidia .row-fill { background: linear-gradient(90deg, #3f7d00, #76b900); }
+  .row-amd .row-fill { background: linear-gradient(90deg, #b31217, #ed1c24); }
+  .row-intel .row-fill { background: linear-gradient(90deg, #005da5, #0071c5); }
+  .row-apple .row-fill { background: linear-gradient(90deg, #1d1d1f, #48484c); }
+  .row-other .row-fill { background: linear-gradient(90deg, #5b6472, #8a93a3); }
+  .row.ghost { border-style: dashed; }
+  .row.ghost .row-fill { opacity: 0.45; }
   .row-top {
-    position: relative;
-    z-index: 1;
     display: flex;
     align-items: center;
     gap: 12px;
     min-width: 0;
+    margin-bottom: 10px;
   }
   .rank {
     flex: 0 0 auto;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.22);
+    background: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
   }
   .name {
@@ -257,35 +256,46 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .score {
-    flex: 0 0 auto;
-    font-size: 16px;
-    font-weight: 800;
-    font-variant-numeric: tabular-nums;
-  }
-  .score small {
+  .row-bar {
     display: block;
-    font-size: 10px;
-    font-weight: 600;
-    opacity: 0.85;
-    text-align: right;
+    height: 26px;
+    background: #edf0f4;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .row-fill {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    min-width: 86px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    border-radius: 0 20px 20px 0;
+  }
+  .row-score {
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
   }
   .row-meta {
-    position: relative;
-    z-index: 1;
-    margin-top: 6px;
+    margin-top: 7px;
     display: flex;
     align-items: center;
     gap: 14px;
     font-size: 12px;
     font-weight: 600;
-    opacity: 0.96;
+    color: #6b7280;
     flex-wrap: wrap;
   }
-  .row-meta .price { font-size: 13px; font-weight: 800; }
+  .row-meta .price { color: #111827; font-size: 13px; font-weight: 800; }
   .row-meta .val { font-variant-numeric: tabular-nums; }
   .row-meta .tag {
-    background: rgba(255,255,255,0.22);
+    background: #eef2f6;
+    color: #4b5563;
     border-radius: 5px;
     padding: 1px 7px;
     font-size: 11px;
@@ -311,6 +321,20 @@
     cursor: pointer;
   }
   .load-more:hover { border-color: var(--blue); }
+
+  .template-notice {
+    max-width: 1080px;
+    margin: 18px auto 0;
+    padding: 14px 16px;
+    background: #fff7ed;
+    border: 1px solid #fdba74;
+    border-radius: 8px;
+    color: #7c2d12;
+    font-size: 14px;
+  }
+  .template-notice a {
+    color: #1d4ed8;
+  }
 
   .notes {
     margin-top: 26px;
@@ -434,7 +458,6 @@
     .seg { width: 100%; }
     .seg-btn { flex: 1 1 0; text-align: center; }
     .row { padding: 12px 14px; }
-    .score { font-size: 14px; }
     .settings { top: 56px; right: 10px; }
   }
 </style>
@@ -479,6 +502,10 @@
 </div>
 
 <main>
+  <div class="template-notice" id="templateNotice" hidden>
+    这是源码模板文件，直接打开没有数据。请打开 <a href="index.html">index.html</a>，
+    或运行 <code>node server.mjs</code> 后访问 <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>。
+  </div>
   <section class="hero">
     <div>
       <h1 id="pageTitle">GPU Geekbench 跑分与性价比排行</h1>
@@ -528,7 +555,7 @@
 </main>
 
 <script id="app-data" type="application/json">{
-  "fetchedAt": "2026-08-02T07:53:04.199Z",
+  "fetchedAt": "2026-08-02T08:09:39.252Z",
   "scoresUpdatedAt": "2026-08-02T07:38:02.501Z",
   "pricesUpdatedAt": "2026-08-02T07:37:33.067Z",
   "sources": {
@@ -7419,7 +7446,18 @@
   ]
 }</script>
 <script>
-  const DATA = JSON.parse(document.getElementById('app-data').textContent);
+(function () {
+  let DATA;
+  try {
+    DATA = JSON.parse(document.getElementById('app-data').textContent);
+  } catch (err) {
+    DATA = null;
+  }
+  if (!DATA) {
+    const notice = document.getElementById('templateNotice');
+    if (notice) notice.hidden = false;
+    return;
+  }
   const state = { kind: 'gpu', view: 'score', brand: 'all', query: '', shown: 100 };
 
   const $ = (s) => document.querySelector(s);
@@ -7472,13 +7510,15 @@
       ? (row.shopPrice ? '电商价' : '参考价')
       : '';
     const source = row.priceFrom ? `取自 ${row.priceFrom}` : '';
+    const barText = view === 'score' ? fmt(row.score) : ratio(row).toFixed(2) + ' 分/元';
     return `
       <a class="${cls}" title="${row.name} · ${source}">
-        <span class="bar" style="width:${width}%"></span>
         <div class="row-top">
           <span class="rank">#${i + 1}</span>
           <span class="name">${esc(row.name)}</span>
-          <span class="score">${fmt(row.score)}<small>Geekbench</small></span>
+        </div>
+        <div class="row-bar">
+          <div class="row-fill" style="width:${width}%"><span class="row-score">${barText}</span></div>
         </div>
         <div class="row-meta">
           ${hasPrice ? `<span class="price">¥${fmt(row.price)}</span>` : '<span>暂无价格</span>'}
@@ -7652,6 +7692,7 @@
   updateTime();
   render();
   fetchRemote();
+})();
 </script>
 </body>
 </html>
