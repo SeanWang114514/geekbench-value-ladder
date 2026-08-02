@@ -470,6 +470,33 @@
     background: var(--blue);
     color: #fff;
   }
+  .settings-actions {
+    flex: 0 0 auto;
+    display: flex;
+    gap: 8px;
+  }
+  .settings-btn.ghost {
+    background: var(--panel);
+    color: var(--blue);
+    border-color: var(--line);
+  }
+  .jd-cookie-box {
+    padding: 10px 0 4px;
+  }
+  .jd-cookie-input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 12px;
+    font-size: 13px;
+    font-family: Consolas, "Courier New", monospace;
+  }
+  .jd-cookie-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
 
   @media (max-width: 640px) {
     .hero h1 { font-size: 20px; }
@@ -522,7 +549,7 @@
   <div class="settings-row">
     <div>
       <div class="settings-label">显示电商价</div>
-      <div class="settings-hint">不显示时，仅有参考价的型号会去京东估价</div>
+      <div class="settings-hint">不显示时，仅有参考价的型号会去苏宁易购估价</div>
     </div>
     <div class="settings-seg" id="shopSeg">
       <button class="settings-seg-btn" data-shop="1">显示</button>
@@ -530,6 +557,23 @@
     </div>
   </div>
   <div class="settings-status" id="jdStatus"></div>
+  <div class="settings-row">
+    <div>
+      <div class="settings-label">京东登录 Cookie</div>
+      <div class="settings-hint">粘贴 pt_key=...;pt_pin=...，仅保存在本机</div>
+    </div>
+    <div class="settings-actions">
+      <button class="settings-btn ghost" id="jdCookieToggle">管理</button>
+    </div>
+  </div>
+  <div class="jd-cookie-box" id="jdCookieBox" hidden>
+    <input class="jd-cookie-input" id="jdCookieInput" type="password" placeholder="pt_key=xxx; pt_pin=xxx" autocomplete="off">
+    <div class="jd-cookie-actions">
+      <button class="settings-btn" id="jdCookieSave">保存</button>
+      <button class="settings-btn ghost" id="jdCookieClear">清除</button>
+    </div>
+    <div class="settings-status" id="jdCookieStatus">正在检查…</div>
+  </div>
 </div>
 
 <main>
@@ -574,7 +618,7 @@
     <div>跑分数据：Geekbench，来源 cpuranklist.com（抓取时间见页脚）</div>
     <div>价格数据：中关村在线 ZOL 参考价 / 京东·天猫在售价（人民币），同一型号取最低价</div>
     <div>性价比排行只展示已匹配到价格的桌面型号；性能排行包含全部跑分型号</div>
-    <div>设置中关闭“显示电商价”后，仅有参考价的型号会抓取京东首屏搜索价并标注为“估价”</div>
+    <div>设置中关闭“显示电商价”后，仅有参考价的型号会抓取苏宁易购搜索结果并标注为“估价”</div>
   </section>
 
   <footer>
@@ -671,7 +715,7 @@
     const source = row.priceFrom ? `取自 ${row.priceFrom}` : '';
     const barText = view === 'score' ? fmt(row.score) : ratio(row).toFixed(2) + ' 分/元';
     return `
-      <a class="${cls}" title="${row.name} · ${tag}${tag === '估价' ? '（京东搜索）' : ''} · ${source}">
+      <a class="${cls}" title="${row.name} · ${tag}${tag === '估价' ? '（苏宁易购估价）' : ''} · ${source}">
         <div class="row-top">
           <span class="rank">#${i + 1}</span>
           <span class="name">${esc(row.name)}</span>
@@ -699,7 +743,7 @@
     $('#pageSub').textContent =
       state.view === 'score'
         ? '按 Geekbench 跑分从高到低排列，条长代表相对第一名性能的差距。'
-        : '按 跑分 ÷ 价格（元）从高到低排列，条长代表性价比高低，价格为 ZOL 报价，可在设置中切换京东估价。';
+        : '按 跑分 ÷ 价格（元）从高到低排列，条长代表性价比高低，价格为 ZOL 报价，可在设置中切换苏宁估价。';
     $('#summary').innerHTML =
       `共 <b>${total}</b> 个型号 · 已匹配价格 <b>${priced}</b> 个` +
       (state.view === 'value' ? ` · 性价比榜显示 <b>${rows.length}</b> 个` : '');
@@ -812,22 +856,79 @@
     if (jdLoading) return;
     jdLoading = true;
     const status = $('#jdStatus');
-    status.textContent = '正在获取京东估价…';
+    status.textContent = '正在获取估价…';
     try {
-      const res = await fetch('/api/jd-prices?kind=' + state.kind, { cache: 'no-store' });
+      const res = await fetch('/api/estimate-prices?kind=' + state.kind, { cache: 'no-store' });
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const payload = await res.json();
       jdEstimates[state.kind] = payload.estimates || {};
       const n = Object.values(jdEstimates[state.kind]).filter((e) => e && e.price).length;
       const base = payload.updatedAt
-        ? '京东估价 ' + n + ' 个 · ' + fmtTime(payload.updatedAt)
-        : '京东估价已更新 ' + n + ' 个';
+        ? '估价 ' + n + ' 个 · ' + fmtTime(payload.updatedAt)
+        : '估价已更新 ' + n + ' 个';
       status.textContent = payload.notice ? payload.notice + '（' + base + '）' : base;
       render();
     } catch (err) {
-      status.textContent = '京东估价失败：请通过 node server.mjs 本地服务打开';
+      status.textContent = '估价失败：请通过 node server.mjs 本地服务打开';
     } finally {
       jdLoading = false;
+    }
+  }
+
+  async function checkJdCookie() {
+    const status = $('#jdCookieStatus');
+    try {
+      const res = await fetch('/api/jd-cookie', { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      status.textContent = data.hasCookie ? '已配置京东 Cookie（仅本机保存）' : '未配置';
+    } catch (err) {
+      status.textContent = 'Cookie 状态获取失败';
+    }
+  }
+
+  async function saveJdCookie() {
+    const input = $('#jdCookieInput');
+    const status = $('#jdCookieStatus');
+    const cookie = input.value.trim();
+    if (!cookie) {
+      status.textContent = '请先粘贴 Cookie';
+      return;
+    }
+    const btn = $('#jdCookieSave');
+    btn.disabled = true;
+    status.textContent = '正在保存…';
+    try {
+      const res = await fetch('/api/jd-cookie', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cookie }),
+        cache: 'no-store',
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      input.value = '';
+      if (state.showShop) {
+        status.textContent = '已保存京东 Cookie（仅本机保存）';
+      } else {
+        status.textContent = '已保存，正在重新估价…';
+        await fetchJdEstimates();
+      }
+    } catch (err) {
+      status.textContent = '保存失败，请确认通过 node server.mjs 打开';
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
+  async function clearJdCookie() {
+    const status = $('#jdCookieStatus');
+    try {
+      const res = await fetch('/api/jd-cookie', { method: 'DELETE', cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      status.textContent = '已清除';
+      if (!state.showShop) await fetchJdEstimates();
+    } catch (err) {
+      status.textContent = '清除失败';
     }
   }
 
@@ -892,6 +993,13 @@
     if (!btn) return;
     setShowShop(btn.dataset.shop === '1');
   });
+  $('#jdCookieToggle').addEventListener('click', () => {
+    const box = $('#jdCookieBox');
+    box.hidden = !box.hidden;
+    if (!box.hidden) checkJdCookie();
+  });
+  $('#jdCookieSave').addEventListener('click', saveJdCookie);
+  $('#jdCookieClear').addEventListener('click', clearJdCookie);
 
   let savedShop = null;
   try {

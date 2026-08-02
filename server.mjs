@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { readFile, writeFile, access, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, access, mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -8,6 +8,7 @@ import {
   matchProducts,
   fetchBenchmarks,
   fetchZolPages,
+  estimateSuning,
   estimateJd,
 } from './scrape.mjs';
 
@@ -41,6 +42,17 @@ async function readJson(file) {
 
 async function writeJson(file, value) {
   await writeFile(file, JSON.stringify(value, null, 2), 'utf8');
+}
+
+const cookieFile = path.join(cacheDir, 'jd-cookie.json');
+
+async function readJdCookie() {
+  if (!(await fileExists(cookieFile))) return null;
+  try {
+    return (await readJson(cookieFile)).cookie || null;
+  } catch (err) {
+    return null;
+  }
 }
 
 function dayStamp(date = new Date()) {
@@ -94,20 +106,41 @@ async function loadZolItems(kind) {
   return { items, fetchedAt };
 }
 
-async function jdEstimatesFor(kind) {
-  const cacheFile = path.join(cacheDir, `jd-${kind}-${dayStamp()}.json`);
+async function priceEstimatesFor(kind) {
+  const cacheFile = path.join(cacheDir, `estimate-${kind}-${dayStamp()}.json`);
   if (await fileExists(cacheFile)) {
     return readJson(cacheFile);
   }
   const base = await ensureMemory();
   const rows = base[kind].filter((r) => r.price && !r.shopPrice);
   const estimates = {};
+  const cookie = await readJdCookie();
   let cursor = 0;
-  const worker = async () => {
+  let browserError = false;
+  let jdError = null;
+  const worker = async (workerIndex) => {
     while (cursor < rows.length) {
       const row = rows[cursor++];
       try {
-        const est = await estimateJd(row.name);
+        const keys = kind === 'gpu' ? gpuKey(row.name) : cpuKey(row.name);
+        const query = (keys[0] || row.name).replace(/\s+/g, ' ');
+        const tokenMatch = query.match(/(\d{3,5}[a-z0-9]*)/i);
+        const token = tokenMatch ? tokenMatch[1].toLowerCase() : '';
+        let est = null;
+        if (cookie) {
+          try {
+            est = await estimateJd(query, cookie);
+          } catch (err) {
+            jdError = err.message;
+          }
+        }
+        if (!est) {
+          try {
+            est = await estimateSuning(query, token, kind, path.join(cacheDir, 'chrome-w' + workerIndex));
+          } catch (err) {
+            if (/Chrome|Edge/.test(err.message)) browserError = true;
+          }
+        }
         estimates[row.slug] = est ? { name: row.name, ...est } : { name: row.name, error: 'no result' };
       } catch (err) {
         estimates[row.slug] = { name: row.name, error: err.message };
@@ -115,7 +148,7 @@ async function jdEstimatesFor(kind) {
     }
   };
   const workerCount = Math.min(6, Math.max(1, rows.length));
-  await Promise.all(Array.from({ length: workerCount }, worker));
+  await Promise.all(Array.from({ length: workerCount }, (_, i) => worker(i)));
   const payload = {
     kind,
     updatedAt: new Date().toISOString(),
@@ -124,10 +157,18 @@ async function jdEstimatesFor(kind) {
     estimates,
   };
   if (payload.estimated === 0 && payload.total > 0) {
-    payload.notice = '京东搜索需要登录或验证，暂未能估价，仍显示参考价';
+    if (browserError) {
+      payload.notice = '未找到 Chrome/Edge，无法抓取估价，仍显示参考价';
+    } else if (cookie && jdError) {
+      payload.notice = '京东登录可能已失效，苏宁也未匹配到，仍显示参考价';
+    } else if (cookie) {
+      payload.notice = '京东与苏宁均未匹配到价格，仍显示参考价';
+    } else {
+      payload.notice = '未配置京东登录，苏宁也未匹配到，仍显示参考价';
+    }
   }
   await writeJson(cacheFile, payload);
-  console.log(`[jd] ${kind}: ${payload.estimated}/${payload.total} estimated`);
+  console.log(`[estimate] ${kind}: ${payload.estimated}/${payload.total} estimated`);
   return payload;
 }
 
@@ -167,6 +208,12 @@ function sendJson(res, value) {
   res.end(JSON.stringify(value));
 }
 
+async function readBody(req) {
+  const chunks = [];
+  for await (const chunk of req) chunks.push(chunk);
+  return Buffer.concat(chunks).toString('utf8');
+}
+
 function sendError(res, err) {
   console.error(err);
   res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
@@ -186,10 +233,30 @@ const server = createServer(async (req, res) => {
       sendJson(res, data);
       return;
     }
-    if (url.pathname === '/api/jd-prices' && req.method === 'GET') {
+    if (url.pathname === '/api/estimate-prices' && req.method === 'GET') {
       const kind = url.searchParams.get('kind') === 'cpu' ? 'cpu' : 'gpu';
-      const payload = await withLock(() => jdEstimatesFor(kind));
+      const payload = await withLock(() => priceEstimatesFor(kind));
       sendJson(res, payload);
+      return;
+    }
+    if (url.pathname === '/api/jd-cookie' && req.method === 'GET') {
+      sendJson(res, { hasCookie: !!(await readJdCookie()) });
+      return;
+    }
+    if (url.pathname === '/api/jd-cookie' && req.method === 'POST') {
+      const body = JSON.parse(await readBody(req));
+      const cookie = String(body.cookie || '').trim();
+      if (!cookie) throw new Error('Cookie 为空');
+      await writeJson(cookieFile, { cookie, savedAt: new Date().toISOString() });
+      for (const k of ['gpu', 'cpu']) {
+        await rm(path.join(cacheDir, `estimate-${k}-${dayStamp()}.json`), { force: true });
+      }
+      sendJson(res, { ok: true });
+      return;
+    }
+    if (url.pathname === '/api/jd-cookie' && req.method === 'DELETE') {
+      await rm(cookieFile, { force: true });
+      sendJson(res, { ok: true });
       return;
     }
     if (url.pathname === '/' || url.pathname === '/index.html') {

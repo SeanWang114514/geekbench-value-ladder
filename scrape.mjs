@@ -2,6 +2,10 @@ import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const execFileAsync = promisify(execFile);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const cacheDir = path.join(__dirname, 'cache');
@@ -43,6 +47,107 @@ async function download(url, file, headers = {}) {
   throw lastErr;
 }
 
+const BROWSER_PATHS = [
+  process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES, 'Google', 'Chrome', 'Application', 'chrome.exe'),
+  process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'], 'Google', 'Chrome', 'Application', 'chrome.exe'),
+  process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Google', 'Chrome', 'Application', 'chrome.exe'),
+  process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES, 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
+  process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'], 'Microsoft', 'Edge', 'Application', 'msedge.exe'),
+  '/usr/bin/google-chrome',
+  '/usr/bin/chromium',
+  '/usr/bin/chromium-browser',
+  '/usr/bin/microsoft-edge',
+].filter(Boolean);
+
+async function findBrowser() {
+  for (const p of BROWSER_PATHS) {
+    try {
+      await access(p, constants.R_OK);
+      return p;
+    } catch (err) {}
+  }
+  return null;
+}
+
+async function renderDom(url, profileDir) {
+  const browser = await findBrowser();
+  if (!browser) throw new Error('未找到 Chrome/Edge，无法抓取估价');
+  await mkdir(profileDir, { recursive: true });
+  const { stdout } = await execFileAsync(
+    browser,
+    [
+      '--headless=new',
+      '--disable-gpu',
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
+      `--user-data-dir=${profileDir}`,
+      '--virtual-time-budget=12000',
+      '--dump-dom',
+      url,
+    ],
+    { timeout: 30000, maxBuffer: 50 * 1024 * 1024, windowsHide: true }
+  );
+  return stdout;
+}
+
+function parseSuningSearch(html, token, kind) {
+  const items = [];
+  const liRe = /<li\b[^>]*class="[^"]*\bdef product\b[^"]*"[^>]*>([\s\S]*?)<\/li>/g;
+  for (const m of html.matchAll(liRe)) {
+    const block = m[1];
+    const titleM = block.match(/class="pro-title[^"]*"[^>]*>([\s\S]*?)<\/div>/);
+    const priceM = block.match(/class="price-num"[^>]*>([\s\S]*?)<\/em>/);
+    if (!titleM || !priceM) continue;
+    const title = titleM[1].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim();
+    const price = Number(priceM[1].replace(/<[^>]+>/g, '').replace(/[¥￥\s,]/g, ''));
+    if (!Number.isFinite(price) || price <= 0) continue;
+    if (/广告|推广/.test(title)) continue;
+    if (kind === 'gpu') {
+      if (/工作站|台式机|主机|整机|一体机|笔记本|游戏本|服务器|组装机|内存|固态|硬盘|DDR|SSD|NVME|显卡坞|Ultra \d|i[3579]-|锐龙|Ryzen|酷睿|赛扬|奔腾|电脑(?!独立显卡)/i.test(title)) continue;
+      if (!/\b(rtx|gtx|rx|arc|geforce|radeon|pro)\b/i.test(title)) continue;
+      const gpuNums = title.match(/\b(?:rtx|gtx|rx)\s*(\d{3,5})\w*/gi) || [];
+      if (gpuNums.some((n) => !n.replace(/\D/g, '').includes(token))) continue;
+    }
+    if (kind === 'cpu' && /工作站|台式机|主机|整机|一体机|笔记本|游戏本|服务器|电脑|组装机|内存|固态|硬盘|DDR|SSD|NVME|显卡|RTX|GTX|\bRX\b|Arc /i.test(title)) continue;
+    if (token && !title.toLowerCase().includes(token)) continue;
+    items.push({ title, price });
+  }
+  return items;
+}
+
+async function estimateSuning(query, token, kind, profileDir) {
+  const url = 'https://m.suning.com/search/' + encodeURIComponent(query) + '/';
+  const html = await renderDom(url, profileDir);
+  const items = parseSuningSearch(html, token, kind);
+  const prices = items.map((i) => i.price);
+  if (!prices.length) return null;
+  const counts = new Map();
+  for (const p of prices) {
+    const k = Math.round(p * 100) / 100;
+    counts.set(k, (counts.get(k) || 0) + 1);
+  }
+  let mode = null;
+  let modeCount = 0;
+  for (const [k, c] of counts) {
+    if (c > modeCount) {
+      mode = k;
+      modeCount = c;
+    }
+  }
+  const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+  return {
+    price: modeCount >= 2 ? mode : average,
+    mode,
+    modeCount,
+    average,
+    count: prices.length,
+    samples: prices.slice(0, 12),
+    source: 'suning',
+    searchUrl: url,
+  };
+}
+
 async function fetchText(url, headers = {}) {
   let lastErr;
   for (let attempt = 1; attempt <= 3; attempt++) {
@@ -64,49 +169,72 @@ async function fetchText(url, headers = {}) {
   throw lastErr;
 }
 
-function parseJdSearchPage(html) {
+function parseJdItems(html) {
   const items = [];
   const liRe = /<li\b([^>]*data-sku="(\d+)"[^>]*)>([\s\S]*?)<\/li>/g;
   for (const m of html.matchAll(liRe)) {
     if (!/\bgl-item\b/.test(m[1])) continue;
     const li = m[3];
     if (/gl-item-promo|p-promo|data-promo|promo-tag/i.test(li)) continue;
-    const priceM = li.match(/class="p-price"[\s\S]*?<i[^>]*>([^<]+)<\/i>/);
-    if (!priceM) continue;
-    const price = Number(priceM[1].replace(/[,¥￥\s]/g, ''));
-    if (!Number.isFinite(price) || price <= 0) continue;
+    const price = extractJdPrice(li);
+    if (!price) continue;
     const nameM = li.match(/class="p-name"[^>]*>[\s\S]*?<em>([\s\S]*?)<\/em>/);
     const name = nameM ? nameM[1].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim() : '';
-    if (/广告|推广/.test(name)) continue;
-    items.push({
-      sku: m[2],
-      name,
-      price: Math.round(price * 100) / 100,
-      url: `https://item.jd.com/${m[2]}.html`,
-    });
+    if (!name || /广告|推广/.test(name)) continue;
+    items.push({ sku: m[2], name, price });
+  }
+  if (items.length) return items;
+  const chunks = html.split(/(?=<div\b[^>]*class="[^"]*\bsearch_prolist_item\b[^"]*")/);
+  for (const chunk of chunks) {
+    const skuM = chunk.match(/data-sku="(\d+)"/);
+    if (!skuM) continue;
+    const price = extractJdPrice(chunk);
+    if (!price) continue;
+    const titleM = chunk.match(/class="[^"]*\bsearch_prolist_title\b[^"]*"[^>]*>([\s\S]*?)<\//);
+    const name = titleM ? titleM[1].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim() : '';
+    if (!name || /广告|推广/.test(name)) continue;
+    items.push({ sku: skuM[1], name, price });
   }
   return items;
 }
 
-async function estimateJd(query) {
+function extractJdPrice(html) {
+  const m = html.match(
+    /(?:search_prolist_price|p-price|pro-price)[^>]*>\s*(?:<[^>]+>\s*)*(?:[¥￥])?\s*([0-9][0-9,]*(?:\.[0-9]+)?)/
+  );
+  if (!m) return null;
+  const price = Number(m[1].replace(/,/g, ''));
+  return Number.isFinite(price) && price > 0 ? Math.round(price * 100) / 100 : null;
+}
+
+async function estimateJd(query, cookie) {
   const enc = encodeURIComponent(query);
   const urls = [
-    `https://search.jd.com/Search?keyword=${enc}&enc=utf-8`,
-    `https://search.jd.com/s_new.php?keyword=${enc}&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&page=1&s=1`,
+    {
+      url: `https://so.m.jd.com/ware/search.action?keyword=${enc}&searchType=1&page=1`,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
+      },
+    },
+    {
+      url: `https://search.jd.com/Search?keyword=${enc}&enc=utf-8`,
+      headers: { 'User-Agent': UA },
+    },
   ];
   let lastErr = null;
-  for (const url of urls) {
+  for (const item of urls) {
     try {
-      const html = await fetchText(url, {
+      const html = await fetchText(item.url, {
+        ...item.headers,
         Referer: 'https://www.jd.com/',
-        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        ...(cookie ? { Cookie: cookie } : {}),
       });
       if (/passport\.jd\.com|京东登录|京东验证|安全验证|欢迎登录/.test(html)) {
-        lastErr = new Error('京东搜索需要登录或验证');
+        lastErr = new Error('京东登录失效或需要验证');
         continue;
       }
-      const items = parseJdSearchPage(html);
-      const prices = items.map((i) => i.price).filter((p) => p > 0);
+      const items = parseJdItems(html);
+      const prices = items.map((i) => i.price);
       if (!prices.length) continue;
       const counts = new Map();
       for (const p of prices) {
@@ -121,8 +249,7 @@ async function estimateJd(query) {
           modeCount = c;
         }
       }
-      const average =
-        Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+      const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
       return {
         price: modeCount >= 2 ? mode : average,
         mode,
@@ -130,7 +257,8 @@ async function estimateJd(query) {
         average,
         count: prices.length,
         samples: prices.slice(0, 12),
-        searchUrl: url,
+        source: 'jd',
+        searchUrl: item.url,
       };
     } catch (err) {
       lastErr = err;
@@ -357,5 +485,6 @@ export {
   normText,
   fetchBenchmarks,
   fetchZolPages,
+  estimateSuning,
   estimateJd,
 };
