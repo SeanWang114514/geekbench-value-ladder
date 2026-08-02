@@ -82,7 +82,7 @@ async function renderDom(url, profileDir) {
       '--disable-dev-shm-usage',
       '--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
       `--user-data-dir=${profileDir}`,
-      '--virtual-time-budget=12000',
+      '--virtual-time-budget=9000',
       '--dump-dom',
       url,
     ],
@@ -105,7 +105,7 @@ function parseSuningSearch(html, token, kind) {
     if (/广告|推广/.test(title)) continue;
     if (kind === 'gpu') {
       if (/工作站|台式机|主机|整机|一体机|笔记本|游戏本|服务器|组装机|内存|固态|硬盘|DDR|SSD|NVME|显卡坞|Ultra \d|i[3579]-|锐龙|Ryzen|酷睿|赛扬|奔腾|电脑(?!独立显卡)/i.test(title)) continue;
-      if (!/\b(rtx|gtx|rx|arc|geforce|radeon|pro)\b/i.test(title)) continue;
+      if (!/\b(rtx|gtx|rx)\s*\d|\b(arc|geforce|radeon|pro)\b/i.test(title)) continue;
       const gpuNums = title.match(/\b(?:rtx|gtx|rx)\s*(\d{3,5})\w*/gi) || [];
       if (gpuNums.some((n) => !n.replace(/\D/g, '').includes(token))) continue;
     }
@@ -117,32 +117,14 @@ function parseSuningSearch(html, token, kind) {
 }
 
 async function estimateSuning(query, token, kind, profileDir) {
-  const url = 'https://m.suning.com/search/' + encodeURIComponent(query) + '/';
+  const searchQuery = kind === 'gpu' ? query + ' 显卡' : kind === 'cpu' ? query + ' CPU' : query;
+  const url = 'https://m.suning.com/search/' + encodeURIComponent(searchQuery) + '/';
   const html = await renderDom(url, profileDir);
   const items = parseSuningSearch(html, token, kind);
-  const prices = items.map((i) => i.price);
-  if (!prices.length) return null;
-  const counts = new Map();
-  for (const p of prices) {
-    const k = Math.round(p * 100) / 100;
-    counts.set(k, (counts.get(k) || 0) + 1);
-  }
-  let mode = null;
-  let modeCount = 0;
-  for (const [k, c] of counts) {
-    if (c > modeCount) {
-      mode = k;
-      modeCount = c;
-    }
-  }
-  const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+  const est = firstThreeAverage(items);
+  if (!est) return null;
   return {
-    price: modeCount >= 2 ? mode : average,
-    mode,
-    modeCount,
-    average,
-    count: prices.length,
-    samples: prices.slice(0, 12),
+    ...est,
     source: 'suning',
     searchUrl: url,
   };
@@ -207,7 +189,21 @@ function extractJdPrice(html) {
   return Number.isFinite(price) && price > 0 ? Math.round(price * 100) / 100 : null;
 }
 
-async function estimateJd(query, cookie) {
+function firstThreeAverage(items) {
+  const prices = items.slice(0, 3).map((i) => i.price);
+  if (!prices.length) return null;
+  const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+  return {
+    price: average,
+    mode: average,
+    modeCount: prices.length,
+    average,
+    count: items.length,
+    samples: prices,
+  };
+}
+
+async function estimateJd(query, cookie, token = '', kind = 'gpu') {
   const enc = encodeURIComponent(query);
   const urls = [
     {
@@ -234,29 +230,11 @@ async function estimateJd(query, cookie) {
         continue;
       }
       const items = parseJdItems(html);
-      const prices = items.map((i) => i.price);
-      if (!prices.length) continue;
-      const counts = new Map();
-      for (const p of prices) {
-        const k = Math.round(p * 100) / 100;
-        counts.set(k, (counts.get(k) || 0) + 1);
-      }
-      let mode = null;
-      let modeCount = 0;
-      for (const [k, c] of counts) {
-        if (c > modeCount) {
-          mode = k;
-          modeCount = c;
-        }
-      }
-      const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+      const real = items.filter((i) => filterJdTitle(i.name, token, kind));
+      const est = firstThreeAverage(real);
+      if (!est) continue;
       return {
-        price: modeCount >= 2 ? mode : average,
-        mode,
-        modeCount,
-        average,
-        count: prices.length,
-        samples: prices.slice(0, 12),
+        ...est,
         source: 'jd',
         searchUrl: item.url,
       };
@@ -281,6 +259,13 @@ async function renderJdSearch(query, cookie, profileDir) {
       '--disable-gpu',
       '--no-sandbox',
       '--disable-dev-shm-usage',
+      '--disable-blink-features=AutomationControlled',
+      '--no-first-run',
+      '--no-default-browser-check',
+      '--disable-background-networking',
+      '--disable-component-update',
+      '--disable-sync',
+      '--mute-audio',
       '--window-size=1400,1200',
       `--remote-debugging-port=${port}`,
       `--user-data-dir=${profileDir}`,
@@ -335,14 +320,20 @@ async function renderJdSearch(query, cookie, profileDir) {
     await send('Network.enable');
     await send('Page.enable');
     await send('Network.setUserAgentOverride', { userAgent: UA });
-    const pairs = cookie
+    await send('Page.addScriptToEvaluateOnNewDocument', {
+      source: "Object.defineProperty(navigator, 'webdriver', { get: () => undefined });",
+    });
+    const pairs = (cookie || '')
+      .replace(/^cookie\s*[:=]?\s*/i, '')
       .split(';')
       .map((s) => s.trim())
       .filter(Boolean)
       .map((p) => {
         const eq = p.indexOf('=');
+        if (eq <= 0) return null;
         return { name: p.slice(0, eq).trim(), value: p.slice(eq + 1).trim() };
-      });
+      })
+      .filter(Boolean);
     for (const p of pairs) {
       try {
         await send('Network.setCookie', {
@@ -356,8 +347,8 @@ async function renderJdSearch(query, cookie, profileDir) {
     }
     await send('Page.navigate', { url });
     let count = 0;
-    for (let i = 0; i < 20; i++) {
-      await sleep(1000);
+    for (let i = 0; i < 12; i++) {
+      await sleep(800);
       const evalRes = await send('Runtime.evaluate', {
         expression: 'document.querySelectorAll("[data-sku]").length',
         returnByValue: true,
@@ -402,7 +393,7 @@ function filterJdTitle(title, token, kind) {
     return false;
   }
   if (kind === 'gpu') {
-    if (!/\b(rtx|gtx|rx|arc|geforce|radeon|pro)\b/i.test(title)) return false;
+    if (!/\b(rtx|gtx|rx)\s*\d|\b(arc|geforce|radeon|pro)\b/i.test(title)) return false;
   }
   if (kind === 'cpu' && /显卡|RTX|GTX|\bRX\b|Arc /i.test(title)) return false;
   if (token && !title.toLowerCase().includes(token)) return false;
@@ -412,29 +403,10 @@ function filterJdTitle(title, token, kind) {
 async function estimateJdBrowser(query, cookie, token, kind, profileDir) {
   const rows = await renderJdSearch(query, cookie, profileDir);
   const items = rows.filter((r) => filterJdTitle(r.title, token, kind) && r.price > 0);
-  const prices = items.map((i) => i.price);
-  if (!prices.length) return null;
-  const counts = new Map();
-  for (const p of prices) {
-    const k = Math.round(p * 100) / 100;
-    counts.set(k, (counts.get(k) || 0) + 1);
-  }
-  let mode = null;
-  let modeCount = 0;
-  for (const [k, c] of counts) {
-    if (c > modeCount) {
-      mode = k;
-      modeCount = c;
-    }
-  }
-  const average = Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+  const est = firstThreeAverage(items);
+  if (!est) return null;
   return {
-    price: modeCount >= 2 ? mode : average,
-    mode,
-    modeCount,
-    average,
-    count: prices.length,
-    samples: prices.slice(0, 12),
+    ...est,
     source: 'jd-browser',
     searchUrl: 'https://search.jd.com/Search?keyword=' + encodeURIComponent(query) + '&enc=utf-8',
   };
@@ -663,6 +635,7 @@ function matchProducts(benchmarks, zolItems, keyFn) {
             refPrice: best.refPrice,
             shopPrice: best.shopPrice,
             priceFrom: best.name,
+            zolId: best.id,
           }
         : { price: null }),
     };
@@ -697,6 +670,49 @@ async function fetchZolPages(kind, baseUrl, htmlFile) {
   }
   console.log(`${kind}: ${total} pages, ${all.length} items`);
   return all;
+}
+
+async function fetchZolDetail(url) {
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA, Referer: 'https://detail.zol.com.cn/' },
+    signal: AbortSignal.timeout(20000),
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status} ${url}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  return new TextDecoder('gbk').decode(buf);
+}
+
+function parseZolDetailPrices(html) {
+  const prices = [];
+  const start = html.indexOf('pk-main-pro pkA');
+  const end = html.indexOf('pk-main-pro pkB', start >= 0 ? start : 0);
+  const block = start >= 0 ? html.slice(start, end >= 0 ? end : undefined) : html;
+  const re = /data-type="([a-zA-Z]+ProPrice)"[^>]*>([^<]*)</g;
+  for (const m of block.matchAll(re)) {
+    const source = m[1].replace(/ProPrice$/, '').toLowerCase();
+    const numM = m[2].match(/[0-9][0-9,]*(?:\.[0-9]+)?/);
+    if (!numM) continue;
+    const price = Number(numM[0].replace(/,/g, ''));
+    if (Number.isFinite(price) && price > 0) prices.push({ source, price });
+  }
+  return prices;
+}
+
+async function estimateZolDetail(zolId, base) {
+  const url = `https://detail.zol.com.cn/${base}/index${zolId}.shtml`;
+  const html = await fetchZolDetail(url);
+  const prices = parseZolDetailPrices(html);
+  if (!prices.length) return null;
+  const first = prices.slice(0, 3);
+  const price = Math.min(...first.map((p) => p.price));
+  return {
+    price,
+    sources: first.map((p) => p.source),
+    count: prices.length,
+    samples: first.map((p) => p.price),
+    source: 'zol-detail',
+    searchUrl: url,
+  };
 }
 
 async function fetchBenchmarks(kind) {
@@ -773,6 +789,7 @@ export {
   estimateSuning,
   estimateJd,
   estimateJdBrowser,
+  estimateZolDetail,
   renderJdSearch,
   fetchJdQr,
   checkJdQr,

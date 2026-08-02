@@ -9,17 +9,15 @@ import {
   fetchBenchmarks,
   fetchZolPages,
   estimateSuning,
-  estimateJd,
-  estimateJdBrowser,
-  fetchJdQr,
-  checkJdQr,
-  finishJdQrLogin,
+  estimateZolDetail,
 } from './scrape.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 8765);
 const cacheDir = path.join(__dirname, 'cache');
 const dataFile = path.join(__dirname, 'data.json');
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const SOURCES = {
   gpuBenchmark: 'https://cpuranklist.com/gpu-geekbench.php',
@@ -48,20 +46,7 @@ async function writeJson(file, value) {
   await writeFile(file, JSON.stringify(value, null, 2), 'utf8');
 }
 
-const cookieFile = path.join(cacheDir, 'jd-cookie.json');
-const jdLoginFile = path.join(cacheDir, 'jd-login.json');
-
-let qrSession = null;
 let estimateProgress = {};
-
-async function readJdCookie() {
-  if (!(await fileExists(cookieFile))) return null;
-  try {
-    return (await readJson(cookieFile)).cookie || null;
-  } catch (err) {
-    return null;
-  }
-}
 
 function dayStamp(date = new Date()) {
   const p = (n) => String(n).padStart(2, '0');
@@ -123,8 +108,7 @@ async function priceEstimatesFor(kind) {
       total: cached.total || 0,
       done: cached.total || 0,
       estimated: cached.estimated || 0,
-      cookieConfigured: !!cached.cookieConfigured,
-      cookieInvalid: !!cached.cookieInvalid,
+      failed: Math.max(0, (cached.total || 0) - (cached.estimated || 0)),
       notice: cached.notice || '',
     };
     return cached;
@@ -132,19 +116,16 @@ async function priceEstimatesFor(kind) {
   const base = await ensureMemory();
   const rows = base[kind].filter((r) => r.price && !r.shopPrice);
   const estimates = {};
-  const cookie = await readJdCookie();
   estimateProgress[kind] = {
     running: true,
     total: rows.length,
     done: 0,
     estimated: 0,
-    cookieConfigured: !!cookie,
-    cookieInvalid: false,
+    failed: 0,
     notice: '',
   };
   let cursor = 0;
   let browserError = false;
-  let jdError = null;
   const worker = async (workerIndex) => {
     while (cursor < rows.length) {
       const row = rows[cursor++];
@@ -154,31 +135,14 @@ async function priceEstimatesFor(kind) {
         const tokenMatch = query.match(/(\d{3,5}[a-z0-9]*)/i);
         const token = tokenMatch ? tokenMatch[1].toLowerCase() : '';
         let est = null;
-        if (cookie) {
+        if (!est && row.zolId) {
           try {
-            est = await estimateJd(query, cookie);
-          } catch (err) {
-            jdError = err.message;
-          }
-        }
-        if (!est && cookie) {
-          try {
-            est = await estimateJdBrowser(
-              query,
-              cookie,
-              token,
-              kind,
-              path.join(
-                cacheDir,
-                'chrome-jd-' + workerIndex + '-' + Date.now() + '-' + Math.floor(Math.random() * 1e4)
-              )
-            );
-          } catch (err) {
-            if (/Chrome|Edge/.test(err.message)) browserError = true;
-          }
+            est = await estimateZolDetail(row.zolId, kind === 'gpu' ? 'vga' : 'cpu');
+          } catch (err) {}
         }
         if (!est) {
           try {
+            await sleep(800 + Math.floor(Math.random() * 1200));
             est = await estimateSuning(query, token, kind, path.join(cacheDir, 'chrome-w' + workerIndex));
           } catch (err) {
             if (/Chrome|Edge/.test(err.message)) browserError = true;
@@ -195,30 +159,21 @@ async function priceEstimatesFor(kind) {
       }
     }
   };
-  const workerCount = Math.min(6, Math.max(1, rows.length));
+  const workerCount = Math.min(2, Math.max(1, rows.length));
   await Promise.all(Array.from({ length: workerCount }, (_, i) => worker(i)));
-  const jdSources = Object.values(estimates).filter((e) => e && e.price && /^jd/.test(e.source || ''));
-  const cookieInvalid = !!cookie && /登录|验证/.test(jdError || '') && jdSources.length === 0;
   const payload = {
     kind,
     updatedAt: new Date().toISOString(),
     total: rows.length,
     estimated: Object.values(estimates).filter((e) => e.price).length,
+    failed: rows.length - Object.values(estimates).filter((e) => e.price).length,
     estimates,
-    cookieConfigured: !!cookie,
-    cookieInvalid,
   };
   if (payload.estimated === 0 && payload.total > 0) {
     if (browserError) {
       payload.notice = '未找到 Chrome/Edge，无法抓取估价';
-    } else if (cookieInvalid) {
-      payload.notice = '京东 Cookie 无效或已过期，未获取到电商价';
-    } else if (!cookie) {
-      payload.notice = '未配置京东 Cookie，未获取到电商价';
-    } else if (cookie && jdError) {
-      payload.notice = '京东登录可能已失效，苏宁也未匹配到';
-    } else if (cookie) {
-      payload.notice = '京东与苏宁均未匹配到价格';
+    } else {
+      payload.notice = '未匹配到电商价';
     }
   } else if (payload.estimated < payload.total) {
     payload.notice = '部分型号未匹配到电商价';
@@ -229,8 +184,7 @@ async function priceEstimatesFor(kind) {
     total: rows.length,
     done: rows.length,
     estimated: payload.estimated,
-    cookieConfigured: !!cookie,
-    cookieInvalid,
+    failed: rows.length - payload.estimated,
     notice: payload.notice || '',
   };
   console.log(`[estimate] ${kind}: ${payload.estimated}/${payload.total} estimated`);
@@ -273,12 +227,6 @@ function sendJson(res, value) {
   res.end(JSON.stringify(value));
 }
 
-async function readBody(req) {
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  return Buffer.concat(chunks).toString('utf8');
-}
-
 function sendError(res, err) {
   console.error(err);
   res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
@@ -298,6 +246,17 @@ const server = createServer(async (req, res) => {
       sendJson(res, data);
       return;
     }
+    if (url.pathname === '/api/refresh-data' && req.method === 'POST') {
+      const data = await withLock(async () => {
+        for (const kind of ['gpu', 'cpu']) {
+          await rm(path.join(cacheDir, `prices-${kind}-${dayStamp()}.json`), { force: true });
+          await rm(path.join(cacheDir, `estimate-${kind}-${dayStamp()}.json`), { force: true });
+        }
+        return buildData();
+      });
+      sendJson(res, data);
+      return;
+    }
     if (url.pathname === '/api/estimate-prices' && req.method === 'GET') {
       const kind = url.searchParams.get('kind') === 'cpu' ? 'cpu' : 'gpu';
       const payload = await withLock(() => priceEstimatesFor(kind));
@@ -313,88 +272,10 @@ const server = createServer(async (req, res) => {
           total: 0,
           done: 0,
           estimated: 0,
-          cookieConfigured: !!(await readJdCookie()),
-          cookieInvalid: false,
+          failed: 0,
           notice: '',
         }
       );
-      return;
-    }
-    if (url.pathname === '/api/jd-cookie' && req.method === 'GET') {
-      sendJson(res, { hasCookie: !!(await readJdCookie()) });
-      return;
-    }
-    if (url.pathname === '/api/jd-cookie' && req.method === 'POST') {
-      const body = JSON.parse(await readBody(req));
-      const cookie = String(body.cookie || '').trim();
-      if (!cookie) throw new Error('Cookie 为空');
-      await writeJson(cookieFile, { cookie, savedAt: new Date().toISOString() });
-      for (const k of ['gpu', 'cpu']) {
-        await rm(path.join(cacheDir, `estimate-${k}-${dayStamp()}.json`), { force: true });
-      }
-      sendJson(res, { ok: true });
-      return;
-    }
-    if (url.pathname === '/api/jd-cookie' && req.method === 'DELETE') {
-      await rm(cookieFile, { force: true });
-      sendJson(res, { ok: true });
-      return;
-    }
-    if (url.pathname === '/api/jd-qr' && req.method === 'GET') {
-      const { pngBase64, cookie } = await fetchJdQr();
-      const tokenM = cookie.match(/wlfstk_smdl=([^;]+)/);
-      if (!tokenM) throw new Error('未取得二维码票据');
-      qrSession = { cookie, token: tokenM[1], createdAt: Date.now() };
-      sendJson(res, { ok: true, qr: pngBase64 });
-      return;
-    }
-    if (url.pathname === '/api/jd-qr-status' && req.method === 'GET') {
-      if (!qrSession) {
-        sendJson(res, { status: 'none' });
-        return;
-      }
-      if (Date.now() - qrSession.createdAt > 3 * 60 * 1000) {
-        qrSession = null;
-        sendJson(res, { status: 'expired' });
-        return;
-      }
-      const data = await checkJdQr(qrSession.cookie, qrSession.token);
-      if (data.code === 201) {
-        sendJson(res, { status: 'waiting' });
-        return;
-      }
-      if (data.code === 202) {
-        sendJson(res, { status: 'scanned' });
-        return;
-      }
-      if (data.code === 200) {
-        if (!data.ticket && !data.url) {
-          sendJson(res, { status: 'error', msg: '未取得登录票据' });
-          return;
-        }
-        const cookie = await finishJdQrLogin(qrSession.cookie, data.ticket || data.url);
-        if (!cookie) {
-          sendJson(res, { status: 'error', msg: '未取得登录票据' });
-          return;
-        }
-        await writeJson(cookieFile, { cookie, savedAt: new Date().toISOString() });
-        await writeJson(jdLoginFile, { loggedIn: true, checkedAt: new Date().toISOString() });
-        for (const k of ['gpu', 'cpu']) {
-          await rm(path.join(cacheDir, `estimate-${k}-${dayStamp()}.json`), { force: true });
-        }
-        sendJson(res, { status: 'ok' });
-        return;
-      }
-      sendJson(res, { status: 'error', msg: data.msg || '二维码已失效' });
-      return;
-    }
-    if (url.pathname === '/api/jd-login-status' && req.method === 'GET') {
-      sendJson(res, { loggedIn: (await fileExists(jdLoginFile)) || !!(await readJdCookie()) });
-      return;
-    }
-    if (url.pathname === '/api/jd-login' && req.method === 'DELETE') {
-      await rm(jdLoginFile, { force: true });
-      sendJson(res, { ok: true });
       return;
     }
     if (url.pathname === '/' || url.pathname === '/index.html') {

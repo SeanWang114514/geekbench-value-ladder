@@ -430,6 +430,8 @@
     border-radius: 12px;
     box-shadow: 0 12px 32px rgba(17, 24, 39, 0.16);
     padding: 16px;
+    max-height: calc(100vh - 84px);
+    overflow-y: auto;
   }
   .settings-head {
     display: flex;
@@ -471,6 +473,34 @@
     white-space: nowrap;
   }
   .settings-btn:disabled { opacity: 0.6; cursor: default; }
+  .settings-btn.danger {
+    border-color: #dc2626;
+    background: #dc2626;
+  }
+  .settings-btn.danger:hover {
+    background: #b91c1c;
+    border-color: #b91c1c;
+  }
+  .confirm-box {
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 1px solid #fca5a5;
+    background: #fff1f2;
+    border-radius: 8px;
+    color: #9f1239;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .confirm-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .confirm-actions .settings-btn {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
   .settings-status { font-size: 12px; color: var(--muted); min-height: 18px; }
   .settings-badge {
     flex: 0 0 auto;
@@ -512,37 +542,6 @@
     color: var(--blue);
     border-color: var(--line);
   }
-  .jd-cookie-box {
-    padding: 10px 0 4px;
-  }
-  .jd-cookie-input {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: 9px 12px;
-    font-size: 13px;
-    font-family: Consolas, "Courier New", monospace;
-  }
-  .jd-cookie-actions {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  .jd-qr-box {
-    padding: 12px 0 4px;
-    text-align: center;
-  }
-  .jd-qr-box img {
-    width: 220px;
-    height: 220px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: #fff;
-  }
-  .jd-qr-actions {
-    margin-top: 8px;
-  }
 
   @media (max-width: 640px) {
     .hero h1 { font-size: 20px; }
@@ -551,12 +550,12 @@
     .seg { width: 100%; }
     .seg-btn { flex: 1 1 0; text-align: center; }
     .row { padding: 12px 14px; }
-    .settings { top: 56px; right: 10px; }
+    .settings { top: 56px; right: 10px; max-height: calc(100vh - 72px); }
   }
 </style>
 </head>
 <body>
-<div class="server-warn" id="serverWarn" hidden>当前不是通过本机 <code>node server.mjs</code> 打开的，保存 Cookie、刷新跑分等在线功能不可用。请先运行 <code>node server.mjs</code>，再访问 <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>。</div>
+<div class="server-warn" id="serverWarn" hidden>当前不是通过本机 <code>node server.mjs</code> 打开的，刷新跑分、重新爬取等在线功能不可用。请先运行 <code>node server.mjs</code>，再访问 <a href="http://127.0.0.1:8765/">http://127.0.0.1:8765/</a>。</div>
 <header>
   <div class="header-inner">
     <div class="brand"><span class="brand-dot"></span>Geekbench 性价比天梯图</div>
@@ -595,8 +594,23 @@
   <div class="settings-status" id="priceStatus">正在检查…</div>
   <div class="settings-row">
     <div>
+      <div class="settings-label">重新爬取数据</div>
+      <div class="settings-hint">清空今日价格与估价缓存后重新抓取，耗时较长</div>
+    </div>
+    <button class="settings-btn danger" id="refreshDataBtn">重新爬取</button>
+  </div>
+  <div class="confirm-box" id="refreshDataConfirm" hidden>
+    <div>确定要重新爬取全部数据吗？会清空今日价格和估价缓存，可能需要数分钟。</div>
+    <div class="confirm-actions">
+      <button class="settings-btn" id="refreshDataYes">确认重新爬取</button>
+      <button class="settings-btn ghost" id="refreshDataNo">取消</button>
+    </div>
+    <div class="settings-status" id="refreshDataStatus"></div>
+  </div>
+  <div class="settings-row">
+    <div>
       <div class="settings-label">隐藏参考价</div>
-      <div class="settings-hint">隐藏时仅有参考价的型号会抓取京东估价；抓取中显示进度，Cookie 无效时从性价比榜移除</div>
+      <div class="settings-hint">隐藏时仅有参考价的型号会抓取电商价；抓取中显示进度，失败型号从性价比榜移除</div>
     </div>
     <div class="settings-seg" id="refSeg">
       <button class="settings-seg-btn" data-ref="1">隐藏</button>
@@ -604,37 +618,6 @@
     </div>
   </div>
   <div class="settings-status" id="jdStatus"></div>
-  <div class="settings-row">
-    <div>
-      <div class="settings-label">京东扫码登录</div>
-      <div class="settings-hint">页面内扫码，登录后自动保存本机</div>
-    </div>
-    <button class="settings-btn" id="jdScanBtn">显示二维码</button>
-  </div>
-  <div class="settings-status" id="jdLoginStatus">未登录</div>
-  <div class="jd-qr-box" id="jdQrBox" hidden>
-    <img id="jdQrImg" alt="京东登录二维码">
-    <div class="jd-qr-actions">
-      <button class="settings-btn ghost" id="jdQrRefresh">重新生成</button>
-    </div>
-  </div>
-  <div class="settings-row">
-    <div>
-      <div class="settings-label">京东 Cookie（可选）</div>
-      <div class="settings-hint">扫码不可用时手动粘贴 pt_key=...;pt_pin=...</div>
-    </div>
-    <div class="settings-actions">
-      <button class="settings-btn ghost" id="jdCookieToggle">管理</button>
-    </div>
-  </div>
-  <div class="jd-cookie-box" id="jdCookieBox" hidden>
-    <input class="jd-cookie-input" id="jdCookieInput" type="password" placeholder="pt_key=xxx; pt_pin=xxx" autocomplete="off">
-    <div class="jd-cookie-actions">
-      <button class="settings-btn" id="jdCookieSave">保存</button>
-      <button class="settings-btn ghost" id="jdCookieClear">清除</button>
-    </div>
-    <div class="settings-status" id="jdCookieStatus">正在检查…</div>
-  </div>
 </div>
 
 <main>
@@ -679,9 +662,9 @@
 
   <section class="notes">
     <div>跑分数据：Geekbench，来源 cpuranklist.com（抓取时间见页脚）</div>
-    <div>价格数据：中关村在线 ZOL 参考价 / 京东·天猫在售价（人民币），同一型号取最低价</div>
+    <div>价格数据：中关村在线 ZOL 参考价 / 苏宁·天猫等电商在售价（人民币），同一型号取最低价</div>
     <div>性价比排行只展示已匹配到价格的桌面型号；性能排行包含全部跑分型号</div>
-    <div>设置中隐藏参考价后，仅有参考价的型号会抓取京东估价；抓取中显示“正在抓取”，未配置或 Cookie 无效时给出说明并从性价比榜移除</div>
+    <div>设置中隐藏参考价后，仅有参考价的型号会抓取电商价；抓取中显示“正在抓取”，失败型号从性价比榜移除</div>
   </section>
 
   <footer>
@@ -772,7 +755,7 @@
     return Math.max(...list.map((r) => (shownPrice(r) ? ratio(r) : 0)), 1);
   }
 
-  function rowHtml(row, i, totalRows, maxVal) {
+  function rowHtml(row, i, totalRows, maxVal, rankMap) {
     const view = state.view;
     const val = view === 'score' ? row.score : ratio(row);
     const width = Math.max(8, Math.round((val / maxVal) * 100));
@@ -786,9 +769,9 @@
     const barText = view === 'score' ? fmt(row.score) : pending ? '正在抓取' : ratio(row).toFixed(2) + ' 分/元';
     const priceText = pending ? '正在抓取…' : hasPrice ? '¥' + fmt(priceInfo.price) : '暂无电商价';
     return `
-      <a class="${cls}" title="${row.name} · ${tag}${tag === '估价' ? '（京东估价）' : ''} · ${source}">
+      <a class="${cls}" title="${row.name} · ${tag}${tag === '估价' ? '（电商估价）' : ''} · ${source}">
         <div class="row-top">
-          <span class="rank">#${i + 1}</span>
+          <span class="rank">#${rankMap.get(row.slug) || i + 1}</span>
           <span class="name">${esc(row.name)}</span>
         </div>
         <div class="row-bar">
@@ -805,6 +788,11 @@
   function render() {
     const rows = visibleRows();
     const shown = rows.slice(0, state.shown);
+    let ranked = DATA[state.kind].slice();
+    if (state.view === 'value') ranked = ranked.filter((r) => shownPrice(r));
+    if (state.view === 'score') ranked.sort((a, b) => b.score - a.score);
+    else ranked.sort((a, b) => ratio(b) - ratio(a));
+    const rankMap = new Map(ranked.map((r, idx) => [r.slug, idx + 1]));
     const maxVal = maxOf(state.kind, state.view);
     const kindLabel = state.kind === 'gpu' ? 'GPU' : 'CPU';
     const total = DATA[state.kind].length;
@@ -817,13 +805,13 @@
     $('#pageSub').textContent =
       state.view === 'score'
         ? '按 Geekbench 跑分从高到低排列，条长代表相对第一名性能的差距。'
-        : '按 跑分 ÷ 价格（元）从高到低排列，价格为电商价；隐藏参考价时，仅参考价型号显示京东估价。';
+        : '按 跑分 ÷ 价格（元）从高到低排列，价格为电商价；隐藏参考价时，仅参考价型号显示电商估价。';
     $('#summary').innerHTML =
       `共 <b>${total}</b> 个型号 · 已匹配价格 <b>${priced}</b> 个` +
       (state.view === 'value' ? ` · 性价比榜显示 <b>${rows.length}</b> 个` : '');
 
     $('#list').innerHTML = shown.length
-      ? shown.map((r, i) => rowHtml(r, i, rows.length, maxVal)).join('')
+      ? shown.map((r, i) => rowHtml(r, i, rows.length, maxVal, rankMap)).join('')
       : '<div class="empty">没有找到匹配的型号</div>';
 
     $('#loadMore').style.display = rows.length > state.shown ? '' : 'none';
@@ -910,6 +898,29 @@
     }
   }
 
+  async function refreshData() {
+    const btn = $('#refreshDataYes');
+    const status = $('#refreshDataStatus');
+    btn.disabled = true;
+    status.textContent = '正在重新爬取价格，请耐心等待…';
+    try {
+      const res = await fetch('/api/refresh-data', { method: 'POST', cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      if (!applyData(data)) throw new Error('数据格式不正确');
+      status.textContent = '价格已重新抓取：' + fmtTime(DATA.pricesUpdatedAt);
+      updateTime();
+      render();
+      jdLoading.gpu = false;
+      jdLoading.cpu = false;
+      if (state.hideRef) await fetchJdEstimates();
+    } catch (err) {
+      status.textContent = '重新爬取失败，请确认通过 node server.mjs 打开 http://127.0.0.1:8765';
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
   function setHideRef(value) {
     state.hideRef = !!value;
     try {
@@ -932,9 +943,9 @@
     jdLoading[kind] = true;
     const status = $('#jdStatus');
     const fetchLine = $('#fetchLine');
-    status.textContent = '正在抓取京东 Cookie/估价…';
+    status.textContent = '正在抓取电商价…';
     fetchLine.hidden = false;
-    fetchLine.innerHTML = '正在抓取京东 Cookie/估价… <b>0/0</b>';
+    fetchLine.innerHTML = '正在抓取电商价… <b>0/0</b>';
     render();
     const timer = setInterval(async () => {
       try {
@@ -942,9 +953,7 @@
         if (!res.ok) return;
         const p = await res.json();
         if (!p.running) return;
-        const head = p.cookieConfigured
-          ? '正在抓取京东 Cookie/估价…'
-          : '未配置京东 Cookie，正在抓取估价…';
+        const head = '正在抓取电商价…';
         const text = `${head} <b>${p.done}/${p.total}</b>（已估价 ${p.estimated}）`;
         status.textContent = text;
         fetchLine.innerHTML = text;
@@ -957,16 +966,13 @@
       const payload = await res.json();
       jdEstimates[kind] = payload.estimates || {};
       const n = Object.values(jdEstimates[kind]).filter((e) => e && e.price).length;
+      const failed = Math.max(0, (payload.total || 0) - n);
       const base = payload.updatedAt
         ? '估价 ' + n + ' 个 · ' + fmtTime(payload.updatedAt)
         : '估价已更新 ' + n + ' 个';
-      let note = payload.notice || '';
-      if (!payload.cookieConfigured) {
-        note = '未配置京东 Cookie，仅有参考价的型号已从性价比榜移除。' + (note ? ' ' + note : '');
-      } else if (payload.cookieInvalid) {
-        note = '京东 Cookie 无效或已过期，仅有参考价的型号已从性价比榜移除。' + (note ? ' ' + note : '');
-      }
-      status.textContent = note ? note + '（' + base + '）' : base;
+      const baseWithFail = failed > 0 ? base + ' · 失败 ' + failed + ' 个' : base;
+      const note = payload.notice || '';
+      status.textContent = note ? note + '（' + baseWithFail + '）' : baseWithFail;
       fetchLine.hidden = true;
       render();
     } catch (err) {
@@ -975,133 +981,6 @@
       fetchLine.hidden = true;
     } finally {
       jdLoading[kind] = false;
-    }
-  }
-
-  async function checkJdCookie() {
-    const status = $('#jdCookieStatus');
-    try {
-      const res = await fetch('/api/jd-cookie', { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      status.textContent = data.hasCookie ? '已配置京东 Cookie（仅本机保存）' : '未配置';
-    } catch (err) {
-      status.textContent = 'Cookie 状态获取失败';
-    }
-  }
-
-  async function saveJdCookie() {
-    const input = $('#jdCookieInput');
-    const status = $('#jdCookieStatus');
-    const cookie = input.value.trim();
-    if (!cookie) {
-      status.textContent = '请先粘贴 Cookie';
-      return;
-    }
-    const btn = $('#jdCookieSave');
-    btn.disabled = true;
-    status.textContent = '正在保存…';
-    try {
-      const res = await fetch('/api/jd-cookie', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cookie }),
-        cache: 'no-store',
-      });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      input.value = '';
-      if (state.hideRef) {
-        status.textContent = '已保存，正在重新估价…';
-        await fetchJdEstimates();
-      } else {
-        status.textContent = '已保存京东 Cookie（仅本机保存）';
-      }
-    } catch (err) {
-      const msg = err && err.message ? err.message : '未知错误';
-      status.textContent = '保存失败（' + msg + '），请确认通过 node server.mjs 打开 http://127.0.0.1:8765';
-    } finally {
-      btn.disabled = false;
-    }
-  }
-
-  async function clearJdCookie() {
-    const status = $('#jdCookieStatus');
-    try {
-      const res = await fetch('/api/jd-cookie', { method: 'DELETE', cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      await fetch('/api/jd-login', { method: 'DELETE', cache: 'no-store' });
-      status.textContent = '已清除';
-      if (state.hideRef) await fetchJdEstimates();
-    } catch (err) {
-      status.textContent = '清除失败';
-    }
-  }
-
-  async function checkJdLoginStatus() {
-    const status = $('#jdLoginStatus');
-    try {
-      const res = await fetch('/api/jd-login-status', { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      status.textContent = data.loggedIn ? '已登录京东（本机保存）' : '未登录';
-    } catch (err) {
-      status.textContent = '登录状态获取失败';
-    }
-  }
-
-  let qrTimer = null;
-
-  function stopQrPoll() {
-    if (qrTimer) {
-      clearInterval(qrTimer);
-      qrTimer = null;
-    }
-  }
-
-  async function showJdQr() {
-    const status = $('#jdLoginStatus');
-    const box = $('#jdQrBox');
-    stopQrPoll();
-    status.textContent = '正在获取二维码…';
-    try {
-      const res = await fetch('/api/jd-qr', { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      if (!data.ok || !data.qr) throw new Error('二维码获取失败');
-      $('#jdQrImg').src = 'data:image/png;base64,' + data.qr;
-      box.hidden = false;
-      status.textContent = '请用京东 App 扫码，等待确认…';
-      qrTimer = setInterval(pollJdQr, 2500);
-    } catch (err) {
-      status.textContent = '二维码获取失败，请确认通过 node server.mjs 打开';
-    }
-  }
-
-  async function pollJdQr() {
-    const status = $('#jdLoginStatus');
-    try {
-      const res = await fetch('/api/jd-qr-status', { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      if (data.status === 'waiting') {
-        status.textContent = '等待扫码…';
-        return;
-      }
-      if (data.status === 'scanned') {
-        status.textContent = '已扫描，请在手机上确认登录';
-        return;
-      }
-      if (data.status === 'ok') {
-        stopQrPoll();
-        status.textContent = '已登录京东（本机保存）';
-        if (state.hideRef) await fetchJdEstimates();
-        return;
-      }
-      stopQrPoll();
-      status.textContent = data.msg || '二维码已失效，请重新生成';
-    } catch (err) {
-      stopQrPoll();
-      status.textContent = '二维码状态获取失败';
     }
   }
 
@@ -1161,20 +1040,20 @@
     }
   });
   $('#refreshScore').addEventListener('click', refreshScores);
+  $('#refreshDataBtn').addEventListener('click', () => {
+    const box = $('#refreshDataConfirm');
+    box.hidden = !box.hidden;
+    if (!box.hidden) $('#refreshDataStatus').textContent = '';
+  });
+  $('#refreshDataNo').addEventListener('click', () => {
+    $('#refreshDataConfirm').hidden = true;
+  });
+  $('#refreshDataYes').addEventListener('click', refreshData);
   $('#refSeg').addEventListener('click', (e) => {
     const btn = e.target.closest('.settings-seg-btn');
     if (!btn) return;
     setHideRef(btn.dataset.ref === '1');
   });
-  $('#jdCookieToggle').addEventListener('click', () => {
-    const box = $('#jdCookieBox');
-    box.hidden = !box.hidden;
-    if (!box.hidden) checkJdCookie();
-  });
-  $('#jdCookieSave').addEventListener('click', saveJdCookie);
-  $('#jdCookieClear').addEventListener('click', clearJdCookie);
-  $('#jdScanBtn').addEventListener('click', showJdQr);
-  $('#jdQrRefresh').addEventListener('click', showJdQr);
 
   let savedHide = null;
   try {
@@ -1182,7 +1061,6 @@
   } catch (err) {}
   state.hideRef = savedHide === null ? true : savedHide === '1';
   setHideRef(state.hideRef);
-  checkJdLoginStatus();
 
   updateTime();
   render();

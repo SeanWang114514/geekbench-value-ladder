@@ -5,3 +5,5 @@ gpu_geekbench.html
 zol_cpu.html
 zol_vga.html
 node_modules/
+server.stdout.log
+server.stderr.log
