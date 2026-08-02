@@ -43,6 +43,103 @@ async function download(url, file, headers = {}) {
   throw lastErr;
 }
 
+async function fetchText(url, headers = {}) {
+  let lastErr;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: { 'User-Agent': UA, ...headers },
+        signal: AbortSignal.timeout(20000),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status} ${url}`);
+      return await res.text();
+    } catch (err) {
+      lastErr = err;
+      if (attempt < 3) {
+        console.log(`retry ${attempt} for ${url} after ${err.message}`);
+        await sleep(1500 * attempt * attempt);
+      }
+    }
+  }
+  throw lastErr;
+}
+
+function parseJdSearchPage(html) {
+  const items = [];
+  const liRe = /<li\b([^>]*data-sku="(\d+)"[^>]*)>([\s\S]*?)<\/li>/g;
+  for (const m of html.matchAll(liRe)) {
+    if (!/\bgl-item\b/.test(m[1])) continue;
+    const li = m[3];
+    if (/gl-item-promo|p-promo|data-promo|promo-tag/i.test(li)) continue;
+    const priceM = li.match(/class="p-price"[\s\S]*?<i[^>]*>([^<]+)<\/i>/);
+    if (!priceM) continue;
+    const price = Number(priceM[1].replace(/[,¥￥\s]/g, ''));
+    if (!Number.isFinite(price) || price <= 0) continue;
+    const nameM = li.match(/class="p-name"[^>]*>[\s\S]*?<em>([\s\S]*?)<\/em>/);
+    const name = nameM ? nameM[1].replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').trim() : '';
+    if (/广告|推广/.test(name)) continue;
+    items.push({
+      sku: m[2],
+      name,
+      price: Math.round(price * 100) / 100,
+      url: `https://item.jd.com/${m[2]}.html`,
+    });
+  }
+  return items;
+}
+
+async function estimateJd(query) {
+  const enc = encodeURIComponent(query);
+  const urls = [
+    `https://search.jd.com/Search?keyword=${enc}&enc=utf-8`,
+    `https://search.jd.com/s_new.php?keyword=${enc}&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&page=1&s=1`,
+  ];
+  let lastErr = null;
+  for (const url of urls) {
+    try {
+      const html = await fetchText(url, {
+        Referer: 'https://www.jd.com/',
+        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      });
+      if (/passport\.jd\.com|京东登录|京东验证|安全验证|欢迎登录/.test(html)) {
+        lastErr = new Error('京东搜索需要登录或验证');
+        continue;
+      }
+      const items = parseJdSearchPage(html);
+      const prices = items.map((i) => i.price).filter((p) => p > 0);
+      if (!prices.length) continue;
+      const counts = new Map();
+      for (const p of prices) {
+        const k = Math.round(p * 100) / 100;
+        counts.set(k, (counts.get(k) || 0) + 1);
+      }
+      let mode = null;
+      let modeCount = 0;
+      for (const [k, c] of counts) {
+        if (c > modeCount) {
+          mode = k;
+          modeCount = c;
+        }
+      }
+      const average =
+        Math.round((prices.reduce((a, b) => a + b, 0) / prices.length) * 100) / 100;
+      return {
+        price: modeCount >= 2 ? mode : average,
+        mode,
+        modeCount,
+        average,
+        count: prices.length,
+        samples: prices.slice(0, 12),
+        searchUrl: url,
+      };
+    } catch (err) {
+      lastErr = err;
+    }
+  }
+  if (lastErr && /登录|验证/.test(lastErr.message)) throw lastErr;
+  return null;
+}
+
 async function readFileIfExists(file) {
   if (await fileExists(file)) return readFile(file);
   return null;
@@ -252,4 +349,13 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   });
 }
 
-export { gpuKey, cpuKey, matchProducts, parseZol, normText, fetchBenchmarks, fetchZolPages };
+export {
+  gpuKey,
+  cpuKey,
+  matchProducts,
+  parseZol,
+  normText,
+  fetchBenchmarks,
+  fetchZolPages,
+  estimateJd,
+};

@@ -450,6 +450,26 @@
     padding: 4px 10px;
     white-space: nowrap;
   }
+  .settings-seg {
+    flex: 0 0 auto;
+    display: flex;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .settings-seg-btn {
+    border: 0;
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 7px 14px;
+    cursor: pointer;
+  }
+  .settings-seg-btn.active {
+    background: var(--blue);
+    color: #fff;
+  }
 
   @media (max-width: 640px) {
     .hero h1 { font-size: 20px; }
@@ -499,6 +519,17 @@
     <span class="settings-badge">每日自动</span>
   </div>
   <div class="settings-status" id="priceStatus">正在检查…</div>
+  <div class="settings-row">
+    <div>
+      <div class="settings-label">显示电商价</div>
+      <div class="settings-hint">不显示时，仅有参考价的型号会去京东估价</div>
+    </div>
+    <div class="settings-seg" id="shopSeg">
+      <button class="settings-seg-btn" data-shop="1">显示</button>
+      <button class="settings-seg-btn" data-shop="0">不显示</button>
+    </div>
+  </div>
+  <div class="settings-status" id="jdStatus"></div>
 </div>
 
 <main>
@@ -543,6 +574,7 @@
     <div>跑分数据：Geekbench，来源 cpuranklist.com（抓取时间见页脚）</div>
     <div>价格数据：中关村在线 ZOL 参考价 / 京东·天猫在售价（人民币），同一型号取最低价</div>
     <div>性价比排行只展示已匹配到价格的桌面型号；性能排行包含全部跑分型号</div>
+    <div>设置中关闭“显示电商价”后，仅有参考价的型号会抓取京东首屏搜索价并标注为“估价”</div>
   </section>
 
   <footer>
@@ -568,7 +600,9 @@
     if (notice) notice.hidden = false;
     return;
   }
-  const state = { kind: 'gpu', view: 'score', brand: 'all', query: '', shown: 100 };
+  const state = { kind: 'gpu', view: 'score', brand: 'all', query: '', shown: 100, showShop: true };
+  let jdEstimates = { gpu: {}, cpu: {} };
+  let jdLoading = false;
 
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
@@ -588,7 +622,23 @@
     return 'other';
   }
 
-  function ratio(r) { return r.price ? r.score / r.price : 0; }
+  function shownPrice(row) {
+    if (!row || !row.price) return null;
+    if (state.showShop) {
+      return row.shopPrice ? { price: row.shopPrice, tag: '电商价' } : { price: row.price, tag: '参考价' };
+    }
+    if (row.shopPrice) {
+      return { price: row.refPrice || row.price, tag: '参考价' };
+    }
+    const est = jdEstimates[state.kind] && jdEstimates[state.kind][row.slug];
+    if (est && est.price) return { price: est.price, tag: '估价' };
+    return { price: row.price, tag: '参考价' };
+  }
+
+  function ratio(row) {
+    const p = shownPrice(row);
+    return p ? row.score / p.price : 0;
+  }
 
   function visibleRows() {
     let list = DATA[state.kind].slice();
@@ -597,7 +647,7 @@
       const q = state.query.toLowerCase();
       list = list.filter((r) => r.name.toLowerCase().includes(q));
     }
-    if (state.view === 'value') list = list.filter((r) => r.price);
+    if (state.view === 'value') list = list.filter((r) => shownPrice(r));
     if (state.view === 'score') list.sort((a, b) => b.score - a.score);
     else list.sort((a, b) => ratio(b) - ratio(a));
     return list;
@@ -606,23 +656,22 @@
   function maxOf(kind, view) {
     const list = DATA[kind];
     if (view === 'score') return Math.max(...list.map((r) => r.score), 1);
-    return Math.max(...list.map((r) => (r.price ? r.score / r.price : 0)), 1);
+    return Math.max(...list.map((r) => (shownPrice(r) ? ratio(r) : 0)), 1);
   }
 
   function rowHtml(row, i, totalRows, maxVal) {
     const view = state.view;
     const val = view === 'score' ? row.score : ratio(row);
     const width = Math.max(8, Math.round((val / maxVal) * 100));
-    const hasPrice = !!row.price;
+    const priceInfo = shownPrice(row);
+    const hasPrice = !!priceInfo;
     const cls = ['row', 'row-' + vendorKey(row.name), !hasPrice && view === 'score' ? 'ghost' : ''].filter(Boolean).join(' ');
     const valueText = hasPrice ? ratio(row).toFixed(2) + ' 分/元' : '暂无价格';
-    const tag = hasPrice
-      ? (row.shopPrice ? '电商价' : '参考价')
-      : '';
+    const tag = hasPrice ? priceInfo.tag : '';
     const source = row.priceFrom ? `取自 ${row.priceFrom}` : '';
     const barText = view === 'score' ? fmt(row.score) : ratio(row).toFixed(2) + ' 分/元';
     return `
-      <a class="${cls}" title="${row.name} · ${source}">
+      <a class="${cls}" title="${row.name} · ${tag}${tag === '估价' ? '（京东搜索）' : ''} · ${source}">
         <div class="row-top">
           <span class="rank">#${i + 1}</span>
           <span class="name">${esc(row.name)}</span>
@@ -631,7 +680,7 @@
           <div class="row-fill" style="width:${width}%"><span class="row-score">${barText}</span></div>
         </div>
         <div class="row-meta">
-          ${hasPrice ? `<span class="price">¥${fmt(row.price)}</span>` : '<span>暂无价格</span>'}
+          ${hasPrice ? `<span class="price">¥${fmt(priceInfo.price)}</span>` : '<span>暂无价格</span>'}
           ${tag ? `<span class="tag">${tag}</span>` : ''}
           <span class="val">${view === 'score' ? '性价比 ' + valueText : '跑分 ' + fmt(row.score) + ' · ' + valueText}</span>
         </div>
@@ -644,13 +693,13 @@
     const maxVal = maxOf(state.kind, state.view);
     const kindLabel = state.kind === 'gpu' ? 'GPU' : 'CPU';
     const total = DATA[state.kind].length;
-    const priced = DATA[state.kind].filter((r) => r.price).length;
+    const priced = DATA[state.kind].filter((r) => shownPrice(r)).length;
 
     $('#pageTitle').textContent = kindLabel + (state.view === 'score' ? ' Geekbench 性能排行' : ' Geekbench 性价比排行');
     $('#pageSub').textContent =
       state.view === 'score'
         ? '按 Geekbench 跑分从高到低排列，条长代表相对第一名性能的差距。'
-        : '按 跑分 ÷ 价格（元）从高到低排列，条长代表性价比高低，价格取 ZOL 最低报价。';
+        : '按 跑分 ÷ 价格（元）从高到低排列，条长代表性价比高低，价格为 ZOL 报价，可在设置中切换京东估价。';
     $('#summary').innerHTML =
       `共 <b>${total}</b> 个型号 · 已匹配价格 <b>${priced}</b> 个` +
       (state.view === 'value' ? ` · 性价比榜显示 <b>${rows.length}</b> 个` : '');
@@ -743,6 +792,45 @@
     }
   }
 
+  function setShowShop(value) {
+    state.showShop = !!value;
+    try {
+      localStorage.setItem('showShop', state.showShop ? '1' : '0');
+    } catch (err) {}
+    $$('#shopSeg .settings-seg-btn').forEach((b) =>
+      b.classList.toggle('active', Number(b.dataset.shop) === (state.showShop ? 1 : 0))
+    );
+    render();
+    if (state.showShop) {
+      $('#jdStatus').textContent = '';
+    } else {
+      fetchJdEstimates();
+    }
+  }
+
+  async function fetchJdEstimates() {
+    if (jdLoading) return;
+    jdLoading = true;
+    const status = $('#jdStatus');
+    status.textContent = '正在获取京东估价…';
+    try {
+      const res = await fetch('/api/jd-prices?kind=' + state.kind, { cache: 'no-store' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const payload = await res.json();
+      jdEstimates[state.kind] = payload.estimates || {};
+      const n = Object.values(jdEstimates[state.kind]).filter((e) => e && e.price).length;
+      const base = payload.updatedAt
+        ? '京东估价 ' + n + ' 个 · ' + fmtTime(payload.updatedAt)
+        : '京东估价已更新 ' + n + ' 个';
+      status.textContent = payload.notice ? payload.notice + '（' + base + '）' : base;
+      render();
+    } catch (err) {
+      status.textContent = '京东估价失败：请通过 node server.mjs 本地服务打开';
+    } finally {
+      jdLoading = false;
+    }
+  }
+
   document.addEventListener('click', (e) => {
     const tab = e.target.closest('.tab');
     if (tab) {
@@ -751,6 +839,7 @@
       state.brand = 'all';
       $$('.tab').forEach((b) => b.classList.toggle('active', b === tab));
       render();
+      if (!state.showShop) fetchJdEstimates();
       return;
     }
     const seg = e.target.closest('.seg-btn');
@@ -798,6 +887,18 @@
     }
   });
   $('#refreshScore').addEventListener('click', refreshScores);
+  $('#shopSeg').addEventListener('click', (e) => {
+    const btn = e.target.closest('.settings-seg-btn');
+    if (!btn) return;
+    setShowShop(btn.dataset.shop === '1');
+  });
+
+  let savedShop = null;
+  try {
+    savedShop = localStorage.getItem('showShop');
+  } catch (err) {}
+  state.showShop = savedShop === null ? true : savedShop === '1';
+  setShowShop(state.showShop);
 
   updateTime();
   render();

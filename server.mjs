@@ -8,6 +8,7 @@ import {
   matchProducts,
   fetchBenchmarks,
   fetchZolPages,
+  estimateJd,
 } from './scrape.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -93,6 +94,43 @@ async function loadZolItems(kind) {
   return { items, fetchedAt };
 }
 
+async function jdEstimatesFor(kind) {
+  const cacheFile = path.join(cacheDir, `jd-${kind}-${dayStamp()}.json`);
+  if (await fileExists(cacheFile)) {
+    return readJson(cacheFile);
+  }
+  const base = await ensureMemory();
+  const rows = base[kind].filter((r) => r.price && !r.shopPrice);
+  const estimates = {};
+  let cursor = 0;
+  const worker = async () => {
+    while (cursor < rows.length) {
+      const row = rows[cursor++];
+      try {
+        const est = await estimateJd(row.name);
+        estimates[row.slug] = est ? { name: row.name, ...est } : { name: row.name, error: 'no result' };
+      } catch (err) {
+        estimates[row.slug] = { name: row.name, error: err.message };
+      }
+    }
+  };
+  const workerCount = Math.min(6, Math.max(1, rows.length));
+  await Promise.all(Array.from({ length: workerCount }, worker));
+  const payload = {
+    kind,
+    updatedAt: new Date().toISOString(),
+    total: rows.length,
+    estimated: Object.values(estimates).filter((e) => e.price).length,
+    estimates,
+  };
+  if (payload.estimated === 0 && payload.total > 0) {
+    payload.notice = '京东搜索需要登录或验证，暂未能估价，仍显示参考价';
+  }
+  await writeJson(cacheFile, payload);
+  console.log(`[jd] ${kind}: ${payload.estimated}/${payload.total} estimated`);
+  return payload;
+}
+
 async function buildData({ refreshScores = false } = {}) {
   const gpuBench = await loadBenchmarks('gpu', refreshScores);
   const cpuBench = await loadBenchmarks('cpu', refreshScores);
@@ -146,6 +184,12 @@ const server = createServer(async (req, res) => {
     if (url.pathname === '/api/refresh-benchmarks' && req.method === 'POST') {
       const data = await withLock(() => buildData({ refreshScores: true }));
       sendJson(res, data);
+      return;
+    }
+    if (url.pathname === '/api/jd-prices' && req.method === 'GET') {
+      const kind = url.searchParams.get('kind') === 'cpu' ? 'cpu' : 'gpu';
+      const payload = await withLock(() => jdEstimatesFor(kind));
+      sendJson(res, payload);
       return;
     }
     if (url.pathname === '/' || url.pathname === '/index.html') {
