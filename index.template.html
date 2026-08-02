@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPU / CPU Geekbench 性能与性价比天梯图</title>
+<style>
+  :root {
+    --bg: #f3f4f6;
+    --panel: #ffffff;
+    --ink: #111827;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --blue: #1d4ed8;
+    --blue-dark: #1e40af;
+    --red-1: #ff4f5f;
+    --red-2: #ff8a6b;
+    --green-1: #0e9f6e;
+    --green-2: #3dce8e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Segoe UI", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+    line-height: 1.45;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgba(17, 24, 39, 0.06);
+  }
+  .header-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+  .brand-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    background: linear-gradient(135deg, var(--red-1), var(--red-2));
+    flex: 0 0 auto;
+  }
+  .header-meta {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+  }
+  main { max-width: 1080px; margin: 0 auto; padding: 16px 16px 40px; }
+
+  .hero {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .hero h1 { font-size: 24px; font-weight: 800; letter-spacing: 0; }
+  .hero p { margin-top: 6px; color: var(--muted); font-size: 13px; max-width: 560px; }
+  .tabs {
+    display: flex;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .tab {
+    border: 0;
+    background: transparent;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .tab.active {
+    background: var(--panel);
+    color: var(--blue);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .toolbar {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .search-box {
+    flex: 1 1 260px;
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0 12px;
+    height: 42px;
+  }
+  .search-box svg { width: 17px; height: 17px; color: var(--muted); flex: 0 0 auto; }
+  .search-box input {
+    border: 0;
+    outline: 0;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .seg {
+    display: flex;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .seg-btn {
+    border: 0;
+    background: transparent;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .seg-btn.active { background: var(--panel); color: var(--blue); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+  .brand-bar {
+    margin-top: 14px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: #374151;
+    border-radius: 999px;
+    padding: 7px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .chip.active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+  }
+
+  .summary {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .summary b { color: var(--ink); font-weight: 700; }
+
+  .list { margin-top: 12px; }
+  .row {
+    display: block;
+    text-decoration: none;
+    position: relative;
+    border-radius: 10px;
+    padding: 13px 16px;
+    margin-bottom: 10px;
+    color: #fff;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    min-height: 66px;
+  }
+  .row.score-row { background: linear-gradient(90deg, var(--red-1), var(--red-2)); }
+  .row.value-row { background: linear-gradient(90deg, var(--green-1), var(--green-2)); }
+  .row.ghost {
+    background: #d1d5db;
+    text-shadow: none;
+    color: #374151;
+  }
+  .row-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .rank {
+    flex: 0 0 auto;
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 800;
+  }
+  .name {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .score {
+    flex: 0 0 auto;
+    font-size: 16px;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+  }
+  .score small {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    opacity: 0.85;
+    text-align: right;
+  }
+  .row-meta {
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.96;
+    flex-wrap: wrap;
+  }
+  .row-meta .price { font-size: 13px; font-weight: 800; }
+  .row-meta .val { font-variant-numeric: tabular-nums; }
+  .row-meta .tag {
+    background: rgba(255,255,255,0.22);
+    border-radius: 5px;
+    padding: 1px 7px;
+    font-size: 11px;
+  }
+  .ghost .rank, .ghost .tag { background: rgba(17,24,39,0.1); }
+
+  .empty {
+    background: var(--panel);
+    border: 1px dashed var(--line);
+    border-radius: 12px;
+    padding: 36px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .load-more-wrap { text-align: center; margin-top: 8px; }
+  .load-more {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 10px 26px;
+    cursor: pointer;
+  }
+  .load-more:hover { border-color: var(--blue); }
+
+  .notes {
+    margin-top: 26px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--muted);
+    display: grid;
+    gap: 6px;
+  }
+  footer {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer a { color: var(--blue); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 20px; }
+    .tabs { width: 100%; }
+    .tab { flex: 1 1 0; text-align: center; }
+    .seg { width: 100%; }
+    .seg-btn { flex: 1 1 0; text-align: center; }
+    .row { padding: 12px 14px; }
+    .score { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div class="brand"><span class="brand-dot"></span>Geekbench 性价比天梯图</div>
+    <div class="header-meta" id="headerTime"></div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <h1 id="pageTitle">显卡 Geekbench 跑分与性价比排行</h1>
+      <p id="pageSub">Geekbench 跑分来自 cpuranklist，价格为 ZOL 参考价与电商最低价，性价比 = 跑分 ÷ 价格（元）。</p>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-kind="gpu">显卡</button>
+      <button class="tab" data-kind="cpu">CPU</button>
+    </div>
+  </section>
+
+  <section class="toolbar">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="M21 21l-4.35-4.35"></path>
+      </svg>
+      <input id="search" type="text" placeholder="搜索型号，例如 RTX 5080 或 7800X3D" autocomplete="off">
+    </div>
+    <div class="seg">
+      <button class="seg-btn active" data-view="score">性能排行</button>
+      <button class="seg-btn" data-view="value">性价比排行</button>
+    </div>
+  </section>
+
+  <section class="brand-bar" id="brandBar"></section>
+
+  <section class="summary" id="summary"></section>
+
+  <section class="list" id="list"></section>
+
+  <div class="load-more-wrap"><button class="load-more" id="loadMore">加载更多</button></div>
+
+  <section class="notes">
+    <div>跑分数据：Geekbench，来源 cpuranklist.com（抓取时间见页脚）</div>
+    <div>价格数据：中关村在线 ZOL 参考价 / 京东·天猫在售价（人民币），同一型号取最低价</div>
+    <div>性价比排行只展示已匹配到价格的桌面型号；性能排行包含全部跑分型号</div>
+  </section>
+
+  <footer>
+    <a href="https://cpuranklist.com/gpu-geekbench.php" target="_blank" rel="noopener">GPU Geekbench</a>
+    <a href="https://cpuranklist.com/cpu-geekbench.php" target="_blank" rel="noopener">CPU Geekbench</a>
+    <a href="https://detail.zol.com.cn/vga/" target="_blank" rel="noopener">ZOL 显卡报价</a>
+    <a href="https://detail.zol.com.cn/cpu/" target="_blank" rel="noopener">ZOL CPU 报价</a>
+    <span id="footerTime"></span>
+  </footer>
+</main>
+
+<script id="app-data" type="application/json">__DATA_JSON__</script>
+<script>
+  const DATA = JSON.parse(document.getElementById('app-data').textContent);
+  const state = { kind: 'gpu', view: 'score', brand: 'all', query: '', shown: 100 };
+
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => Array.from(document.querySelectorAll(s));
+  const fmt = (n) => Number(n).toLocaleString('en-US');
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  function vendorOf(name) {
+    const n = name.toLowerCase();
+    if (/(nvidia|geforce|rtx|gtx|titan|quadro)/.test(n)) return 'NVIDIA';
+    if (/(amd|radeon|ryzen|instinct)/.test(n)) return 'AMD';
+    if (/(intel|arc|core\s|xeon)/.test(n)) return 'Intel';
+    if (/(apple|m[1-4]\s)/.test(n)) return 'Apple';
+    return '其他';
+  }
+
+  function ratio(r) { return r.price ? r.score / r.price : 0; }
+
+  function visibleRows() {
+    let list = DATA[state.kind].slice();
+    if (state.brand !== 'all') list = list.filter((r) => vendorOf(r.name) === state.brand);
+    if (state.query) {
+      const q = state.query.toLowerCase();
+      list = list.filter((r) => r.name.toLowerCase().includes(q));
+    }
+    if (state.view === 'value') list = list.filter((r) => r.price);
+    if (state.view === 'score') list.sort((a, b) => b.score - a.score);
+    else list.sort((a, b) => ratio(b) - ratio(a));
+    return list;
+  }
+
+  function maxOf(kind, view) {
+    const list = DATA[kind];
+    if (view === 'score') return Math.max(...list.map((r) => r.score), 1);
+    return Math.max(...list.map((r) => (r.price ? r.score / r.price : 0)), 1);
+  }
+
+  function rowHtml(row, i, totalRows, maxVal) {
+    const view = state.view;
+    const val = view === 'score' ? row.score : ratio(row);
+    const width = Math.max(8, Math.round((val / maxVal) * 100));
+    const hasPrice = !!row.price;
+    const cls = !hasPrice && view === 'score' ? 'row score-row ghost' : view === 'value' ? 'row value-row' : 'row score-row';
+    const valueText = hasPrice ? ratio(row).toFixed(2) + ' 分/元' : '暂无价格';
+    const tag = hasPrice
+      ? (row.shopPrice ? '电商价' : '参考价')
+      : '';
+    const source = row.priceFrom ? `取自 ${row.priceFrom}` : '';
+    return `
+      <a class="${cls}" style="width:${width}%" title="${row.name} · ${source}">
+        <div class="row-top">
+          <span class="rank">#${i + 1}</span>
+          <span class="name">${esc(row.name)}</span>
+          <span class="score">${fmt(row.score)}<small>Geekbench</small></span>
+        </div>
+        <div class="row-meta">
+          ${hasPrice ? `<span class="price">¥${fmt(row.price)}</span>` : '<span>暂无价格</span>'}
+          ${tag ? `<span class="tag">${tag}</span>` : ''}
+          <span class="val">${view === 'score' ? '性价比 ' + valueText : '跑分 ' + fmt(row.score) + ' · ' + valueText}</span>
+        </div>
+      </a>`;
+  }
+
+  function render() {
+    const rows = visibleRows();
+    const shown = rows.slice(0, state.shown);
+    const maxVal = maxOf(state.kind, state.view);
+    const kindLabel = state.kind === 'gpu' ? '显卡' : 'CPU';
+    const total = DATA[state.kind].length;
+    const priced = DATA[state.kind].filter((r) => r.price).length;
+
+    $('#pageTitle').textContent = kindLabel + (state.view === 'score' ? ' Geekbench 性能排行' : ' Geekbench 性价比排行');
+    $('#pageSub').textContent =
+      state.view === 'score'
+        ? '按 Geekbench 跑分从高到低排列，条长代表相对第一名性能的差距。'
+        : '按 跑分 ÷ 价格（元）从高到低排列，条长代表性价比高低，价格取 ZOL 最低报价。';
+    $('#summary').innerHTML =
+      `共 <b>${total}</b> 个型号 · 已匹配价格 <b>${priced}</b> 个` +
+      (state.view === 'value' ? ` · 性价比榜显示 <b>${rows.length}</b> 个` : '');
+
+    $('#list').innerHTML = shown.length
+      ? shown.map((r, i) => rowHtml(r, i, rows.length, maxVal)).join('')
+      : '<div class="empty">没有找到匹配的型号</div>';
+
+    $('#loadMore').style.display = rows.length > state.shown ? '' : 'none';
+
+    renderBrands();
+  }
+
+  function renderBrands() {
+    const brands = ['all', 'NVIDIA', 'AMD', 'Intel', 'Apple'];
+    const counts = new Map(brands.map((b) => [b, 0]));
+    for (const r of DATA[state.kind]) {
+      const v = vendorOf(r.name);
+      counts.set(v, (counts.get(v) || 0) + 1);
+    }
+    const bar = $('#brandBar');
+    bar.innerHTML = brands
+      .filter((b) => b === 'all' || counts.get(b) > 0)
+      .map((b) => {
+        const label = b === 'all' ? '全部' : b;
+        const count = b === 'all' ? DATA[state.kind].length : counts.get(b) || 0;
+        return `<button class="chip ${state.brand === b ? 'active' : ''}" data-brand="${b}">${label} ${count}</button>`;
+      })
+      .join('');
+  }
+
+  function updateTime() {
+    const t = DATA.fetchedAt ? new Date(DATA.fetchedAt) : null;
+    const s = t ? `抓取于 ${t.toLocaleDateString('zh-CN')}` : '';
+    $('#headerTime').textContent = s;
+    $('#footerTime').textContent = s;
+  }
+
+  document.addEventListener('click', (e) => {
+    const tab = e.target.closest('.tab');
+    if (tab) {
+      state.kind = tab.dataset.kind;
+      state.shown = 100;
+      state.brand = 'all';
+      $$('.tab').forEach((b) => b.classList.toggle('active', b === tab));
+      render();
+      return;
+    }
+    const seg = e.target.closest('.seg-btn');
+    if (seg) {
+      state.view = seg.dataset.view;
+      state.shown = 100;
+      $$('.seg-btn').forEach((b) => b.classList.toggle('active', b === seg));
+      render();
+      return;
+    }
+    const chip = e.target.closest('.chip');
+    if (chip) {
+      state.brand = chip.dataset.brand;
+      state.shown = 100;
+      $$('.chip').forEach((b) => b.classList.toggle('active', b === chip));
+      render();
+      return;
+    }
+    if (e.target.id === 'loadMore') {
+      state.shown += 100;
+      render();
+    }
+  });
+
+  let searchTimer = null;
+  $('#search').addEventListener('input', (e) => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      state.query = e.target.value.trim();
+      state.shown = 100;
+      render();
+    }, 180);
+  });
+
+  updateTime();
+  render();
+</script>
+</body>
+</html>

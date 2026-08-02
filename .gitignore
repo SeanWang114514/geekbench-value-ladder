@@ -1,0 +1,7 @@
+# 原始抓取页面缓存，体积大且可重新抓取
+cache/
+cpu_geekbench.html
+gpu_geekbench.html
+zol_cpu.html
+zol_vga.html
+node_modules/
