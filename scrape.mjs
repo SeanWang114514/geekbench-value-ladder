@@ -26,7 +26,7 @@ async function fileExists(file) {
 
 async function download(url, file, headers = {}) {
   let lastErr;
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (let attempt = 1; attempt <= 4; attempt++) {
     try {
       const res = await fetch(url, {
         headers: { 'User-Agent': UA, ...headers },
@@ -48,6 +48,7 @@ async function download(url, file, headers = {}) {
 }
 
 const BROWSER_PATHS = [
+  process.env.CHROME_PATH,
   process.env.PROGRAMFILES && path.join(process.env.PROGRAMFILES, 'Google', 'Chrome', 'Application', 'chrome.exe'),
   process.env['PROGRAMFILES(X86)'] && path.join(process.env['PROGRAMFILES(X86)'], 'Google', 'Chrome', 'Application', 'chrome.exe'),
   process.env.LOCALAPPDATA && path.join(process.env.LOCALAPPDATA, 'Google', 'Chrome', 'Application', 'chrome.exe'),
@@ -132,7 +133,7 @@ async function estimateSuning(query, token, kind, profileDir) {
 
 async function fetchText(url, headers = {}) {
   let lastErr;
-  for (let attempt = 1; attempt <= 3; attempt++) {
+  for (let attempt = 1; attempt <= 4; attempt++) {
     try {
       const res = await fetch(url, {
         headers: { 'User-Agent': UA, ...headers },
@@ -658,14 +659,18 @@ async function fetchZolPages(kind, baseUrl, htmlFile) {
   for (let page = 2; page <= total; page++) {
     const file = path.join(cacheDir, `zol_${kind}_${page}.html`);
     const url = `https://detail.zol.com.cn/${kind}/${page}.html`;
-    let buf;
-    if (await fileExists(file)) {
-      buf = await readFile(file);
-    } else {
-      buf = await download(url, file, { Referer: 'https://detail.zol.com.cn/' });
-      await sleep(700);
+    try {
+      let buf;
+      if (await fileExists(file)) {
+        buf = await readFile(file);
+      } else {
+        buf = await download(url, file, { Referer: 'https://detail.zol.com.cn/' });
+        await sleep(700);
+      }
+      all.push(...parseZol(new TextDecoder('gbk').decode(buf)));
+    } catch (err) {
+      console.warn(`[warn] 跳过 ZOL ${kind} 第 ${page} 页: ${err.message}`);
     }
-    all.push(...parseZol(new TextDecoder('gbk').decode(buf)));
     if (page % 10 === 0) console.log(`${kind}: ${page}/${total} pages, ${all.length} items`);
   }
   console.log(`${kind}: ${total} pages, ${all.length} items`);

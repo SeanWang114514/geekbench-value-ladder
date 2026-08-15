@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
@@ -57,30 +57,67 @@ async function estimateForRows(kind, rows) {
   return estimates.size;
 }
 
+async function readPreviousData() {
+  try {
+    return JSON.parse(await readFile(dataFile, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
 async function main() {
   await mkdir(cacheDir, { recursive: true });
   const now = new Date().toISOString();
+  const prev = await readPreviousData();
 
-  const gpuBench = desktopOnly(await fetchBenchmarks('gpu'));
-  const cpuBench = desktopOnly(await fetchBenchmarks('cpu'));
-  const [gpuZol, cpuZol] = await Promise.all([
-    fetchZolPages('vga', 'https://detail.zol.com.cn/vga/', path.join(cacheDir, 'zol_vga_1.html')),
-    fetchZolPages('cpu', 'https://detail.zol.com.cn/cpu/', path.join(cacheDir, 'zol_cpu_1.html')),
-  ]);
+  const timestamps = {
+    scoresUpdatedAt: now,
+    pricesUpdatedAt: now,
+    estimatesUpdatedAt: now,
+  };
 
-  const gpu = matchProducts(gpuBench, gpuZol, gpuKey);
-  const cpu = matchProducts(cpuBench, cpuZol, cpuKey);
+  let gpu;
+  let cpu;
+  let usedPrevious = false;
 
-  const gpuEstimated = await estimateForRows('gpu', gpu);
-  const cpuEstimated = await estimateForRows('cpu', cpu);
+  try {
+    const gpuBench = desktopOnly(await fetchBenchmarks('gpu'));
+    const cpuBench = desktopOnly(await fetchBenchmarks('cpu'));
+    const [gpuZol, cpuZol] = await Promise.all([
+      fetchZolPages('vga', 'https://detail.zol.com.cn/vga/', path.join(cacheDir, 'zol_vga_1.html')),
+      fetchZolPages('cpu', 'https://detail.zol.com.cn/cpu/', path.join(cacheDir, 'zol_cpu_1.html')),
+    ]);
+    gpu = matchProducts(gpuBench, gpuZol, gpuKey);
+    cpu = matchProducts(cpuBench, cpuZol, cpuKey);
+  } catch (err) {
+    console.warn(`[warn] 实时抓取失败（${err.message}），回退到上次的 data.json`);
+    if (!prev || !prev.gpu || !prev.cpu) {
+      throw new Error(`无法抓取数据且没有历史数据可用: ${err.message}`);
+    }
+    gpu = prev.gpu;
+    cpu = prev.cpu;
+    timestamps.scoresUpdatedAt = prev.scoresUpdatedAt || now;
+    timestamps.pricesUpdatedAt = prev.pricesUpdatedAt || now;
+    timestamps.estimatesUpdatedAt = prev.estimatesUpdatedAt || now;
+    usedPrevious = true;
+  }
+
+  let gpuEstimated = 0;
+  let cpuEstimated = 0;
+  if (!usedPrevious) {
+    gpuEstimated = await estimateForRows('gpu', gpu);
+    cpuEstimated = await estimateForRows('cpu', cpu);
+  } else {
+    console.log('使用上次数据，跳过估价步骤');
+  }
 
   const gpuPriced = gpu.filter((r) => r.price).length;
   const cpuPriced = cpu.filter((r) => r.price).length;
   const data = {
     fetchedAt: now,
-    scoresUpdatedAt: now,
-    pricesUpdatedAt: now,
-    estimatesUpdatedAt: now,
+    scoresUpdatedAt: timestamps.scoresUpdatedAt,
+    pricesUpdatedAt: timestamps.pricesUpdatedAt,
+    estimatesUpdatedAt: timestamps.estimatesUpdatedAt,
     sources: {
       gpuBenchmark: 'https://cpuranklist.com/gpu-geekbench.php',
       cpuBenchmark: 'https://cpuranklist.com/cpu-geekbench.php',
