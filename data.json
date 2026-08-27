@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-08-26T02:18:06.538Z",
-  "scoresUpdatedAt": "2026-08-26T02:18:06.538Z",
-  "pricesUpdatedAt": "2026-08-26T02:18:06.538Z",
-  "estimatesUpdatedAt": "2026-08-26T02:18:06.538Z",
+  "fetchedAt": "2026-08-27T10:43:56.046Z",
+  "scoresUpdatedAt": "2026-08-27T10:43:56.046Z",
+  "pricesUpdatedAt": "2026-08-27T10:43:56.046Z",
+  "estimatesUpdatedAt": "2026-08-27T10:43:56.046Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -43,12 +43,7 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967",
-      "estimate": {
-        "price": 66920,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "2119967"
     },
     {
       "slug": "nvidia-geforce-rtx-4090",
@@ -211,8 +206,8 @@
       "price": 4499,
       "refPrice": 4499,
       "shopPrice": null,
-      "priceFrom": "XFX讯景RADEON RX 9070 战狼",
-      "zolId": "2123473"
+      "priceFrom": "蓝宝石PULSE 脉动 RX 9070 16G D6 RDNA4架构，16GB显存，双风扇散热",
+      "zolId": "2126086"
     },
     {
       "slug": "amd-radeon-rx-6950-xt",
@@ -1518,12 +1513,7 @@
       "refPrice": 2399,
       "shopPrice": null,
       "priceFrom": "AX电竞叛客RTX 4060 RTX 4060 X2W 8GB 速度升级，金属背板，高规散热",
-      "zolId": "1968874",
-      "estimate": {
-        "price": 4000,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%204060%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "1968874"
     },
     {
       "slug": "nvidia-geforce-gtx-980-ti",
@@ -2205,11 +2195,11 @@
       "slug": "intel-arc-a380-graphics",
       "name": "Intel Arc A380 Graphics",
       "score": 30762,
-      "price": 669,
-      "refPrice": 1030,
-      "shopPrice": 669,
-      "priceFrom": "Intel ARC A380 显存类型:GDDR6 显存位宽:96bit 显存容量:6GB 芯片厂商:Intel 显存频率:16000MHz 流处理单元:1024个",
-      "zolId": "1395260"
+      "price": 799,
+      "refPrice": 799,
+      "shopPrice": null,
+      "priceFrom": "蓝戟Intel Arc A380 Index 6G 6G大显存，畅快运行，品质加倍",
+      "zolId": "1990870"
     },
     {
       "slug": "amd-radeon-pro-wx-5100-graphics",
@@ -4383,9 +4373,9 @@
       "slug": "intel-core-i5-12400f",
       "name": "Intel Core i5-12400F",
       "score": 9101,
-      "price": 969,
+      "price": 989,
       "refPrice": 1210,
-      "shopPrice": 969,
+      "shopPrice": 989,
       "priceFrom": "Intel 酷睿 i5 12400F 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake-S 插槽类型:LGA 1700 CPU主频:2.5GHz 核心数量:六核心",
       "zolId": "1338644"
     },
