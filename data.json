@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-08-27T10:43:56.046Z",
-  "scoresUpdatedAt": "2026-08-27T10:43:56.046Z",
-  "pricesUpdatedAt": "2026-08-27T10:43:56.046Z",
-  "estimatesUpdatedAt": "2026-08-27T10:43:56.046Z",
+  "fetchedAt": "2026-08-28T12:21:42.211Z",
+  "scoresUpdatedAt": "2026-08-28T12:21:42.211Z",
+  "pricesUpdatedAt": "2026-08-28T12:21:42.211Z",
+  "estimatesUpdatedAt": "2026-08-28T12:21:42.211Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -43,7 +43,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "zolId": "2119967",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-4090",
@@ -2609,9 +2614,9 @@
       "slug": "intel-core-i7-14700k",
       "name": "Intel Core i7-14700K",
       "score": 18760,
-      "price": 3049,
+      "price": 2699,
       "refPrice": 3499,
-      "shopPrice": 3049,
+      "shopPrice": 2699,
       "priceFrom": "Intel 酷睿 i7 14700K 酷睿14代，20核28线程， 睿频至高可达5.6Ghz",
       "zolId": "1814492"
     },
@@ -4061,9 +4066,9 @@
       "slug": "intel-core-i5-13400",
       "name": "Intel Core i5-13400",
       "score": 9920,
-      "price": 1799,
+      "price": 749,
       "refPrice": 1799,
-      "shopPrice": null,
+      "shopPrice": 749,
       "priceFrom": "Intel 酷睿 i5 13400",
       "zolId": "1440553"
     },
