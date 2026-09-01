@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-08-31T06:22:43.912Z",
-  "scoresUpdatedAt": "2026-08-31T06:22:43.912Z",
-  "pricesUpdatedAt": "2026-08-31T06:22:43.912Z",
-  "estimatesUpdatedAt": "2026-08-31T06:22:43.912Z",
+  "fetchedAt": "2026-09-01T05:50:01.137Z",
+  "scoresUpdatedAt": "2026-09-01T05:50:01.137Z",
+  "pricesUpdatedAt": "2026-09-01T05:50:01.137Z",
+  "estimatesUpdatedAt": "2026-09-01T05:50:01.137Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -18,12 +18,7 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967",
-      "estimate": {
-        "price": 66920,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "2119967"
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
@@ -1360,11 +1355,11 @@
       "slug": "nvidia-geforce-rtx-3090",
       "name": "NVIDIA GeForce RTX 3090",
       "score": 53927,
-      "price": 9500,
-      "refPrice": 13999,
-      "shopPrice": 9500,
-      "priceFrom": "华硕ROG-STRIX-RTX3090-O24G-GAMING 显卡芯片:GeForce RTX 3090 制作工艺:8纳米 散热方式:三风扇散热 显存类型:GDDR6X 显存位宽:384bit 显存容量:24GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1343794"
+      "price": 8999,
+      "refPrice": 8999,
+      "shopPrice": null,
+      "priceFrom": "磐镭RTX3090 24G 显卡芯片:GeForce RTX 3090 制作工艺:8纳米 散热方式:涡轮风扇 显存类型:GDDR6X 显存位宽:384bit 显存容量:24GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1394474"
     },
     {
       "slug": "amd-radeon-rx6500-xt",
@@ -3158,9 +3153,9 @@
       "slug": "intel-core-i7-12700k",
       "name": "Intel Core i7-12700K",
       "score": 13869,
-      "price": 1763,
+      "price": 2190,
       "refPrice": 2830,
-      "shopPrice": 1763,
+      "shopPrice": 2190,
       "priceFrom": "Intel 酷睿 i7 12700K 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十二核心",
       "zolId": "1393368"
     },
@@ -3204,9 +3199,9 @@
       "slug": "intel-core-i5-14600",
       "name": "Intel Core i5-14600",
       "score": 13723,
-      "price": 1640,
+      "price": 1550,
       "refPrice": null,
-      "shopPrice": 1640,
+      "shopPrice": 1550,
       "priceFrom": "Intel 酷睿 i5 14600",
       "zolId": "1972506"
     },
@@ -3352,9 +3347,9 @@
       "slug": "intel-core-i5-14600t",
       "name": "Intel Core i5-14600T",
       "score": 12627,
-      "price": 1640,
+      "price": 1550,
       "refPrice": null,
-      "shopPrice": 1640,
+      "shopPrice": 1550,
       "priceFrom": "Intel 酷睿 i5 14600T",
       "zolId": "1972507"
     },
@@ -3374,9 +3369,9 @@
       "slug": "intel-core-i5-14500",
       "name": "Intel Core i5-14500",
       "score": 12569,
-      "price": 1640,
+      "price": 1550,
       "refPrice": null,
-      "shopPrice": 1640,
+      "shopPrice": 1550,
       "priceFrom": "Intel酷睿i5 14500",
       "zolId": "1972503"
     },
@@ -3738,9 +3733,9 @@
       "slug": "intel-core-i7-12700",
       "name": "Intel Core i7-12700",
       "score": 10973,
-      "price": 1763,
+      "price": 2190,
       "refPrice": 2430,
-      "shopPrice": 1763,
+      "shopPrice": 2190,
       "priceFrom": "Intel 酷睿 i7 12700 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:十二核心",
       "zolId": "1394648"
     },
@@ -4454,9 +4449,9 @@
       "slug": "amd-ryzen-7-5700g",
       "name": "AMD Ryzen 7 5700G",
       "score": 8964,
-      "price": 1319,
+      "price": 1249,
       "refPrice": 2599,
-      "shopPrice": 1319,
+      "shopPrice": 1249,
       "priceFrom": "AMD Ryzen 7 5700G 8核心/16线程，4.6GHz加速频率，搭载Radeon Vega Graphic",
       "zolId": "1355716"
     },
@@ -5182,9 +5177,9 @@
       "slug": "amd-ryzen-5-5500",
       "name": "AMD Ryzen 5 5500",
       "score": 7624,
-      "price": 549,
+      "price": 599,
       "refPrice": 1099,
-      "shopPrice": 549,
+      "shopPrice": 599,
       "priceFrom": "AMD Ryzen 5 5500 适用类型:笔记本 CPU系列:AMD Ryzen 5 5000 制作工艺:7纳米 插槽类型:Socket AM4 内存类型:DDR4 CPU主频:3.6GHz 核心数量:六核心",
       "zolId": "1403086"
     },
