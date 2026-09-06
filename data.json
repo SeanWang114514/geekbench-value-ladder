@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-09-05T05:02:05.595Z",
-  "scoresUpdatedAt": "2026-09-05T05:02:05.595Z",
-  "pricesUpdatedAt": "2026-09-05T05:02:05.595Z",
-  "estimatesUpdatedAt": "2026-09-05T05:02:05.595Z",
+  "fetchedAt": "2026-09-06T05:16:30.876Z",
+  "scoresUpdatedAt": "2026-09-06T05:16:30.876Z",
+  "pricesUpdatedAt": "2026-09-06T05:16:30.876Z",
+  "estimatesUpdatedAt": "2026-09-06T05:16:30.876Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -18,7 +18,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "zolId": "2119967",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
@@ -38,7 +43,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "zolId": "2119967",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-4090",
@@ -3558,9 +3568,9 @@
       "slug": "intel-core-i7-12700f",
       "name": "Intel Core i7-12700F",
       "score": 11755,
-      "price": 1763,
+      "price": 2190,
       "refPrice": 2280,
-      "shopPrice": 1763,
+      "shopPrice": 2190,
       "priceFrom": "Intel 酷睿 i7 12700F 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:十二核心",
       "zolId": "1394646"
     },
