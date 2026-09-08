@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-09-07T05:24:46.059Z",
-  "scoresUpdatedAt": "2026-09-07T05:24:46.059Z",
-  "pricesUpdatedAt": "2026-09-07T05:24:46.059Z",
-  "estimatesUpdatedAt": "2026-09-07T05:24:46.059Z",
+  "fetchedAt": "2026-09-08T05:25:45.832Z",
+  "scoresUpdatedAt": "2026-09-08T05:25:45.832Z",
+  "pricesUpdatedAt": "2026-09-08T05:25:45.832Z",
+  "estimatesUpdatedAt": "2026-09-08T05:25:45.832Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -211,8 +211,8 @@
       "price": 4499,
       "refPrice": 4499,
       "shopPrice": null,
-      "priceFrom": "蓝宝石PULSE 脉动 RX 9070 16G D6 RDNA4架构，16GB显存，双风扇散热",
-      "zolId": "2126086"
+      "priceFrom": "XFX讯景RADEON RX 9070 战狼",
+      "zolId": "2123473"
     },
     {
       "slug": "amd-radeon-rx-6950-xt",
@@ -884,11 +884,11 @@
       "slug": "intel-arc-a750-graphics",
       "name": "Intel Arc A750 Graphics",
       "score": 80203,
-      "price": 1699,
-      "refPrice": 1999,
-      "shopPrice": 1699,
-      "priceFrom": "Intel Arc A750 8G（中国大陆限量版）",
-      "zolId": "1467520"
+      "price": 1999,
+      "refPrice": 2499,
+      "shopPrice": 1999,
+      "priceFrom": "Intel Arc A750 8G",
+      "zolId": "1430659"
     },
     {
       "slug": "amd-radeon-rx-6600",
@@ -3158,9 +3158,9 @@
       "slug": "intel-core-i7-12700k",
       "name": "Intel Core i7-12700K",
       "score": 13869,
-      "price": 1763,
+      "price": 2190,
       "refPrice": 2830,
-      "shopPrice": 1763,
+      "shopPrice": 2190,
       "priceFrom": "Intel 酷睿 i7 12700K 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十二核心",
       "zolId": "1393368"
     },
@@ -3204,9 +3204,9 @@
       "slug": "intel-core-i5-14600",
       "name": "Intel Core i5-14600",
       "score": 13723,
-      "price": 1470,
+      "price": 1449,
       "refPrice": null,
-      "shopPrice": 1470,
+      "shopPrice": 1449,
       "priceFrom": "Intel 酷睿 i5 14600",
       "zolId": "1972506"
     },
@@ -3352,9 +3352,9 @@
       "slug": "intel-core-i5-14600t",
       "name": "Intel Core i5-14600T",
       "score": 12627,
-      "price": 1470,
+      "price": 1449,
       "refPrice": null,
-      "shopPrice": 1470,
+      "shopPrice": 1449,
       "priceFrom": "Intel 酷睿 i5 14600T",
       "zolId": "1972507"
     },
@@ -3374,9 +3374,9 @@
       "slug": "intel-core-i5-14500",
       "name": "Intel Core i5-14500",
       "score": 12569,
-      "price": 1470,
+      "price": 1449,
       "refPrice": null,
-      "shopPrice": 1470,
+      "shopPrice": 1449,
       "priceFrom": "Intel酷睿i5 14500",
       "zolId": "1972503"
     },
@@ -3738,9 +3738,9 @@
       "slug": "intel-core-i7-12700",
       "name": "Intel Core i7-12700",
       "score": 10973,
-      "price": 1763,
+      "price": 2190,
       "refPrice": 2430,
-      "shopPrice": 1763,
+      "shopPrice": 2190,
       "priceFrom": "Intel 酷睿 i7 12700 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:十二核心",
       "zolId": "1394648"
     },
