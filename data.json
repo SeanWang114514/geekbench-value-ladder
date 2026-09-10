@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-09-09T05:30:05.160Z",
-  "scoresUpdatedAt": "2026-09-09T05:30:05.160Z",
-  "pricesUpdatedAt": "2026-09-09T05:30:05.160Z",
-  "estimatesUpdatedAt": "2026-09-09T05:30:05.160Z",
+  "fetchedAt": "2026-09-10T05:25:37.454Z",
+  "scoresUpdatedAt": "2026-09-10T05:25:37.454Z",
+  "pricesUpdatedAt": "2026-09-10T05:25:37.454Z",
+  "estimatesUpdatedAt": "2026-09-10T05:25:37.454Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -18,7 +18,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "zolId": "2119967",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
@@ -206,8 +211,8 @@
       "price": 4499,
       "refPrice": 4499,
       "shopPrice": null,
-      "priceFrom": "XFX讯景RADEON RX 9070 战狼",
-      "zolId": "2123473"
+      "priceFrom": "蓝宝石PULSE 脉动 RX 9070 16G D6 RDNA4架构，16GB显存，双风扇散热",
+      "zolId": "2126086"
     },
     {
       "slug": "amd-radeon-rx-6950-xt",
@@ -2477,9 +2482,9 @@
       "slug": "intel-core-i9-13900ks",
       "name": "Intel Core i9-13900KS",
       "score": 21359,
-      "price": 2300,
+      "price": 5999,
       "refPrice": 5999,
-      "shopPrice": 2300,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿 i9 13900KS",
       "zolId": "1454017"
     },
@@ -2743,9 +2748,9 @@
       "slug": "intel-core-i9-13900f",
       "name": "Intel Core i9-13900F",
       "score": 17128,
-      "price": 2300,
+      "price": 4599,
       "refPrice": 4599,
-      "shopPrice": 2300,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿 i9 13900F",
       "zolId": "1440236"
     },
@@ -2831,9 +2836,9 @@
       "slug": "intel-core-i7-14700f",
       "name": "Intel Core i7-14700F",
       "score": 16300,
-      "price": 2360,
+      "price": 2549,
       "refPrice": null,
-      "shopPrice": 2360,
+      "shopPrice": 2549,
       "priceFrom": "Intel 酷睿 i7 14700F",
       "zolId": "1972512"
     },
@@ -2841,9 +2846,9 @@
       "slug": "intel-core-i9-13900",
       "name": "Intel Core i9-13900",
       "score": 16286,
-      "price": 2300,
+      "price": 4899,
       "refPrice": 4899,
-      "shopPrice": 2300,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿 i9 13900",
       "zolId": "1440235"
     },
@@ -2951,9 +2956,9 @@
       "slug": "intel-core-i7-14700",
       "name": "Intel Core i7-14700",
       "score": 15409,
-      "price": 2360,
+      "price": 2549,
       "refPrice": null,
-      "shopPrice": 2360,
+      "shopPrice": 2549,
       "priceFrom": "Intel 酷睿 i7 14700",
       "zolId": "1972511"
     },
@@ -3119,9 +3124,9 @@
       "slug": "intel-core-i7-13700",
       "name": "Intel Core i7-13700",
       "score": 14328,
-      "price": 2200,
+      "price": 3049,
       "refPrice": 3049,
-      "shopPrice": 2200,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿 i7 13700",
       "zolId": "1440476"
     },
@@ -3563,9 +3568,9 @@
       "slug": "intel-core-i7-12700f",
       "name": "Intel Core i7-12700F",
       "score": 11755,
-      "price": 2190,
+      "price": 1763,
       "refPrice": 2280,
-      "shopPrice": 2190,
+      "shopPrice": 1763,
       "priceFrom": "Intel 酷睿 i7 12700F 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:十二核心",
       "zolId": "1394646"
     },
@@ -7135,9 +7140,9 @@
       "slug": "intel-core-i7-7700",
       "name": "Intel Core i7 7700",
       "score": 4488,
-      "price": 2898,
+      "price": 3150,
       "refPrice": 2898,
-      "shopPrice": null,
+      "shopPrice": 3150,
       "priceFrom": "Intel 酷睿i7 7700 4核心/8线程，LGA 1151，3.6GHz，8M三级缓存",
       "zolId": "1159128"
     },
