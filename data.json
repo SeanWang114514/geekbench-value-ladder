@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-09-11T05:23:10.420Z",
-  "scoresUpdatedAt": "2026-09-11T05:23:10.420Z",
-  "pricesUpdatedAt": "2026-09-11T05:23:10.420Z",
-  "estimatesUpdatedAt": "2026-09-11T05:23:10.420Z",
+  "fetchedAt": "2026-09-12T05:13:38.868Z",
+  "scoresUpdatedAt": "2026-09-12T05:13:38.868Z",
+  "pricesUpdatedAt": "2026-09-12T05:13:38.868Z",
+  "estimatesUpdatedAt": "2026-09-12T05:13:38.868Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -173,8 +173,8 @@
       "price": 4899,
       "refPrice": 4899,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 4070 SUPER WINDFORCE OC 12G",
-      "zolId": "1977574"
+      "priceFrom": "msi微星GeForce RTX 4070 SUPER 12G VENTUS 3X OC",
+      "zolId": "1977521"
     },
     {
       "slug": "amd-radeon-ai-pro-r9700",
@@ -714,9 +714,9 @@
       "slug": "amd-radeon-rx-7650-gre",
       "name": "AMD Radeon RX 7650 GRE",
       "score": 92216,
-      "price": 1999,
+      "price": 2049,
       "refPrice": 2049,
-      "shopPrice": 1999,
+      "shopPrice": null,
       "priceFrom": "蓝宝石AMD Radeon RX 7650 GRE 8G 白金版 双滚珠轴承风扇，全尺寸金属背板",
       "zolId": "2121058"
     },
@@ -1202,7 +1202,12 @@
       "refPrice": 898,
       "shopPrice": null,
       "priceFrom": "精影GTX 1660 SUPER 6G 高效游戏，畅爽体验，强劲散热",
-      "zolId": "1968973"
+      "zolId": "1968973",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20super%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-gtx-1070-ti",
@@ -1236,12 +1241,7 @@
       "refPrice": 1199,
       "shopPrice": null,
       "priceFrom": "升技GTX 1660 TI 6G D6 风扇散热，超高频率，畅玩游戏",
-      "zolId": "1972508",
-      "estimate": {
-        "price": 4975,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/gtx%201660%20ti%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "1972508"
     },
     {
       "slug": "lisuan-7g100-series-graphics",
@@ -2897,9 +2897,9 @@
       "slug": "intel-core-i7-13700f",
       "name": "Intel Core i7-13700F",
       "score": 15708,
-      "price": 2299,
+      "price": 3099,
       "refPrice": null,
-      "shopPrice": 2299,
+      "shopPrice": 3099,
       "priceFrom": "Intel 酷睿 i7 13700F",
       "zolId": "1440478"
     },
@@ -3781,9 +3781,9 @@
       "slug": "intel-core-i5-13400f",
       "name": "Intel Core i5-13400F",
       "score": 10765,
-      "price": 1389,
+      "price": 1699,
       "refPrice": 1699,
-      "shopPrice": 1389,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿 i5 13400F",
       "zolId": "1440555"
     },
