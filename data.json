@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-09-27T05:57:07.529Z",
-  "scoresUpdatedAt": "2026-09-27T05:57:07.529Z",
-  "pricesUpdatedAt": "2026-09-27T05:57:07.529Z",
-  "estimatesUpdatedAt": "2026-09-27T05:57:07.529Z",
+  "fetchedAt": "2026-09-28T06:04:44.006Z",
+  "scoresUpdatedAt": "2026-09-28T06:04:44.006Z",
+  "pricesUpdatedAt": "2026-09-28T06:04:44.006Z",
+  "estimatesUpdatedAt": "2026-09-28T06:04:44.006Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -1202,7 +1202,12 @@
       "refPrice": 898,
       "shopPrice": null,
       "priceFrom": "精影GTX 1660 SUPER 6G 高效游戏，畅爽体验，强劲散热",
-      "zolId": "1968973"
+      "zolId": "1968973",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20super%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-gtx-1070-ti",
@@ -3741,9 +3746,9 @@
       "slug": "intel-core-i5-14400f",
       "name": "Intel Core i5-14400F",
       "score": 10916,
-      "price": 1129,
+      "price": 1179,
       "refPrice": null,
-      "shopPrice": 1129,
+      "shopPrice": 1179,
       "priceFrom": "Intel 酷睿 i5 14400F",
       "zolId": "1972500"
     },
