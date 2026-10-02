@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-01T06:40:08.183Z",
-  "scoresUpdatedAt": "2026-10-01T06:40:08.183Z",
-  "pricesUpdatedAt": "2026-10-01T06:40:08.183Z",
-  "estimatesUpdatedAt": "2026-10-01T06:40:08.183Z",
+  "fetchedAt": "2026-10-02T06:24:11.822Z",
+  "scoresUpdatedAt": "2026-10-02T06:24:11.822Z",
+  "pricesUpdatedAt": "2026-10-02T06:24:11.822Z",
+  "estimatesUpdatedAt": "2026-10-02T06:24:11.822Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -14,41 +14,42 @@
       "slug": "nvidia-geforce-rtx-5090-d-v2",
       "name": "NVIDIA GeForce RTX 5090 D V2",
       "score": 387999,
-      "price": 16499,
-      "refPrice": 16499,
+      "price": 18499,
+      "refPrice": 18499,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "priceFrom": "耕升RTX 5090 D 踏雪",
+      "zolId": "2120086",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
       "name": "NVIDIA GeForce RTX 5090",
       "score": 387161,
-      "price": 21200,
-      "refPrice": 24399,
-      "shopPrice": 21200,
-      "priceFrom": "NVIDIA RTX 5090",
-      "zolId": "2118113"
+      "price": null
     },
     {
       "slug": "nvidia-geforce-rtx-5090-d",
       "name": "NVIDIA GeForce RTX 5090 D",
       "score": 380701,
-      "price": 16499,
-      "refPrice": 16499,
+      "price": 18499,
+      "refPrice": 18499,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "priceFrom": "耕升RTX 5090 D 踏雪",
+      "zolId": "2120086"
     },
     {
       "slug": "nvidia-geforce-rtx-4090",
       "name": "NVIDIA GeForce RTX 4090",
       "score": 275449,
-      "price": 12999,
-      "refPrice": 12999,
+      "price": 14599,
+      "refPrice": 14599,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 4090 WINDFORCE 24G",
-      "zolId": "1430521"
+      "priceFrom": "微星GeForce RTX 4090 GAMING TRIO 24G",
+      "zolId": "1430389"
     },
     {
       "slug": "nvidia-h200",
@@ -60,71 +61,67 @@
       "slug": "nvidia-geforce-rtx-5080",
       "name": "NVIDIA GeForce RTX 5080",
       "score": 258634,
-      "price": 5299,
-      "refPrice": 8299,
-      "shopPrice": 5299,
-      "priceFrom": "NVIDIA RTX 5080",
-      "zolId": "2118117"
+      "price": 10999,
+      "refPrice": 10999,
+      "shopPrice": null,
+      "priceFrom": "msi微星GeForce RTX 5080 16G VENTUS 3X OC PLUS",
+      "zolId": "2120009"
     },
     {
       "slug": "nvidia-geforce-rtx-4090-d",
       "name": "NVIDIA GeForce RTX 4090 D",
       "score": 246941,
-      "price": 13279,
-      "refPrice": 13279,
+      "price": 13999,
+      "refPrice": 13999,
       "shopPrice": null,
-      "priceFrom": "AX电竞叛客RTX 4090 D X3W 24G PunkMax散热，RGB LOGO灯，全尺寸金属背板",
-      "zolId": "2041665"
+      "priceFrom": "索泰GeForce RTX 4090 D TRINITY",
+      "zolId": "1971116"
     },
     {
       "slug": "nvidia-geforce-rtx-5070-ti",
       "name": "NVIDIA GeForce RTX 5070 Ti",
       "score": 231288,
-      "price": 6299,
-      "refPrice": 6299,
-      "shopPrice": null,
-      "priceFrom": "NVIDIA RTX 5070 Ti",
-      "zolId": "2118118"
+      "price": null
     },
     {
       "slug": "nvidia-geforce-rtx-4080-super",
       "name": "NVIDIA GeForce RTX 4080 SUPER",
       "score": 229618,
-      "price": 7599,
-      "refPrice": null,
-      "shopPrice": 7599,
-      "priceFrom": "PNY GeForce RTX 4080 SUPER 16GB VERTO ARGB OC",
-      "zolId": "1980528"
+      "price": 8999,
+      "refPrice": 8999,
+      "shopPrice": null,
+      "priceFrom": "索泰SUPER GeForce RTX 4080 SUPER-16GB AMP EXTREME AIRO ARGB灯效，DLSS3黑科技，lcestorm3.0散热系统",
+      "zolId": "2066352"
     },
     {
       "slug": "nvidia-geforce-rtx-4080",
       "name": "NVIDIA GeForce RTX 4080",
       "score": 219475,
-      "price": 7902,
-      "refPrice": 10499,
-      "shopPrice": 7902,
-      "priceFrom": "微星GeForce RTX 4080 16GB GAMING X TRIO",
-      "zolId": "1466082"
+      "price": 8648,
+      "refPrice": 8648,
+      "shopPrice": null,
+      "priceFrom": "铭瑄 GeForce RTX 4080 iCraft OC 16G 瑷珈 T0",
+      "zolId": "1795539"
     },
     {
       "slug": "amd-radeon-rx-7900-xtx",
       "name": "AMD Radeon RX 7900 XTX",
       "score": 198391,
-      "price": 5099,
-      "refPrice": 8199,
-      "shopPrice": 5099,
-      "priceFrom": "技嘉Radeon RX 7900 XTX GAMING 24G",
-      "zolId": "2106244"
+      "price": 7899,
+      "refPrice": 7899,
+      "shopPrice": null,
+      "priceFrom": "讯景RX 7900 XTX 24GB 凤凰涅槃 翎霜速冷磁吸涡扇，凤凛散热架构4.0，高质量镀镍真空均热板",
+      "zolId": "2066378"
     },
     {
       "slug": "nvidia-geforce-rtx-4070-ti",
       "name": "NVIDIA GeForce RTX 4070 Ti",
       "score": 191134,
-      "price": 5899,
-      "refPrice": 5899,
+      "price": 6279,
+      "refPrice": 6279,
       "shopPrice": null,
-      "priceFrom": "七彩虹COLORFIRE GeForce RTX 4070 Ti 橘影橙 12GB",
-      "zolId": "2104258"
+      "priceFrom": "盈通RTX 4070 Ti 12G D6X 豪华版",
+      "zolId": "1522423"
     },
     {
       "slug": "nvidia-geforce-rtx-3090-ti",
@@ -133,38 +130,38 @@
       "price": 14999,
       "refPrice": 14999,
       "shopPrice": null,
-      "priceFrom": "NVIDIA GeForce RTX 3090 Ti显卡 显卡芯片:GeForce RTX 3090 Ti 显存类型:GDDR6X 显存容量:24GB 芯片厂商:NVIDIA CUDA核心:10752个 显示芯片系列:NVIDIA RTX 30系列 最大功耗:450W",
-      "zolId": "1395199"
+      "priceFrom": "技嘉GeForce RTX 3090 Ti GAMING 24G 散热方式:三风扇散热 3D API:DirectX 12，OpenGL 4.6 显卡芯片:GeForce RTX 3090 制作工艺:8纳米 显存类型:GDDR6X 显存容量:24GB 显存位宽:384bit",
+      "zolId": "1402700"
     },
     {
       "slug": "nvidia-geforce-rtx-5070",
       "name": "NVIDIA GeForce RTX 5070",
       "score": 184803,
-      "price": 4599,
-      "refPrice": 4599,
-      "shopPrice": null,
-      "priceFrom": "NVIDIA RTX 5070",
-      "zolId": "2118119"
+      "price": 6899,
+      "refPrice": 6599,
+      "shopPrice": 6899,
+      "priceFrom": "耕升RTX 5070 炫光OC",
+      "zolId": "2124335"
     },
     {
       "slug": "amd-radeon-rx-9070-xt",
       "name": "AMD Radeon RX 9070 XT",
       "score": 184554,
-      "price": 4749,
-      "refPrice": 4749,
+      "price": 4999,
+      "refPrice": 4999,
       "shopPrice": null,
-      "priceFrom": "瀚铠Radeon RX 9070 XT 星空 高品质PCB板材，三风扇强劲散热，智能温控启停",
-      "zolId": "2155035"
+      "priceFrom": "瀚铠Radeon RX 9070 XT 合金 三风扇强劲散热，高品质PCB板，智能温控启停",
+      "zolId": "2127022"
     },
     {
       "slug": "nvidia-geforce-rtx-4070-super",
       "name": "NVIDIA GeForce RTX 4070 SUPER",
       "score": 183569,
-      "price": 4899,
-      "refPrice": 4899,
+      "price": 5099,
+      "refPrice": 5099,
       "shopPrice": null,
-      "priceFrom": "msi微星GeForce RTX 4070 SUPER 12G VENTUS 3X OC",
-      "zolId": "1977521"
+      "priceFrom": "索泰GeForce RTX 4070 SUPER-12GB X-GAMING GOC 玄夜黑",
+      "zolId": "1977507"
     },
     {
       "slug": "amd-radeon-ai-pro-r9700",
@@ -176,11 +173,11 @@
       "slug": "nvidia-geforce-rtx-3080-ti",
       "name": "NVIDIA GeForce RTX 3080 Ti",
       "score": 174756,
-      "price": 5399,
-      "refPrice": 5999,
-      "shopPrice": 5399,
-      "priceFrom": "铭鑫RTX 3080 TI 风扇散热，强劲风力，稳定性能",
-      "zolId": "1971417"
+      "price": 7999,
+      "refPrice": 7999,
+      "shopPrice": null,
+      "priceFrom": "索泰GeForce RTX 3080 Ti-12G6X PGF OC 显卡芯片:GeForce RTX 3080Ti 制作工艺:8纳米 散热方式:三风扇散热，8热管散热 显存类型:GDDR6X 显存位宽:384bit 显存容量:12GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1373271"
     },
     {
       "slug": "nvidia-a40-24q",
@@ -208,11 +205,7 @@
       "slug": "amd-radeon-rx-6950-xt",
       "name": "AMD Radeon RX 6950 XT",
       "score": 165822,
-      "price": 4649,
-      "refPrice": 4649,
-      "shopPrice": null,
-      "priceFrom": "讯景RX 6950 XT 16GB 海外版Pro 游侠显卡，设计显示，三风扇",
-      "zolId": "1971176"
+      "price": null
     },
     {
       "slug": "amd-radeon-pro-w7800",
@@ -224,11 +217,11 @@
       "slug": "amd-radeon-rx-6900-xt",
       "name": "AMD Radeon RX 6900 XT",
       "score": 162228,
-      "price": 5499,
-      "refPrice": 8999,
-      "shopPrice": 5499,
-      "priceFrom": "AMD Radeon RX 6900 XT显卡 AMD RDNA2架构，16GB超大显存，300w最大功耗，三风扇强劲散热",
-      "zolId": "1340262"
+      "price": 7799,
+      "refPrice": 7799,
+      "shopPrice": null,
+      "priceFrom": "迪兰RADEON RX 6900 XT 16G X 散热方式:三风扇散热 显卡芯片:Radeon RX 6900 XT 制作工艺:7纳米 显存类型:GDDR6 显存容量:16GB 显存位宽:256bit 最大分辨率:7680×4320",
+      "zolId": "1403293"
     },
     {
       "slug": "nvidia-a40-6q",
@@ -240,11 +233,11 @@
       "slug": "nvidia-geforce-rtx-4070",
       "name": "NVIDIA GeForce RTX 4070",
       "score": 160974,
-      "price": 3850,
-      "refPrice": 4799,
-      "shopPrice": 3850,
-      "priceFrom": "NVIDIA RTX 4070",
-      "zolId": "1406873"
+      "price": 4455,
+      "refPrice": null,
+      "shopPrice": 4455,
+      "priceFrom": "微星GeForce RTX 4070 GAMING SLIM WHITE 12G",
+      "zolId": "1975402"
     },
     {
       "slug": "nvidia-a40",
@@ -256,11 +249,11 @@
       "slug": "amd-radeon-rx-7900-xt",
       "name": "AMD Radeon RX 7900 XT",
       "score": 160526,
-      "price": 2799,
-      "refPrice": 2799,
+      "price": 6699,
+      "refPrice": 6699,
       "shopPrice": null,
-      "priceFrom": "撼讯RX 7900 XT 暗黑犬 20G 高清输出，风扇散热，蓝紫灯效",
-      "zolId": "1968941"
+      "priceFrom": "瀚铠Radeon RX 7900 XT 星空 RGB炫酷灯效，高品质PCB板材，强化金属背板",
+      "zolId": "1466180"
     },
     {
       "slug": "amd-radeon-rx-7900m",
@@ -284,11 +277,11 @@
       "slug": "amd-radeon-rx-6800-xt",
       "name": "AMD Radeon RX 6800 XT",
       "score": 151593,
-      "price": 4099,
-      "refPrice": 4099,
+      "price": 5099,
+      "refPrice": 5099,
       "shopPrice": null,
-      "priceFrom": "XFX讯景Radeon RX 6800 XT 海外版 V2",
-      "zolId": "1653127"
+      "priceFrom": "XFX讯景Radeon RX 6800 XT 16GB 显卡芯片:Radeon RX 6800 XT 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1348905"
     },
     {
       "slug": "amd-radeon-pro-w6900x",
@@ -300,11 +293,11 @@
       "slug": "amd-radeon-rx-9070-gre",
       "name": "AMD Radeon RX 9070 GRE",
       "score": 148473,
-      "price": 4050,
+      "price": 4099,
       "refPrice": 4399,
-      "shopPrice": 4050,
-      "priceFrom": "瀚铠RX 9070 GRE 合金 白色 高品质PCB板，双风扇强劲散热，智能温控启停",
-      "zolId": "2127025"
+      "shopPrice": 4099,
+      "priceFrom": "瀚铠Radeon RX 9070 GRE 合金 高品质PCB板，双风扇强劲散热，智能温控启停",
+      "zolId": "2127024"
     },
     {
       "slug": "goldfish-gfxstream",
@@ -328,21 +321,17 @@
       "slug": "amd-radeon-rx-7900-gre",
       "name": "AMD Radeon RX 7900 GRE",
       "score": 144142,
-      "price": 4249,
-      "refPrice": 4249,
+      "price": 4299,
+      "refPrice": 4299,
       "shopPrice": null,
-      "priceFrom": "华擎Radeon RX 7900 GRE Challenger 16GB OC 三风扇涉及，LED灯效，静酷技术",
-      "zolId": "2041693"
+      "priceFrom": "讯景RX 7900 GRE 海外版 全新RNDA3架构，加速频率高达2395MHz，黑色经典",
+      "zolId": "2066375"
     },
     {
       "slug": "amd-radeon-rx-7800-xt",
       "name": "AMD Radeon RX 7800 XT",
       "score": 143060,
-      "price": 3599,
-      "refPrice": 3599,
-      "shopPrice": null,
-      "priceFrom": "撼讯RX 7800 XT 16G 暗黑犬 暗黑犬，双色个性灯效，三风高效散热",
-      "zolId": "2041686"
+      "price": null
     },
     {
       "slug": "nvidia-a10",
@@ -354,11 +343,11 @@
       "slug": "nvidia-geforce-rtx-5060-ti",
       "name": "NVIDIA GeForce RTX 5060 Ti",
       "score": 139361,
-      "price": 3099,
-      "refPrice": 3399,
-      "shopPrice": 3099,
-      "priceFrom": "万丽星云GeForce RTX 5060 Ti OC 8GB 支持 DLSS4，AI算力 759 TOPS，8GB GDDR7",
-      "zolId": "2140333"
+      "price": 3499,
+      "refPrice": 3499,
+      "shopPrice": null,
+      "priceFrom": "索泰GeForce RTX 5060 Ti 8GB 月白 OC DLSS4多帧生成，AI算力 759 TOPS，ARGB幻彩信仰灯",
+      "zolId": "2127951"
     },
     {
       "slug": "amd-radeon-rx-6800-6800-xt-6900-xt",
@@ -367,18 +356,18 @@
       "price": 4599,
       "refPrice": 4599,
       "shopPrice": null,
-      "priceFrom": "技嘉Radeon RX 6800 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1349682"
+      "priceFrom": "蓝宝石Radeon RX 6800 16G GDDR6 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1346854"
     },
     {
       "slug": "amd-radeon-rx-7700-xt",
       "name": "AMD Radeon RX 7700 XT",
       "score": 138750,
-      "price": 3149,
-      "refPrice": 3149,
+      "price": 3699,
+      "refPrice": 3699,
       "shopPrice": null,
-      "priceFrom": "盈通RX 7700 XT 12G D6 大地之神 PLUS 三风扇强劲散热，纯白配色，百搭",
-      "zolId": "2082441"
+      "priceFrom": "华擎RX 7700 XT Challenger 12GB OC",
+      "zolId": "1857622"
     },
     {
       "slug": "amd-radeon-pro-w7900",
@@ -396,17 +385,21 @@
       "slug": "nvidia-geforce-rtx-3070-ti",
       "name": "NVIDIA GeForce RTX 3070 Ti",
       "score": 133349,
-      "price": 4039,
-      "refPrice": 4039,
+      "price": 4969,
+      "refPrice": 4969,
       "shopPrice": null,
-      "priceFrom": "耕升GeForce RTX 3070 Ti 追风 散热方式:三风扇散热 3D API:DirectX 12 显卡芯片:GeForce RTX 3070Ti 制作工艺:8纳米 显存类型:GDDR6X 显存容量:8GB 显存位宽:256bit",
-      "zolId": "1374492"
+      "priceFrom": "铭瑄 MS-GeForce RTX 3070 Ti iCraft OC 8G S0 散热方式:三风扇散热 3D API:DirectX 12，Shader Model 5.0，OpenGL 4.5 显卡芯片:GeForce RTX 3070Ti 制作工艺:8纳米 显存类型:GDDR6X 显存容量:8GB 显存位宽:256bit",
+      "zolId": "1402226"
     },
     {
       "slug": "nvidia-geforce-rtx-2080-ti",
       "name": "NVIDIA GeForce RTX 2080 Ti",
       "score": 132930,
-      "price": null
+      "price": 9599,
+      "refPrice": 9599,
+      "shopPrice": null,
+      "priceFrom": "七彩虹iGame GeForce RTX 2080 Ti Neptune OC TU102显示芯片，11G超大容量GDDR6显存，水冷加持，240mm冷排",
+      "zolId": "1252505"
     },
     {
       "slug": "amd-radeon-rx-6800",
@@ -415,8 +408,8 @@
       "price": 4599,
       "refPrice": 4599,
       "shopPrice": null,
-      "priceFrom": "技嘉Radeon RX 6800 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1349682"
+      "priceFrom": "蓝宝石Radeon RX 6800 16G GDDR6 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1346854"
     },
     {
       "slug": "amd-radeon-pro-w7700",
@@ -446,31 +439,31 @@
       "slug": "nvidia-geforce-rtx-4060-ti",
       "name": "NVIDIA GeForce RTX 4060 Ti",
       "score": 125253,
-      "price": 2699,
-      "refPrice": 2699,
+      "price": 3299,
+      "refPrice": 3299,
       "shopPrice": null,
-      "priceFrom": "微星GeForce RTX 4060 Ti VENTUS 3X 16G OC",
-      "zolId": "1958490"
+      "priceFrom": "耕升RTX 4060 Ti 追风EX3",
+      "zolId": "1617174"
     },
     {
       "slug": "nvidia-geforce-rtx-5060",
       "name": "NVIDIA GeForce RTX 5060",
       "score": 122426,
-      "price": 2499,
-      "refPrice": 2499,
+      "price": 3049,
+      "refPrice": 3049,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 5060 WINDFORCE 8G DLSS 4，风之力散热系统，加固结构",
-      "zolId": "2128729"
+      "priceFrom": "索泰GEFORCE RTX 5060 8GB 星夜 OC HA 星夜主题设计，冰镜铜底双风扇，DLSS4",
+      "zolId": "2153521"
     },
     {
       "slug": "nvidia-geforce-rtx-3070",
       "name": "NVIDIA GeForce RTX 3070",
       "score": 120982,
-      "price": 2319,
-      "refPrice": 2999,
-      "shopPrice": 2319,
-      "priceFrom": "小影霸RTX 3070 8G D6 魔影",
-      "zolId": "1969041"
+      "price": 4169,
+      "refPrice": 4169,
+      "shopPrice": null,
+      "priceFrom": "EVGA GeForce RTX 3070 XC3 BLACK GAMING 显卡芯片:GeForce RTX 3070 制作工艺:8纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:8GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1349313"
     },
     {
       "slug": "nvidia-l4",
@@ -488,21 +481,17 @@
       "slug": "amd-radeon-rx-6750-xt",
       "name": "AMD Radeon RX 6750 XT",
       "score": 111142,
-      "price": 2799,
-      "refPrice": 2799,
+      "price": 4199,
+      "refPrice": 4199,
       "shopPrice": null,
-      "priceFrom": "雷索RX 6750 XT 12G战神PRO超频版 电竞3A，光追游戏设计，OC超频版",
-      "zolId": "2041703"
+      "priceFrom": "瀚铠Radeon RX 6750 XT 12G D6合金升级版",
+      "zolId": "1408202"
     },
     {
       "slug": "nvidia-geforce-rtx-4000-sff-ada-generation",
       "name": "NVIDIA GeForce RTX 4000 SFF Ada Generation",
       "score": 110520,
-      "price": 10499,
-      "refPrice": 10499,
-      "shopPrice": null,
-      "priceFrom": "丽台RTX 4000 SFF Ada",
-      "zolId": "1610557"
+      "price": null
     },
     {
       "slug": "amd-radeon-pro-w6800",
@@ -534,11 +523,11 @@
       "slug": "amd-radeon-rx-6750-gre-12gb",
       "name": "AMD Radeon RX 6750 GRE 12GB",
       "score": 109027,
-      "price": 1919,
-      "refPrice": 2049,
-      "shopPrice": 1919,
-      "priceFrom": "撼讯RX 6750 GRE 竞技白卡 10G 双风扇散热，强化金属背板，竞技白卡",
-      "zolId": "2070373"
+      "price": 2099,
+      "refPrice": 2099,
+      "shopPrice": null,
+      "priceFrom": "瀚铠RX 6750 GRE 10G 合金PRO 高品质PCB板，性能升级，畅玩1440P，零分贝技术告别噪音",
+      "zolId": "2066373"
     },
     {
       "slug": "adreno-740",
@@ -556,11 +545,11 @@
       "slug": "amd-radeon-rx-6700-xt",
       "name": "AMD Radeon RX 6700 XT",
       "score": 107712,
-      "price": 2299,
-      "refPrice": 3699,
-      "shopPrice": 2299,
-      "priceFrom": "AMD Radeon RX 6700 XT显卡 AMD FidelityFX，Radeon 图像锐化，Radeon Anti-Lag，Radeon Boost VRS",
-      "zolId": "1361600"
+      "price": 5999,
+      "refPrice": 5999,
+      "shopPrice": null,
+      "priceFrom": "撼讯Radeon RX6700XT 暗黑犬 显卡芯片:Radeon RX 6700 XT 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:192bit 显存容量:12GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1376996"
     },
     {
       "slug": "nvidia-l4-2q",
@@ -578,11 +567,11 @@
       "slug": "nvidia-geforce-rtx-2080",
       "name": "NVIDIA GeForce RTX 2080",
       "score": 101982,
-      "price": 1799,
-      "refPrice": 2299,
-      "shopPrice": 1799,
-      "priceFrom": "雷索RTX 2080 16G 天神PRO 涡轮版 高清接口，低噪运行，强劲散热",
-      "zolId": "1972160"
+      "price": 2199,
+      "refPrice": 2199,
+      "shopPrice": null,
+      "priceFrom": "雷索RTX 2080 8G 天神 涡轮版 高清接口，低噪运行，强劲散热",
+      "zolId": "1972159"
     },
     {
       "slug": "amd-radeon-rx-9060",
@@ -630,31 +619,27 @@
       "slug": "amd-radeon-rx-6700",
       "name": "AMD Radeon RX 6700",
       "score": 95555,
-      "price": 2599,
-      "refPrice": 2599,
-      "shopPrice": null,
-      "priceFrom": "雷索RX 6700 XL 10G 金属背板，风扇散热，简约设计",
-      "zolId": "1972116"
+      "price": null
     },
     {
       "slug": "nvidia-geforce-rtx-2070-super",
       "name": "NVIDIA GeForce RTX 2070 SUPER",
       "score": 95489,
-      "price": 3299,
-      "refPrice": 3299,
+      "price": 3199,
+      "refPrice": 3199,
       "shopPrice": null,
-      "priceFrom": "耕升RTX 2070 SUPER 追风 显卡芯片:GeForce RTX 2070 SUPER 制作工艺:12纳米 散热方式:三风扇散热（风盾Plus 3散热器） 显存类型:GDDR6 显存位宽:256bit 显存容量:8GB 最大分辨率:7680×4320",
-      "zolId": "1282867"
+      "priceFrom": "微星GeForce RTX 2070 SUPER VENTUS OC 显卡芯片:GeForce RTX 2070 SUPER 制作工艺:12纳米 散热方式:刀锋四代风扇+超导热管 显存类型:GDDR6 显存容量:8GB 显存位宽:256bit 最大分辨率:7680×4320",
+      "zolId": "1282400"
     },
     {
       "slug": "amd-radeon-rx-6750-gre-10gb",
       "name": "AMD Radeon RX 6750 GRE 10GB",
       "score": 95277,
-      "price": 1919,
-      "refPrice": 2049,
-      "shopPrice": 1919,
-      "priceFrom": "撼讯RX 6750 GRE 竞技白卡 10G 双风扇散热，强化金属背板，竞技白卡",
-      "zolId": "2070373"
+      "price": 2099,
+      "refPrice": 2099,
+      "shopPrice": null,
+      "priceFrom": "瀚铠RX 6750 GRE 10G 合金PRO 高品质PCB板，性能升级，畅玩1440P，零分贝技术告别噪音",
+      "zolId": "2066373"
     },
     {
       "slug": "amd-radeon-rx-6800m",
@@ -666,21 +651,17 @@
       "slug": "amd-radeon-rx-6650-xt",
       "name": "AMD Radeon RX 6650 XT",
       "score": 93157,
-      "price": 2199,
-      "refPrice": 2199,
+      "price": 3099,
+      "refPrice": 3099,
       "shopPrice": null,
-      "priceFrom": "瀚铠Radeon RX 6650 XT 合金",
-      "zolId": "1466177"
+      "priceFrom": "迪兰RX 6650 XT 8G X战将",
+      "zolId": "1408301"
     },
     {
       "slug": "amd-radeon-rx-7600",
       "name": "AMD Radeon RX 7600",
       "score": 92972,
-      "price": 1999,
-      "refPrice": 1999,
-      "shopPrice": null,
-      "priceFrom": "瀚铠Radeon RX 7600 合金 双风扇",
-      "zolId": "1971536"
+      "price": null
     },
     {
       "slug": "amd-radeon-pro-w7600",
@@ -704,21 +685,13 @@
       "slug": "amd-radeon-rx-7650-gre",
       "name": "AMD Radeon RX 7650 GRE",
       "score": 92216,
-      "price": 2049,
-      "refPrice": 2049,
-      "shopPrice": null,
-      "priceFrom": "蓝宝石AMD Radeon RX 7650 GRE 8G 白金版 双滚珠轴承风扇，全尺寸金属背板",
-      "zolId": "2121058"
+      "price": null
     },
     {
       "slug": "nvidia-geforce-rtx-5050",
       "name": "NVIDIA GeForce RTX 5050",
       "score": 92115,
-      "price": 2299,
-      "refPrice": 2099,
-      "shopPrice": 2299,
-      "priceFrom": "万丽星云GeForce RTX 5050 8GB GDDR6 支持 DLSS4，AI算力 421 TOPS，8GB GDDR6",
-      "zolId": "2140365"
+      "price": null
     },
     {
       "slug": "amd-radeon-6700",
@@ -742,11 +715,7 @@
       "slug": "amd-radeon-rx-9060-xt",
       "name": "AMD Radeon RX 9060 XT",
       "score": 88406,
-      "price": 2699,
-      "refPrice": 2999,
-      "shopPrice": 2699,
-      "priceFrom": "瀚铠Radeon RX 9060 XT 8GB OC 黑色合金 高品质PCB板材，强化背板，智能启停",
-      "zolId": "2129173"
+      "price": null
     },
     {
       "slug": "nvidia-titan-xp",
@@ -764,31 +733,23 @@
       "slug": "intel-arc-b580-graphics",
       "name": "Intel Arc B580 Graphics",
       "score": 86279,
-      "price": 2179,
-      "refPrice": 2179,
-      "shopPrice": null,
-      "priceFrom": "铭瑄 Intel Arc B580 iCraft 12G iCraft合金背板，ARGB灯光同步，风扇启停技术",
-      "zolId": "2116410"
+      "price": null
     },
     {
       "slug": "intel-arc-a770-graphics",
       "name": "Intel Arc A770 Graphics",
       "score": 86205,
-      "price": 2049,
-      "refPrice": 2249,
-      "shopPrice": 2049,
-      "priceFrom": "蓝戟Arc A770 Photon 16G OC ELDEN RING Shadow of the Erdtree",
-      "zolId": "2073829"
+      "price": null
     },
     {
       "slug": "amd-radeon-rx-6600-xt",
       "name": "AMD Radeon RX 6600 XT",
       "score": 86102,
-      "price": 1699,
-      "refPrice": 1699,
+      "price": 3599,
+      "refPrice": 3599,
       "shopPrice": null,
-      "priceFrom": "雷索RX 6600 XT 8G战神OC 高性能独立游戏显卡，金属背板",
-      "zolId": "2041702"
+      "priceFrom": "XFX讯景RADEON RX 6600 XT海外版 V2 OC 散热方式:三风扇散热 显卡芯片:Radeon RX 6600 XT 制作工艺:7纳米 显存类型:GDDR6 显存容量:8GB 显存位宽:128bit 最大分辨率:7680×4320",
+      "zolId": "1403274"
     },
     {
       "slug": "amd-radeon-rx-7700s",
@@ -824,21 +785,21 @@
       "slug": "nvidia-geforce-rtx-2060-super",
       "name": "NVIDIA GeForce RTX 2060 SUPER",
       "score": 84142,
-      "price": 2679,
-      "refPrice": 2679,
+      "price": 3099,
+      "refPrice": 3099,
       "shopPrice": null,
-      "priceFrom": "翔升GeForce RTX 2060 SUPER 战神 8G D6 显卡芯片:GeForce RTX 2060 SUPER 散热方式:双风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:8GB 接口类型:PCI Express 3.0 16X 3D API:DirectX 12，OpenGL 4.5",
-      "zolId": "1332181"
+      "priceFrom": "技嘉GeForce RTX 2060 SUPER GAMING OC 8G 显卡芯片:GeForce RTX 2060 Super 制作工艺:12纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:8GB 3D API:DirectX 12，OpenGL 4.5",
+      "zolId": "1283091"
     },
     {
       "slug": "nvidia-geforce-rtx-2070",
       "name": "NVIDIA GeForce RTX 2070",
       "score": 83408,
-      "price": 1348,
-      "refPrice": 1899,
-      "shopPrice": 1348,
-      "priceFrom": "雷索RTX 2070 8G 天神 双风扇 风扇散热，低噪运行，高清接口",
-      "zolId": "1972134"
+      "price": 2839,
+      "refPrice": 2839,
+      "shopPrice": null,
+      "priceFrom": "翔升RTX 2070 战神 8G D6 显卡芯片:GeForce RTX 2070 制作工艺:12纳米 散热方式:双风扇散热 显存类型:GDDR6 显存容量:8GB 显存位宽:256bit 最大分辨率:7680×4320",
+      "zolId": "1257403"
     },
     {
       "slug": "nvidia-geforce-gtx-1080-ti",
@@ -874,21 +835,17 @@
       "slug": "intel-arc-a750-graphics",
       "name": "Intel Arc A750 Graphics",
       "score": 80203,
-      "price": 1549,
-      "refPrice": 1549,
+      "price": 2699,
+      "refPrice": 2699,
       "shopPrice": null,
-      "priceFrom": "蓝戟Arc A750 PHOTON 8G OC W X ASIAN GAMES 亚运联名款，8K硬件加速，智能启停",
-      "zolId": "1940080"
+      "priceFrom": "蓝戟Arc A750 Photon 8G OC",
+      "zolId": "1430664"
     },
     {
       "slug": "amd-radeon-rx-6600",
       "name": "AMD Radeon RX 6600",
       "score": 80008,
-      "price": 2499,
-      "refPrice": 2499,
-      "shopPrice": null,
-      "priceFrom": "AMD Radeon RX 6600显卡  显卡芯片:Radeon RX 6600 散热方式:散热风扇 显存类型:GDDR6 显存位宽:128bit 显存容量:8GB 芯片厂商:AMD 显存频率:14000MHz",
-      "zolId": "1370319"
+      "price": null
     },
     {
       "slug": "amd-instinct-mi50-mi60",
@@ -942,11 +899,11 @@
       "slug": "amd-radeon-rx-5700-xt-50th-anniversary",
       "name": "AMD Radeon RX 5700 XT 50th Anniversary",
       "score": 74281,
-      "price": 959,
-      "refPrice": 959,
+      "price": 3099,
+      "refPrice": 3099,
       "shopPrice": null,
-      "priceFrom": "铭影RX 5700 XT 8G 战将 风扇散热，丰富接口，磨砂外观",
-      "zolId": "1970808"
+      "priceFrom": "蓝宝石Radeon RX 5700 XT 8G D6 显卡芯片:Radeon RX 5700 XT 制作工艺:7纳米 散热方式:涡轮风扇 显存类型:GDDR6 显存位宽:256bit 显存容量:8GB 最大分辨率:4096×2160",
+      "zolId": "1283013"
     },
     {
       "slug": "amd-radeon-pro-vega-64",
@@ -970,11 +927,11 @@
       "slug": "amd-radeon-rx-5700-xt",
       "name": "AMD Radeon RX 5700 XT",
       "score": 72999,
-      "price": 959,
-      "refPrice": 959,
+      "price": 3099,
+      "refPrice": 3099,
       "shopPrice": null,
-      "priceFrom": "铭影RX 5700 XT 8G 战将 风扇散热，丰富接口，磨砂外观",
-      "zolId": "1970808"
+      "priceFrom": "蓝宝石Radeon RX 5700 XT 8G D6 显卡芯片:Radeon RX 5700 XT 制作工艺:7纳米 散热方式:涡轮风扇 显存类型:GDDR6 显存位宽:256bit 显存容量:8GB 最大分辨率:4096×2160",
+      "zolId": "1283013"
     },
     {
       "slug": "amd-radeon-vega-frontier-edition",
@@ -992,11 +949,7 @@
       "slug": "intel-arc-a580-graphics",
       "name": "Intel Arc A580 Graphics",
       "score": 72151,
-      "price": 1599,
-      "refPrice": 1599,
-      "shopPrice": null,
-      "priceFrom": "蓝戟Arc A580 Index 8G Xe微架构，双旋帆翼风扇，8K HDR",
-      "zolId": "1930058"
+      "price": null
     },
     {
       "slug": "amd-radeon-rx-vega",
@@ -1008,11 +961,7 @@
       "slug": "intel-arc-b570-graphics",
       "name": "Intel Arc B570 Graphics",
       "score": 70941,
-      "price": 1629,
-      "refPrice": 1629,
-      "shopPrice": null,
-      "priceFrom": "蓝戟Intel Arc B570 Tri 10G OC 8+4相供电，10GB显存，三风扇散热",
-      "zolId": "2149419"
+      "price": null
     },
     {
       "slug": "amd-radeon-pro-wx-9100",
@@ -1084,11 +1033,11 @@
       "slug": "nvidia-geforce-rtx-2060",
       "name": "NVIDIA GeForce RTX 2060",
       "score": 65846,
-      "price": 1199,
-      "refPrice": 1599,
-      "shopPrice": 1199,
-      "priceFrom": "雷索RTX 2060 6G天神 双风扇散热",
-      "zolId": "2041706"
+      "price": 2249,
+      "refPrice": 2249,
+      "shopPrice": null,
+      "priceFrom": "小影霸GeForce RTX 2060 6GB 显卡芯片:GeForce RTX 2060 制作工艺:12纳米 散热方式:双风扇散热 显存类型:GDDR6 显存位宽:192bit 显存容量:6GB 接口类型:PCI Express 3.0 16X",
+      "zolId": "1319141"
     },
     {
       "slug": "amd-radeon-pro-vega-56",
@@ -1130,11 +1079,11 @@
       "slug": "amd-radeon-rx-5700",
       "name": "AMD Radeon RX 5700",
       "score": 64176,
-      "price": 2399,
-      "refPrice": 2399,
+      "price": 2499,
+      "refPrice": 2499,
       "shopPrice": null,
-      "priceFrom": "撼讯RX 5700 竞技版 8GB GDDR6 显卡芯片:RX 5700 制作工艺:7纳米 散热方式:双风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:8GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1324115"
+      "priceFrom": "迪兰RX 5700 8G 显卡芯片:Radeon RX 5700 制作工艺:7纳米 散热方式:涡轮风扇 显存类型:GDDR6 显存位宽:256bit 显存容量:8GB 3D API:DirectX 12.1，OpenGL 4.5",
+      "zolId": "1282999"
     },
     {
       "slug": "nvidia-graphics-device",
@@ -1152,21 +1101,21 @@
       "slug": "nvidia-geforce-rtx-3050",
       "name": "NVIDIA GeForce RTX 3050",
       "score": 61965,
-      "price": 1299,
-      "refPrice": 1299,
+      "price": 1649,
+      "refPrice": 1649,
       "shopPrice": null,
-      "priceFrom": "PNY GeForce RTX 3050 6GB VERTO 掌控者标准版，双风扇，电竞游戏电脑显卡",
-      "zolId": "2039577"
+      "priceFrom": "盈通GeForce RTX 3050 8GD6 大地之神",
+      "zolId": "2066353"
     },
     {
       "slug": "amd-radeon-rx-5600-xt",
       "name": "AMD Radeon RX 5600 XT",
       "score": 61959,
-      "price": 1899,
-      "refPrice": 1899,
+      "price": 2699,
+      "refPrice": 2699,
       "shopPrice": null,
-      "priceFrom": "盈通RX 5600 XT 6G D6 游戏高手 OC 显卡芯片:Radeon RX 5600 XT 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:192bit 显存容量:6GB 接口类型:PCI Express 4.0",
-      "zolId": "1310144"
+      "priceFrom": "华擎RX 5600 XT Phantom Gaming D3 6G OC 2.7插槽， 时尚金属背板， 0dB静酷",
+      "zolId": "1313699"
     },
     {
       "slug": "amd-radeon-rx-590-gme",
@@ -1188,11 +1137,11 @@
       "slug": "nvidia-geforce-gtx-1660-super",
       "name": "NVIDIA GeForce GTX 1660 SUPER",
       "score": 60155,
-      "price": 898,
-      "refPrice": 898,
+      "price": 1299,
+      "refPrice": 1299,
       "shopPrice": null,
-      "priceFrom": "精影GTX 1660 SUPER 6G 高效游戏，畅爽体验，强劲散热",
-      "zolId": "1968973",
+      "priceFrom": "磐镭GTX 1660 SUPER 6G",
+      "zolId": "1439835",
       "estimate": {
         "price": 4975,
         "source": "suning",
@@ -1248,11 +1197,11 @@
       "slug": "nvidia-geforce-rtx-3050-oem",
       "name": "NVIDIA GeForce RTX 3050 OEM",
       "score": 57945,
-      "price": 1299,
-      "refPrice": 1299,
+      "price": 1649,
+      "refPrice": 1649,
       "shopPrice": null,
-      "priceFrom": "PNY GeForce RTX 3050 6GB VERTO 掌控者标准版，双风扇，电竞游戏电脑显卡",
-      "zolId": "2039577"
+      "priceFrom": "盈通GeForce RTX 3050 8GD6 大地之神",
+      "zolId": "2066353"
     },
     {
       "slug": "amd-radeon-pro-vega-48",
@@ -1288,11 +1237,16 @@
       "slug": "nvidia-geforce-gtx-1660",
       "name": "NVIDIA GeForce GTX 1660",
       "score": 55929,
-      "price": 933,
-      "refPrice": 1849,
-      "shopPrice": 933,
-      "priceFrom": "华硕TUF-GTX 1660-O6G-GAMING 显卡芯片:GeForce GTX 1660 制作工艺:12纳米 散热方式:双风扇散热 显存类型:GDDR5 显存容量:6GB 显存位宽:192bit 最大分辨率:7680×4320",
-      "zolId": "1262096"
+      "price": 1499,
+      "refPrice": 1499,
+      "shopPrice": null,
+      "priceFrom": "小影霸GTX 1660 6G 显卡芯片:GeForce GTX 1660 制作工艺:12纳米 散热方式:双风扇散热+热管散热 显存类型:GDDR5 显存位宽:192bit 显存容量:6GB 接口类型:PCI Express 3.0 16X",
+      "zolId": "1319156",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "amd-radv-aco-navi10",
@@ -1340,21 +1294,21 @@
       "slug": "amd-radeon-rx-6500-xt",
       "name": "AMD Radeon RX 6500 XT",
       "score": 54208,
-      "price": 699,
-      "refPrice": 699,
+      "price": 1249,
+      "refPrice": 1249,
       "shopPrice": null,
-      "priceFrom": "磐镭RX 6500 XT 8G 双风扇，游戏显卡，设计显卡",
-      "zolId": "1970809"
+      "priceFrom": "磐镭RX 6500 XT 4G",
+      "zolId": "1438912"
     },
     {
       "slug": "nvidia-geforce-rtx-3090",
       "name": "NVIDIA GeForce RTX 3090",
       "score": 53927,
-      "price": 8999,
-      "refPrice": 8999,
+      "price": 9999,
+      "refPrice": 9999,
       "shopPrice": null,
-      "priceFrom": "磐镭RTX3090 24G 显卡芯片:GeForce RTX 3090 制作工艺:8纳米 散热方式:涡轮风扇 显存类型:GDDR6X 显存位宽:384bit 显存容量:24GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1394474"
+      "priceFrom": "EVGA GeForce RTX 3090 FTW3 ULTRA GAMING 显卡芯片:GeForce RTX 3090 制作工艺:8纳米 散热方式:三风扇散热 显存类型:GDDR6X 显存位宽:384bit 显存容量:24GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1349307"
     },
     {
       "slug": "amd-radeon-rx6500-xt",
@@ -1372,11 +1326,11 @@
       "slug": "nvidia-geforce-rtx-4070-ti-super",
       "name": "NVIDIA GeForce RTX 4070 Ti SUPER",
       "score": 53683,
-      "price": 5899,
-      "refPrice": 5899,
+      "price": 6279,
+      "refPrice": 6279,
       "shopPrice": null,
-      "priceFrom": "七彩虹COLORFIRE GeForce RTX 4070 Ti 橘影橙 12GB",
-      "zolId": "2104258"
+      "priceFrom": "盈通RTX 4070 Ti 12G D6X 豪华版",
+      "zolId": "1522423"
     },
     {
       "slug": "amd-radeon-rx-590-series",
@@ -1388,11 +1342,7 @@
       "slug": "nvidia-geforce-gtx-1650-super",
       "name": "NVIDIA GeForce GTX 1650 SUPER",
       "score": 53109,
-      "price": 1069,
-      "refPrice": 1069,
-      "shopPrice": null,
-      "priceFrom": "翔升GeForce GTX 1650 SUPER 战雕 4G D6 显卡芯片:GeForce GTX 1650 SUPER 散热方式:散热风扇 显存类型:GDDR6 显存位宽:128bit 显存容量:4GB 接口类型:PCI Express 3.0 16X 3D API:DirectX 12，OpenGL 4.6",
-      "zolId": "1332227"
+      "price": null
     },
     {
       "slug": "intel-arc-a730m-graphics",
@@ -1464,11 +1414,7 @@
       "slug": "amd-radeon-rx590-gme",
       "name": "AMD Radeon RX590 GME",
       "score": 50495,
-      "price": 529,
-      "refPrice": 529,
-      "shopPrice": null,
-      "priceFrom": "祺祥RX590 GME 2304SP 8G 游戏显卡，办公显卡，双风扇",
-      "zolId": "1970811"
+      "price": null
     },
     {
       "slug": "qualcomm-adreno-x2-90-gpu",
@@ -1507,8 +1453,8 @@
       "price": 2399,
       "refPrice": 2399,
       "shopPrice": null,
-      "priceFrom": "影驰GeForce RTX 4060 大将W",
-      "zolId": "2109067"
+      "priceFrom": "索泰GeForce RTX 4060-8GB 毁灭者 OC HA",
+      "zolId": "1794079"
     },
     {
       "slug": "nvidia-geforce-gtx-980-ti",
@@ -1520,17 +1466,21 @@
       "slug": "nvidia-geforce-rtx-3060",
       "name": "NVIDIA GeForce RTX 3060",
       "score": 47784,
-      "price": 1799,
-      "refPrice": 1799,
+      "price": 3199,
+      "refPrice": 3199,
       "shopPrice": null,
-      "priceFrom": "精影RTX 3060 12G 压铸面板，强劲散热，静音风扇",
-      "zolId": "1968957"
+      "priceFrom": "盈通GeForce RTX 3060 12G D6 六道兵甲 散热方式:三风扇散热 3D API:DirectX 12.1，OpenGL 4.5 显卡芯片:GeForce RTX 3060 制作工艺:8纳米 显存类型:GDDR6 显存容量:12GB 显存位宽:192bit",
+      "zolId": "1403726"
     },
     {
       "slug": "nvidia-geforce-gtx-1070",
       "name": "NVIDIA GeForce GTX 1070",
       "score": 47633,
-      "price": null
+      "price": 3499,
+      "refPrice": 3499,
+      "shopPrice": null,
+      "priceFrom": "耕升GTX 1070 冰魂 非公版PCB设计，全铜水冷散热，多彩RGB炫彩灯效，双重BIOS保护",
+      "zolId": "1166017"
     },
     {
       "slug": "nvidia-cmp-50hx",
@@ -1590,11 +1540,11 @@
       "slug": "amd-radeon-rx-580-graphics",
       "name": "AMD Radeon RX 580 Graphics",
       "score": 45830,
-      "price": 399,
-      "refPrice": 399,
+      "price": 499,
+      "refPrice": 499,
       "shopPrice": null,
-      "priceFrom": "铭影RX 580 8G 战狼 智能控温，风扇散热，低噪运行",
-      "zolId": "1970756"
+      "priceFrom": "铭影RX 580 4G 战狼 智能控温，风扇散热，低噪运行",
+      "zolId": "1970757"
     },
     {
       "slug": "amd-radeon-r9-390-series",
@@ -1612,11 +1562,11 @@
       "slug": "amd-radeon-rx-580",
       "name": "AMD Radeon RX 580",
       "score": 44796,
-      "price": 399,
-      "refPrice": 399,
+      "price": 499,
+      "refPrice": 499,
       "shopPrice": null,
-      "priceFrom": "铭影RX 580 8G 战狼 智能控温，风扇散热，低噪运行",
-      "zolId": "1970756"
+      "priceFrom": "铭影RX 580 4G 战狼 智能控温，风扇散热，低噪运行",
+      "zolId": "1970757"
     },
     {
       "slug": "amd-radv-polaris10",
@@ -1676,11 +1626,11 @@
       "slug": "amd-radeon-rx-570-graphics",
       "name": "AMD Radeon RX 570 Graphics",
       "score": 42703,
-      "price": 1299,
-      "refPrice": 1399,
-      "shopPrice": 1299,
-      "priceFrom": "盈通RX 570-4G 6HDMI 多屏显示，精彩绽放，灵活输出",
-      "zolId": "2002560"
+      "price": 1699,
+      "refPrice": 1699,
+      "shopPrice": null,
+      "priceFrom": "盈通RX 570 4G D5 大地之神 显卡芯片:Radeon RX 570 制作工艺:14纳米 散热方式:双风扇散热+热管散热 显存类型:GDDR5 显存容量:4GB 显存位宽:256bit 最大分辨率:7680×4320",
+      "zolId": "1252498"
     },
     {
       "slug": "amd-radeon-rx-470-graphics",
@@ -1692,11 +1642,11 @@
       "slug": "amd-radeon-rx-5500-xt",
       "name": "AMD Radeon RX 5500 XT",
       "score": 42099,
-      "price": 639,
-      "refPrice": 639,
+      "price": 2699,
+      "refPrice": 2699,
       "shopPrice": null,
-      "priceFrom": "精影RX 5500 XT 8G 强劲风扇，出色散热，强大性能",
-      "zolId": "1968955"
+      "priceFrom": "磐镭RX 5500 XT 8G D6 显卡芯片:Radeon RX 5500 XT 制作工艺:7纳米 散热方式:双风扇散热 显存类型:GDDR6 显存位宽:128bit 显存容量:8GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1343321"
     },
     {
       "slug": "amd-radeon-pro-w5500",
@@ -1738,11 +1688,11 @@
       "slug": "amd-radeon-rx-580-2048sp",
       "name": "AMD Radeon RX 580 2048SP",
       "score": 40398,
-      "price": 399,
-      "refPrice": 399,
+      "price": 499,
+      "refPrice": 499,
       "shopPrice": null,
-      "priceFrom": "铭影RX 580 8G 战狼 智能控温，风扇散热，低噪运行",
-      "zolId": "1970756"
+      "priceFrom": "铭影RX 580 4G 战狼 智能控温，风扇散热，低噪运行",
+      "zolId": "1970757"
     },
     {
       "slug": "nvidia-geforce-gtx-1650-ti",
@@ -1824,7 +1774,11 @@
       "slug": "nvidia-geforce-gtx-980",
       "name": "NVIDIA GeForce GTX 980",
       "score": 38175,
-      "price": null
+      "price": 3799,
+      "refPrice": 3799,
+      "shopPrice": null,
+      "priceFrom": "影驰GeForce GTX 980 GAMER 1203/1304MHz核心频率；7000MHz显存频率；三风扇散热",
+      "zolId": "389194"
     },
     {
       "slug": "amd-radeon-pro-575x",
@@ -1878,11 +1832,11 @@
       "slug": "nvidia-geforce-gtx-1650",
       "name": "NVIDIA GeForce GTX 1650",
       "score": 36353,
-      "price": 899,
-      "refPrice": 899,
+      "price": 889,
+      "refPrice": 889,
       "shopPrice": null,
-      "priceFrom": "翔升GeForce GTX 1650 战雕 4G D6 显卡芯片:GeForce GTX 1650 散热方式:散热风扇 显存类型:GDDR6 显存位宽:128bit 显存容量:4GB 接口类型:PCI Express 3.0 16X 3D API:DirectX 12，OpenGL 4.6",
-      "zolId": "1332236"
+      "priceFrom": "翔升GTX 1650  战雕4G 显卡芯片:GeForce GTX 1650 制作工艺:12纳米 散热方式:散热风扇 显存类型:GDDR5 显存位宽:128bit 显存容量:4GB 3D API:DirectX 12.1，OpenGL 4.5",
+      "zolId": "1284054"
     },
     {
       "slug": "amd-radv-beige-goby",
@@ -1960,11 +1914,11 @@
       "slug": "nvidia-geforce-gtx-1060-6gb",
       "name": "NVIDIA GeForce GTX 1060-6GB",
       "score": 34705,
-      "price": 649,
-      "refPrice": 598,
-      "shopPrice": 649,
-      "priceFrom": "精粤GTX 1060 3G 风扇散热，低音运行，高清接口",
-      "zolId": "1968979"
+      "price": 1249,
+      "refPrice": 1249,
+      "shopPrice": null,
+      "priceFrom": "万丽GTX 1060 嗜血 显卡芯片:GeForce GTX 1060 制作工艺:16纳米 散热方式:双风扇散热 显存类型:GDDR5 显存位宽:192bit 显存容量:6GB 最大分辨率:7680×4320",
+      "zolId": "1283796"
     },
     {
       "slug": "amd-radeon-hd-7900-series",
@@ -2000,11 +1954,11 @@
       "slug": "nvidia-geforce-gtx-1060-5gb",
       "name": "NVIDIA GeForce GTX 1060 5GB",
       "score": 33991,
-      "price": 649,
-      "refPrice": 598,
-      "shopPrice": 649,
-      "priceFrom": "精粤GTX 1060 3G 风扇散热，低音运行，高清接口",
-      "zolId": "1968979"
+      "price": 1249,
+      "refPrice": 1249,
+      "shopPrice": null,
+      "priceFrom": "万丽GTX 1060 嗜血 显卡芯片:GeForce GTX 1060 制作工艺:16纳米 散热方式:双风扇散热 显存类型:GDDR5 显存位宽:192bit 显存容量:6GB 最大分辨率:7680×4320",
+      "zolId": "1283796"
     },
     {
       "slug": "amd-firepro-w8000",
@@ -2022,11 +1976,11 @@
       "slug": "nvidia-geforce-rtx-3080",
       "name": "NVIDIA GeForce RTX 3080",
       "score": 33620,
-      "price": 3799,
-      "refPrice": 3799,
-      "shopPrice": null,
-      "priceFrom": "翔升RTX 3080 10G 战神 D6X 金属背板，风扇散热，畅快体验",
-      "zolId": "1968991"
+      "price": 4999,
+      "refPrice": null,
+      "shopPrice": 4999,
+      "priceFrom": "微星GeForce RTX 3080 SUPRIM 10G LHR 显卡芯片:GeForce RTX 3080 制作工艺:8纳米 散热方式:三风扇散热 显存类型:GDDR6X 显存位宽:320bit 显存容量:10GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1377222"
     },
     {
       "slug": "nvidia-a16-16a",
@@ -2080,11 +2034,11 @@
       "slug": "amd-radeon-rx-570",
       "name": "AMD Radeon RX 570",
       "score": 32861,
-      "price": 1299,
-      "refPrice": 1399,
-      "shopPrice": 1299,
-      "priceFrom": "盈通RX 570-4G 6HDMI 多屏显示，精彩绽放，灵活输出",
-      "zolId": "2002560"
+      "price": 1699,
+      "refPrice": 1699,
+      "shopPrice": null,
+      "priceFrom": "盈通RX 570 4G D5 大地之神 显卡芯片:Radeon RX 570 制作工艺:14纳米 散热方式:双风扇散热+热管散热 显存类型:GDDR5 显存容量:4GB 显存位宽:256bit 最大分辨率:7680×4320",
+      "zolId": "1252498"
     },
     {
       "slug": "intel-arc-a380e-graphics",
@@ -2126,11 +2080,11 @@
       "slug": "nvidia-geforce-gtx-1060-3gb",
       "name": "NVIDIA GeForce GTX 1060-3GB",
       "score": 32031,
-      "price": 649,
-      "refPrice": 598,
-      "shopPrice": 649,
-      "priceFrom": "精粤GTX 1060 3G 风扇散热，低音运行，高清接口",
-      "zolId": "1968979"
+      "price": 1249,
+      "refPrice": 1249,
+      "shopPrice": null,
+      "priceFrom": "万丽GTX 1060 嗜血 显卡芯片:GeForce GTX 1060 制作工艺:16纳米 散热方式:双风扇散热 显存类型:GDDR5 显存位宽:192bit 显存容量:6GB 最大分辨率:7680×4320",
+      "zolId": "1283796"
     },
     {
       "slug": "amd-radv-navi14",
@@ -2184,7 +2138,11 @@
       "slug": "nvidia-geforce-gtx-970",
       "name": "NVIDIA GeForce GTX 970",
       "score": 31042,
-      "price": null
+      "price": 2390,
+      "refPrice": 2390,
+      "shopPrice": null,
+      "priceFrom": "华硕GTX 970-DC2OC-4GD5 1127/1266MHz核心频率；双风扇散热+热管散热；HDMI接口/DVI接口",
+      "zolId": "393688"
     },
     {
       "slug": "intel-arc-a380-graphics",
@@ -2193,8 +2151,8 @@
       "price": 799,
       "refPrice": 799,
       "shopPrice": null,
-      "priceFrom": "蓝戟Intel Arc A380 Index 6G 6G大显存，畅快运行，品质加倍",
-      "zolId": "1990870"
+      "priceFrom": "撼与科技Arc A380 GENIE 妖精系列，游戏显卡，双槽双风扇",
+      "zolId": "2066369"
     },
     {
       "slug": "amd-radeon-pro-wx-5100-graphics",
@@ -2254,11 +2212,11 @@
       "slug": "nvidia-geforce-gtx-1060",
       "name": "NVIDIA GeForce GTX 1060",
       "score": 29779,
-      "price": 649,
-      "refPrice": 598,
-      "shopPrice": 649,
-      "priceFrom": "精粤GTX 1060 3G 风扇散热，低音运行，高清接口",
-      "zolId": "1968979"
+      "price": 1249,
+      "refPrice": 1249,
+      "shopPrice": null,
+      "priceFrom": "万丽GTX 1060 嗜血 显卡芯片:GeForce GTX 1060 制作工艺:16纳米 散热方式:双风扇散热 显存类型:GDDR5 显存位宽:192bit 显存容量:6GB 最大分辨率:7680×4320",
+      "zolId": "1283796"
     },
     {
       "slug": "amd-radeon-860m-graphics",
@@ -2416,11 +2374,7 @@
       "slug": "intel-core-i9-14900ks",
       "name": "Intel Core i9-14900KS",
       "score": 23008,
-      "price": 5199,
-      "refPrice": 6299,
-      "shopPrice": 5199,
-      "priceFrom": "Intel 酷睿 i9 14900KS",
-      "zolId": "1991155"
+      "price": null
     },
     {
       "slug": "intel-core-ultra-9-285k",
@@ -2462,21 +2416,13 @@
       "slug": "amd-ryzen-9-9950x",
       "name": "AMD Ryzen 9 9950X",
       "score": 21468,
-      "price": 3699,
-      "refPrice": null,
-      "shopPrice": 3699,
-      "priceFrom": "AMD Ryzen 9 9950X",
-      "zolId": "2018964"
+      "price": null
     },
     {
       "slug": "intel-core-i9-13900ks",
       "name": "Intel Core i9-13900KS",
       "score": 21359,
-      "price": 5999,
-      "refPrice": 5999,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i9 13900KS",
-      "zolId": "1454017"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-pro-9955wx",
@@ -2506,11 +2452,7 @@
       "slug": "intel-core-i9-14900kf",
       "name": "Intel Core i9-14900KF",
       "score": 20281,
-      "price": 3259,
-      "refPrice": 4799,
-      "shopPrice": 3259,
-      "priceFrom": "Intel 酷睿 i9 14900KF 酷睿14代，24核32线程，36M三级缓存",
-      "zolId": "1929608"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-9900x3d",
@@ -2522,31 +2464,19 @@
       "slug": "intel-core-i9-14900k",
       "name": "Intel Core i9-14900K",
       "score": 20023,
-      "price": 3569,
-      "refPrice": 4999,
-      "shopPrice": 3569,
-      "priceFrom": "Intel 酷睿 i9 14900K 酷睿14代，24核32线程，36M三级缓存",
-      "zolId": "1805095"
+      "price": null
     },
     {
       "slug": "intel-core-i9-13900k",
       "name": "Intel Core i9-13900K",
       "score": 19898,
-      "price": 1688,
-      "refPrice": 5500,
-      "shopPrice": 1688,
-      "priceFrom": "Intel 酷睿 i9 13900K",
-      "zolId": "1428844"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-9900x",
       "name": "AMD Ryzen 9 9900X",
       "score": 19696,
-      "price": 2899,
-      "refPrice": null,
-      "shopPrice": 2899,
-      "priceFrom": "AMD Ryzen 9 9900X",
-      "zolId": "2018965"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-pro-7955wx",
@@ -2558,31 +2488,19 @@
       "slug": "amd-ryzen-9-7950x3d",
       "name": "AMD Ryzen 9 7950X3D",
       "score": 19523,
-      "price": 5299,
-      "refPrice": 5299,
-      "shopPrice": 5299,
-      "priceFrom": "AMD Ryzen 9 7950X3D",
-      "zolId": "1440581"
+      "price": null
     },
     {
       "slug": "intel-core-i9-13900kf",
       "name": "Intel Core i9-13900KF",
       "score": 19436,
-      "price": 3988,
-      "refPrice": 5200,
-      "shopPrice": 3988,
-      "priceFrom": "Intel 酷睿 i9 13900KF 1700LGA，10nm，125TDP",
-      "zolId": "1428011"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-7950x",
       "name": "AMD Ryzen 9 7950X",
       "score": 19271,
-      "price": 5499,
-      "refPrice": 5499,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 9 7950X 适用类型:台式机 CPU系列:AMD Ryzen 9 7000系列 CPU主频:4.5GHz 核心数量:十六核心 线程数量:三十二线程 二级缓存:16MB 三级缓存:64MB",
-      "zolId": "1424741"
+      "price": null
     },
     {
       "slug": "amd-epyc-9654",
@@ -2594,21 +2512,13 @@
       "slug": "intel-core-i7-14700kf",
       "name": "Intel Core i7-14700KF",
       "score": 19151,
-      "price": 2419,
-      "refPrice": 3299,
-      "shopPrice": 2419,
-      "priceFrom": "Intel 酷睿 i7 14700KF 酷睿14代，20核28线程， 睿频至高可达5.6Ghz",
-      "zolId": "1929613"
+      "price": null
     },
     {
       "slug": "intel-core-i7-14700k",
       "name": "Intel Core i7-14700K",
       "score": 18760,
-      "price": 2699,
-      "refPrice": 3499,
-      "shopPrice": 2699,
-      "priceFrom": "Intel 酷睿 i7 14700K 酷睿14代，20核28线程， 睿频至高可达5.6Ghz",
-      "zolId": "1814492"
+      "price": null
     },
     {
       "slug": "intel-xeon-w9-3495x",
@@ -2632,11 +2542,7 @@
       "slug": "amd-ryzen-7-9800x3d",
       "name": "AMD Ryzen 7 9800X3D",
       "score": 18317,
-      "price": 3299,
-      "refPrice": 3799,
-      "shopPrice": 3299,
-      "priceFrom": "AMD Ryzen 7 9800X3D",
-      "zolId": "2113342"
+      "price": null
     },
     {
       "slug": "amd-epyc-9454p",
@@ -2666,11 +2572,7 @@
       "slug": "intel-core-i9-14900f",
       "name": "Intel Core i9-14900F",
       "score": 17885,
-      "price": 2688,
-      "refPrice": null,
-      "shopPrice": 2688,
-      "priceFrom": "Intel 酷睿 i9 14900F",
-      "zolId": "1972478"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-pro-7945wx",
@@ -2688,41 +2590,25 @@
       "slug": "amd-ryzen-9-7900x",
       "name": "AMD Ryzen 9 7900X",
       "score": 17693,
-      "price": 2499,
-      "refPrice": 4299,
-      "shopPrice": 2499,
-      "priceFrom": "AMD Ryzen 9 7900X 适用类型:台式机 CPU系列:AMD Ryzen 9 7000系列 CPU主频:4.7GHz 核心数量:十二核心 线程数量:二十四线程 二级缓存:12MB 三级缓存:64MB",
-      "zolId": "1424742"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-7900x3d",
       "name": "AMD Ryzen 9 7900X3D",
       "score": 17588,
-      "price": 4499,
-      "refPrice": 4499,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 9 7900X3D",
-      "zolId": "1440582"
+      "price": null
     },
     {
       "slug": "intel-core-i7-13700k",
       "name": "Intel Core i7-13700K",
       "score": 17570,
-      "price": 3099,
-      "refPrice": 3900,
-      "shopPrice": 3099,
-      "priceFrom": "Intel 酷睿 i7 13700K 适用类型:台式机 CPU系列:酷睿i7 13代系列 制作工艺:10纳米 插槽类型:LGA 1700 核心数量:十六核心 线程数量:二十四线程 最高睿频:5.3GHz",
-      "zolId": "1428845"
+      "price": null
     },
     {
       "slug": "intel-core-i7-13700kf",
       "name": "Intel Core i7-13700KF",
       "score": 17397,
-      "price": 2999,
-      "refPrice": 3700,
-      "shopPrice": 2999,
-      "priceFrom": "Intel 酷睿 i7 13700KF",
-      "zolId": "1429329"
+      "price": null
     },
     {
       "slug": "amd-epyc-9274f",
@@ -2734,11 +2620,7 @@
       "slug": "intel-core-i9-13900f",
       "name": "Intel Core i9-13900F",
       "score": 17128,
-      "price": 4599,
-      "refPrice": 4599,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i9 13900F",
-      "zolId": "1440236"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6442y",
@@ -2750,11 +2632,7 @@
       "slug": "amd-ryzen-7-9700x",
       "name": "AMD Ryzen 7 9700X",
       "score": 16882,
-      "price": 1989,
-      "refPrice": 2849,
-      "shopPrice": 1989,
-      "priceFrom": "AMD Ryzen 7 9700X",
-      "zolId": "2018966"
+      "price": null
     },
     {
       "slug": "intel-xeon-w7-2475x",
@@ -2766,11 +2644,7 @@
       "slug": "amd-ryzen-9-7900",
       "name": "AMD Ryzen 9 7900",
       "score": 16781,
-      "price": 3199,
-      "refPrice": 3199,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 9 7900",
-      "zolId": "1440583"
+      "price": null
     },
     {
       "slug": "amd-ryzen-ai-max-390",
@@ -2800,11 +2674,7 @@
       "slug": "intel-core-i9-14900",
       "name": "Intel Core i9-14900",
       "score": 16407,
-      "price": 1919,
-      "refPrice": null,
-      "shopPrice": 1919,
-      "priceFrom": "Intel 酷睿 i9 14900",
-      "zolId": "1972477"
+      "price": null
     },
     {
       "slug": "amd-epyc-9534",
@@ -2822,21 +2692,13 @@
       "slug": "intel-core-i7-14700f",
       "name": "Intel Core i7-14700F",
       "score": 16300,
-      "price": 2599,
-      "refPrice": null,
-      "shopPrice": 2599,
-      "priceFrom": "Intel 酷睿 i7 14700F",
-      "zolId": "1972512"
+      "price": null
     },
     {
       "slug": "intel-core-i9-13900",
       "name": "Intel Core i9-13900",
       "score": 16286,
-      "price": 4899,
-      "refPrice": 4899,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i9 13900",
-      "zolId": "1440235"
+      "price": null
     },
     {
       "slug": "amd-epyc-9754",
@@ -2866,11 +2728,7 @@
       "slug": "intel-core-i9-12900ks",
       "name": "Intel Core i9-12900KS",
       "score": 15952,
-      "price": 5630,
-      "refPrice": 5630,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i9 12900KS 适用类型:台式机 CPU系列:酷睿i9 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 核心数量:十六核心 线程数量:二十四线程",
-      "zolId": "1396016"
+      "price": null
     },
     {
       "slug": "intel-xeon-w7-2495x",
@@ -2882,21 +2740,13 @@
       "slug": "intel-core-i5-14600k",
       "name": "Intel Core i5-14600K",
       "score": 15874,
-      "price": 1749,
-      "refPrice": 2599,
-      "shopPrice": 1749,
-      "priceFrom": "Intel 酷睿 i5 14600K 14核20线程，睿频至高可达5.3Ghz，24M三级缓存",
-      "zolId": "1929614"
+      "price": null
     },
     {
       "slug": "intel-core-i7-13700f",
       "name": "Intel Core i7-13700F",
       "score": 15708,
-      "price": 3099,
-      "refPrice": null,
-      "shopPrice": 3099,
-      "priceFrom": "Intel 酷睿 i7 13700F",
-      "zolId": "1440478"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-pro-5955wx",
@@ -2932,41 +2782,25 @@
       "slug": "intel-core-i5-14600kf",
       "name": "Intel Core i5-14600KF",
       "score": 15436,
-      "price": 1629,
-      "refPrice": 2499,
-      "shopPrice": 1629,
-      "priceFrom": "Intel 酷睿 i5 14600KF 14核20线程，睿频至高可达5.3Ghz，24M三级缓存",
-      "zolId": "1929615"
+      "price": null
     },
     {
       "slug": "intel-core-i7-14700",
       "name": "Intel Core i7-14700",
       "score": 15409,
-      "price": 2599,
-      "refPrice": null,
-      "shopPrice": 2599,
-      "priceFrom": "Intel 酷睿 i7 14700",
-      "zolId": "1972511"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-7700x",
       "name": "AMD Ryzen 7 7700X",
       "score": 15403,
-      "price": 2999,
-      "refPrice": 2999,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 7 7700X 适用类型:台式机 CPU系列:AMD Ryzen 7 7000系列 CPU主频:4.5GHz 核心数量:八核心 线程数量:十六线程 二级缓存:8MB 三级缓存:32MB",
-      "zolId": "1424745"
+      "price": null
     },
     {
       "slug": "intel-core-i5-13600kf",
       "name": "Intel Core i5-13600KF",
       "score": 15384,
-      "price": 1999,
-      "refPrice": 2600,
-      "shopPrice": 1999,
-      "priceFrom": "Intel 酷睿 i5 13600KF",
-      "zolId": "1429351"
+      "price": null
     },
     {
       "slug": "snapdragon-x-elite-x1e-00-1de",
@@ -2996,11 +2830,7 @@
       "slug": "intel-core-i9-12900k",
       "name": "Intel Core i9-12900K",
       "score": 15082,
-      "price": 4430,
-      "refPrice": 4430,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i9 12900K 适用类型:台式机 CPU系列:酷睿i9 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.9GHz 核心数量:十六核心",
-      "zolId": "1356715"
+      "price": null
     },
     {
       "slug": "amd-epyc-9354p",
@@ -3018,11 +2848,7 @@
       "slug": "amd-ryzen-7-7800x3d",
       "name": "AMD Ryzen 7 7800X3D",
       "score": 14999,
-      "price": 2069,
-      "refPrice": 3099,
-      "shopPrice": 2069,
-      "priceFrom": "AMD Ryzen 7 7800X3D",
-      "zolId": "1440585"
+      "price": null
     },
     {
       "slug": "intel-xeon-w7-3445",
@@ -3034,11 +2860,7 @@
       "slug": "intel-core-i5-13600k",
       "name": "Intel Core i5-13600K",
       "score": 14882,
-      "price": 2199,
-      "refPrice": 2599,
-      "shopPrice": 2199,
-      "priceFrom": "Intel 酷睿 i5 13600K",
-      "zolId": "1428846"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-pro-3975wx",
@@ -3056,31 +2878,19 @@
       "slug": "amd-ryzen-7-7700",
       "name": "AMD Ryzen 7 7700",
       "score": 14781,
-      "price": 859,
-      "refPrice": 1899,
-      "shopPrice": 859,
-      "priceFrom": "AMD Ryzen 7 7700",
-      "zolId": "1440586"
+      "price": null
     },
     {
       "slug": "intel-core-i9-12900kf",
       "name": "Intel Core i9-12900KF",
       "score": 14764,
-      "price": 4230,
-      "refPrice": 4230,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i9 12900KF 适用类型:台式机 CPU系列:酷睿i9 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.9GHz 核心数量:十六核心",
-      "zolId": "1311041"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-9600x",
       "name": "AMD Ryzen 5 9600X",
       "score": 14742,
-      "price": 1169,
-      "refPrice": 1499,
-      "shopPrice": 1169,
-      "priceFrom": "AMD Ryzen 5 9600X",
-      "zolId": "2018967"
+      "price": null
     },
     {
       "slug": "intel-xeon-w5-2465x",
@@ -3110,11 +2920,7 @@
       "slug": "intel-core-i7-13700",
       "name": "Intel Core i7-13700",
       "score": 14328,
-      "price": 3049,
-      "refPrice": 3049,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i7 13700",
-      "zolId": "1440476"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-9600",
@@ -3144,41 +2950,25 @@
       "slug": "intel-core-i7-12700k",
       "name": "Intel Core i7-12700K",
       "score": 13869,
-      "price": 1763,
-      "refPrice": 2830,
-      "shopPrice": 1763,
-      "priceFrom": "Intel 酷睿 i7 12700K 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十二核心",
-      "zolId": "1393368"
+      "price": null
     },
     {
       "slug": "intel-core-i9-12900f",
       "name": "Intel Core i9-12900F",
       "score": 13842,
-      "price": 3389,
-      "refPrice": 3389,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i9 12900F 适用类型:台式机 CPU系列:酷睿i9 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.4GHz 核心数量:十六核心",
-      "zolId": "1394600"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-3990x",
       "name": "AMD Ryzen Threadripper 3990X",
       "score": 13817,
-      "price": 29999,
-      "refPrice": 29999,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen ThreadRipper 3990X 64核心/128线程，2.9GHz ，280W，7nm工艺",
-      "zolId": "1301796"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-3970x",
       "name": "AMD Ryzen Threadripper 3970X",
       "score": 13799,
-      "price": 688,
-      "refPrice": 15999,
-      "shopPrice": 688,
-      "priceFrom": "AMD Ryzen ThreadRipper 3970X 适用类型:台式机 CPU系列:Threadripper 3000 制作工艺:7纳米 插槽类型:Socket sTRX4 CPU主频:3.7GHz 核心数量:三十二核心 线程数量:六十四线程",
-      "zolId": "1296984"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6426y",
@@ -3190,11 +2980,7 @@
       "slug": "intel-core-i5-14600",
       "name": "Intel Core i5-14600",
       "score": 13723,
-      "price": 1470,
-      "refPrice": null,
-      "shopPrice": 1470,
-      "priceFrom": "Intel 酷睿 i5 14600",
-      "zolId": "1972506"
+      "price": null
     },
     {
       "slug": "intel-xeon-w7-3455",
@@ -3218,11 +3004,7 @@
       "slug": "intel-core-i7-12700kf",
       "name": "Intel Core i7-12700KF",
       "score": 13370,
-      "price": 1549,
-      "refPrice": 2730,
-      "shopPrice": 1549,
-      "priceFrom": "Intel 酷睿 i7 12700KF 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十二核心",
-      "zolId": "1393369"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-pro-5945wx",
@@ -3246,21 +3028,13 @@
       "slug": "amd-ryzen-threadripper-3960x",
       "name": "AMD Ryzen Threadripper 3960X",
       "score": 13176,
-      "price": 688,
-      "refPrice": 13999,
-      "shopPrice": 688,
-      "priceFrom": "AMD Ryzen ThreadRipper 3960X 适用类型:台式机 CPU系列:Threadripper 3000 制作工艺:7纳米 插槽类型:AMD Socket sTRX4 CPU主频:3.8GHz 核心数量:二十四核心 线程数量:四十八线程",
-      "zolId": "1296983"
+      "price": null
     },
     {
       "slug": "intel-core-i9-12900",
       "name": "Intel Core i9-12900",
       "score": 13158,
-      "price": 3880,
-      "refPrice": 3880,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i9 12900 适用类型:台式机 CPU系列:酷睿i9 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.4GHz 核心数量:十六核心",
-      "zolId": "1394599"
+      "price": null
     },
     {
       "slug": "intel-xeon-silver-4416",
@@ -3278,21 +3052,13 @@
       "slug": "amd-ryzen-5-7600x",
       "name": "AMD Ryzen 5 7600X",
       "score": 12866,
-      "price": 1236,
-      "refPrice": 2249,
-      "shopPrice": 1236,
-      "priceFrom": "AMD Ryzen 5 7600X 适用类型:台式机 制作工艺:5纳米 CPU架构:Zen 3+",
-      "zolId": "1367038"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-8700f",
       "name": "AMD Ryzen 7 8700F",
       "score": 12845,
-      "price": 998,
-      "refPrice": null,
-      "shopPrice": 998,
-      "priceFrom": "AMD Ryzen 7 8700F",
-      "zolId": "2018144"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-pro-7745",
@@ -3334,11 +3100,7 @@
       "slug": "intel-core-i5-14600t",
       "name": "Intel Core i5-14600T",
       "score": 12627,
-      "price": 1470,
-      "refPrice": null,
-      "shopPrice": 1470,
-      "priceFrom": "Intel 酷睿 i5 14600T",
-      "zolId": "1972507"
+      "price": null
     },
     {
       "slug": "amd-epyc-9354",
@@ -3356,21 +3118,13 @@
       "slug": "intel-core-i5-14500",
       "name": "Intel Core i5-14500",
       "score": 12569,
-      "price": 1470,
-      "refPrice": null,
-      "shopPrice": 1470,
-      "priceFrom": "Intel酷睿i5 14500",
-      "zolId": "1972503"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-7500f",
       "name": "AMD Ryzen 5 7500F",
       "score": 12489,
-      "price": 779,
-      "refPrice": 1239,
-      "shopPrice": 779,
-      "priceFrom": "AMD Ryzen 5 7500F 5nm，6核12线程，AM5接口",
-      "zolId": "1796349"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6346",
@@ -3424,21 +3178,13 @@
       "slug": "intel-core-i5-12600kf",
       "name": "Intel Core i5-12600KF",
       "score": 12225,
-      "price": 1319,
-      "refPrice": 1830,
-      "shopPrice": 1319,
-      "priceFrom": "Intel 酷睿 i5 12600KF 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:10纳米 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十核心",
-      "zolId": "1393371"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-7600",
       "name": "AMD Ryzen 5 7600",
       "score": 12222,
-      "price": 599,
-      "refPrice": 1549,
-      "shopPrice": 599,
-      "priceFrom": "AMD Ryzen 5 7600",
-      "zolId": "1440587"
+      "price": null
     },
     {
       "slug": "amd-epyc-7643",
@@ -3486,21 +3232,13 @@
       "slug": "amd-ryzen-9-5950x",
       "name": "AMD Ryzen 9 5950X",
       "score": 12011,
-      "price": 5270,
-      "refPrice": 5270,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 9 5950X 16核心/32线程，3.4GHz ，105W，8M二级缓存",
-      "zolId": "1342304"
+      "price": null
     },
     {
       "slug": "intel-core-i9-10980xe",
       "name": "Intel Core i9-10980XE",
       "score": 11959,
-      "price": 6349,
-      "refPrice": 5480,
-      "shopPrice": 6349,
-      "priceFrom": "Intel 酷睿i9 10980XE 适用类型:台式机 CPU系列:酷睿i9 10代系列 制作工艺:14纳米 核心代号:Cascade Lake-X 插槽类型:LGA 2066 CPU主频:3GHz 核心数量:十八核心",
-      "zolId": "1295319"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-3275m",
@@ -3530,31 +3268,19 @@
       "slug": "intel-core-i5-12600k",
       "name": "Intel Core i5-12600K",
       "score": 11837,
-      "price": 1219,
-      "refPrice": 1930,
-      "shopPrice": 1219,
-      "priceFrom": "Intel 酷睿 i5 12600K 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:10纳米 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十核心",
-      "zolId": "1393370"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-5900x",
       "name": "AMD Ryzen 9 5900X",
       "score": 11779,
-      "price": 2800,
-      "refPrice": 2800,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 9 5900X 12核心/24线程，3.7GHz，105W，6MB二级缓存",
-      "zolId": "1340449"
+      "price": null
     },
     {
       "slug": "intel-core-i7-12700f",
       "name": "Intel Core i7-12700F",
       "score": 11755,
-      "price": 1763,
-      "refPrice": 2280,
-      "shopPrice": 1763,
-      "priceFrom": "Intel 酷睿 i7 12700F 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:十二核心",
-      "zolId": "1394646"
+      "price": null
     },
     {
       "slug": "amd-epyc-7402",
@@ -3626,11 +3352,7 @@
       "slug": "intel-core-i9-11900k",
       "name": "Intel Core i9 11900K",
       "score": 11328,
-      "price": 3430,
-      "refPrice": 3430,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 11900K 八核心，十六线程，睿频至高可达5.3GHz",
-      "zolId": "1350558"
+      "price": null
     },
     {
       "slug": "amd-epyc-7513",
@@ -3648,11 +3370,7 @@
       "slug": "intel-core-i9-10920x",
       "name": "Intel Core i9-10920X",
       "score": 11267,
-      "price": 3830,
-      "refPrice": 3830,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 10920X 适用类型:台式机 CPU系列:酷睿i9 10代系列 制作工艺:14纳米 核心代号:Skylake-X 插槽类型:LGA 2066 CPU主频:3.5GHz 核心数量:十二核心",
-      "zolId": "1294471"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6258r",
@@ -3664,11 +3382,7 @@
       "slug": "intel-core-i9-9980xe",
       "name": "Intel Core i9-9980XE",
       "score": 11251,
-      "price": 8199,
-      "refPrice": 8199,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 9980XE 适用类型:台式机 制作工艺:14纳米 核心代号:Skylake CPU主频:3GHz 核心数量:十八核心 线程数量:三十六线程 三级缓存:25MB",
-      "zolId": "1233485"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-pro-7645",
@@ -3692,11 +3406,7 @@
       "slug": "amd-ryzen-7-5800x3d",
       "name": "AMD Ryzen 7 5800X3D",
       "score": 11036,
-      "price": 1659,
-      "refPrice": 2799,
-      "shopPrice": 1659,
-      "priceFrom": "AMD Ryzen 7 5800X3D 适用类型:台式机 CPU系列:AMD Ryzen 7 5000 制作工艺:7纳米 插槽类型:Socket AM4 CPU主频:3.4GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1396433"
+      "price": null
     },
     {
       "slug": "amd-epyc-7313",
@@ -3720,11 +3430,7 @@
       "slug": "intel-core-i7-12700",
       "name": "Intel Core i7-12700",
       "score": 10973,
-      "price": 1763,
-      "refPrice": 2430,
-      "shopPrice": 1763,
-      "priceFrom": "Intel 酷睿 i7 12700 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:十二核心",
-      "zolId": "1394648"
+      "price": null
     },
     {
       "slug": "amd-epyc-7402p",
@@ -3736,11 +3442,7 @@
       "slug": "intel-core-i5-14400f",
       "name": "Intel Core i5-14400F",
       "score": 10916,
-      "price": 1129,
-      "refPrice": null,
-      "shopPrice": 1129,
-      "priceFrom": "Intel 酷睿 i5 14400F",
-      "zolId": "1972500"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-8600g",
@@ -3776,11 +3478,7 @@
       "slug": "intel-core-i5-13400f",
       "name": "Intel Core i5-13400F",
       "score": 10765,
-      "price": 1699,
-      "refPrice": 1699,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i5 13400F",
-      "zolId": "1440555"
+      "price": null
     },
     {
       "slug": "intel-core-i5-13600t",
@@ -3792,11 +3490,7 @@
       "slug": "amd-ryzen-9-3950x",
       "name": "AMD Ryzen 9 3950X",
       "score": 10642,
-      "price": 5749,
-      "refPrice": 5749,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 9 3950X 4.7GHz动态加速频率，7nm Zen 2架构，AM4插槽",
-      "zolId": "1278896"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-pro-3945wx",
@@ -3826,11 +3520,7 @@
       "slug": "intel-core-i9-9960x",
       "name": "Intel Core i9-9960X",
       "score": 10522,
-      "price": 6799,
-      "refPrice": 6799,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 9960X 适用类型:台式机 制作工艺:14纳米 核心代号:Skylake CPU主频:3.1GHz 核心数量:十六核心 线程数量:三十二线程 三级缓存:22MB",
-      "zolId": "1233487"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-3235",
@@ -3842,11 +3532,7 @@
       "slug": "intel-core-i5-14400",
       "name": "Intel Core i5-14400",
       "score": 10519,
-      "price": 1599,
-      "refPrice": null,
-      "shopPrice": 1599,
-      "priceFrom": "Intel 酷睿 i5 14400",
-      "zolId": "1972499"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-5900",
@@ -3876,11 +3562,7 @@
       "slug": "intel-core-i9-9940x",
       "name": "Intel Core i9-9940X",
       "score": 10436,
-      "price": 5999,
-      "refPrice": 5999,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 9940X 适用类型:台式机 制作工艺:14纳米 核心代号:Skylake CPU主频:3.3GHz 核心数量:十四核心 线程数量:二十八线程 三级缓存:19MB",
-      "zolId": "1233495"
+      "price": null
     },
     {
       "slug": "intel-xeon-w3-2435",
@@ -3892,11 +3574,7 @@
       "slug": "intel-core-i9-7960x",
       "name": "Intel Core i9-7960X",
       "score": 10430,
-      "price": 11899,
-      "refPrice": 11899,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 7960X LGA 2066，22M三级缓存",
-      "zolId": "1172350"
+      "price": null
     },
     {
       "slug": "intel-core-i9-7940x",
@@ -3920,11 +3598,7 @@
       "slug": "intel-core-i9-10940x",
       "name": "Intel Core i9-10940X",
       "score": 10382,
-      "price": 4480,
-      "refPrice": 4480,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 10940X 适用类型:台式机 CPU系列:酷睿i9 10代系列 制作工艺:14纳米 核心代号:Skylake 插槽类型:LGA 2066 CPU主频:3.3GHz 核心数量:十四核心",
-      "zolId": "1298993"
+      "price": null
     },
     {
       "slug": "amd-epyc-7502p",
@@ -3966,11 +3640,7 @@
       "slug": "intel-core-i7-11700kf",
       "name": "Intel Core i7 11700KF",
       "score": 10254,
-      "price": 2899,
-      "refPrice": 2899,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 11700KF 八核心，十六线程，睿频至高可达5.0GHz",
-      "zolId": "1363249"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6154",
@@ -3988,11 +3658,7 @@
       "slug": "amd-ryzen-7-5800x",
       "name": "AMD Ryzen 7 5800X",
       "score": 10145,
-      "price": 1299,
-      "refPrice": 2480,
-      "shopPrice": 1299,
-      "priceFrom": "AMD Ryzen 7 5800X 8核心/16线程，AM4接口，3.8GHz，105W",
-      "zolId": "1342130"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-5700x3d",
@@ -4028,51 +3694,31 @@
       "slug": "intel-core-i9-11900kf",
       "name": "Intel Core i9 11900KF",
       "score": 9953,
-      "price": 1889,
-      "refPrice": 5999,
-      "shopPrice": 1889,
-      "priceFrom": "Intel 酷睿i9 11900KF 八核心，十六线程，睿频至高可达5.3GHz",
-      "zolId": "1363258"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-3900xt",
       "name": "AMD Ryzen 9 3900XT",
       "score": 9920,
-      "price": 3599,
-      "refPrice": 3599,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 9 3900XT 适用类型:台式机 CPU系列:AMD Ryzen 9 3000 制作工艺:7纳米 插槽类型:Socket AM4 CPU主频:3.8GHz 核心数量:十二核心 线程数量:二十四线程",
-      "zolId": "1324756"
+      "price": null
     },
     {
       "slug": "intel-core-i5-13400",
       "name": "Intel Core i5-13400",
       "score": 9920,
-      "price": 1799,
-      "refPrice": 1799,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i5 13400",
-      "zolId": "1440553"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-3900x",
       "name": "AMD Ryzen 9 3900X",
       "score": 9912,
-      "price": 2939,
-      "refPrice": 2939,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 9 3900X 12核心/24线程，3.8GHz ，6MB二级缓存，Socket AM4",
-      "zolId": "1276702"
+      "price": null
     },
     {
       "slug": "intel-core-i7-11700k",
       "name": "Intel Core i7 11700K",
       "score": 9849,
-      "price": 2430,
-      "refPrice": 2430,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 11700K 八核心，十六线程，睿频至高可达5.0GHz",
-      "zolId": "1354876"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-2265",
@@ -4102,21 +3748,13 @@
       "slug": "intel-xeon-w-1390p",
       "name": "Intel Xeon W-1390P",
       "score": 9732,
-      "price": 5999,
-      "refPrice": null,
-      "shopPrice": 5999,
-      "priceFrom": "Intel Xeon W-1390P 适用类型:企业级 CPU系列:Xeon W1300系列 制作工艺:14纳米 插槽类型:LGA 1200 CPU主频:3.5GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1381854"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-5700x",
       "name": "AMD Ryzen 7 5700X",
       "score": 9724,
-      "price": 999,
-      "refPrice": 1999,
-      "shopPrice": 999,
-      "priceFrom": "AMD Ryzen 7 5700X 适用类型:笔记本 CPU系列:AMD Ryzen 7 5000 制作工艺:7纳米 插槽类型:Socket AM4 内存类型:DDR4 CPU主频:3.4GHz 核心数量:八核心",
-      "zolId": "1403089"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6334",
@@ -4128,11 +3766,7 @@
       "slug": "intel-core-i9-9920x",
       "name": "Intel Core i9-9920X",
       "score": 9677,
-      "price": 8999,
-      "refPrice": 8999,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 9920X 适用类型:台式机 制作工艺:14纳米 核心代号:Skylake CPU主频:3.5GHz 核心数量:十二核心 线程数量:二十四线程 三级缓存:19MB",
-      "zolId": "1233496"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2388g",
@@ -4204,11 +3838,7 @@
       "slug": "intel-core-i9-11900f",
       "name": "Intel Core i9-11900F",
       "score": 9475,
-      "price": 3699,
-      "refPrice": 3699,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 11900F 八核心，十六线程，睿频至高可达5.2GHz",
-      "zolId": "1363256"
+      "price": null
     },
     {
       "slug": "intel-core-i5-13500te",
@@ -4232,11 +3862,7 @@
       "slug": "intel-core-i9-10900x",
       "name": "Intel Core i9-10900X",
       "score": 9409,
-      "price": 3749,
-      "refPrice": 2980,
-      "shopPrice": 3749,
-      "priceFrom": "Intel 酷睿i9 10900X 适用类型:台式机 CPU系列:酷睿i9 10代系列 制作工艺:14纳米 核心代号:Skylake 插槽类型:LGA 2066 CPU主频:3.7GHz 核心数量:十核心",
-      "zolId": "1293662"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-pro-7840u",
@@ -4296,21 +3922,13 @@
       "slug": "intel-core-i9-11900",
       "name": "Intel Core i9 11900",
       "score": 9214,
-      "price": 3780,
-      "refPrice": 3780,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 11900 八核心，十六线程，睿频至高可达5.2GHz",
-      "zolId": "1363257"
+      "price": null
     },
     {
       "slug": "intel-core-i9-10900kf",
       "name": "Intel Core i9 10900KF",
       "score": 9184,
-      "price": 4899,
-      "refPrice": 4899,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 10900KF 适用类型:台式机 CPU系列:酷睿i9 10代系列 制作工艺:14纳米 核心代号:Comet Lake-S 插槽类型:LGA 1200 CPU主频:3.7GHz 核心数量:十核心",
-      "zolId": "1312007"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6150",
@@ -4328,11 +3946,7 @@
       "slug": "intel-core-i9-10900k",
       "name": "Intel Core i9 10900K",
       "score": 9168,
-      "price": 4199,
-      "refPrice": 4199,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 10900K 复仇者联盟珍藏版 适用类型:台式机 CPU系列:酷睿i9 10代系列 制作工艺:14纳米 核心代号:Comet Lake-S 插槽类型:LGA 1200 CPU主频:3.7GHz 核心数量:十核心",
-      "zolId": "1340632"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-pro-5945",
@@ -4356,11 +3970,7 @@
       "slug": "intel-core-i5-12400f",
       "name": "Intel Core i5-12400F",
       "score": 9101,
-      "price": 969,
-      "refPrice": 1210,
-      "shopPrice": 969,
-      "priceFrom": "Intel 酷睿 i5 12400F 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake-S 插槽类型:LGA 1700 CPU主频:2.5GHz 核心数量:六核心",
-      "zolId": "1338644"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-2170b",
@@ -4384,11 +3994,7 @@
       "slug": "intel-core-i5-12500",
       "name": "Intel Core i5-12500",
       "score": 9012,
-      "price": 1219,
-      "refPrice": null,
-      "shopPrice": 1219,
-      "priceFrom": "Intel 酷睿 i5 12500 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3GHz 核心数量:六核心",
-      "zolId": "1394650"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-8840hs",
@@ -4400,21 +4006,13 @@
       "slug": "intel-core-i9-10850k",
       "name": "Intel Core i9 10850K",
       "score": 8999,
-      "price": 3999,
-      "refPrice": 3999,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 10850K 10核心/12线程，睿频至高可达5.2GHz，至尊调试应用程序，温度自适应睿频加速技术",
-      "zolId": "1330380"
+      "price": null
     },
     {
       "slug": "intel-core-i9-9900x",
       "name": "Intel Core i9-9900X",
       "score": 8990,
-      "price": 5599,
-      "refPrice": 5599,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 9900X 适用类型:台式机 制作工艺:14纳米 核心代号:Skylake CPU主频:3.5GHz 核心数量:十核心 线程数量:二十线程 三级缓存:19MB",
-      "zolId": "1233498"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-pro-3900",
@@ -4432,11 +4030,7 @@
       "slug": "amd-ryzen-7-5700g",
       "name": "AMD Ryzen 7 5700G",
       "score": 8964,
-      "price": 1249,
-      "refPrice": 2599,
-      "shopPrice": 1249,
-      "priceFrom": "AMD Ryzen 7 5700G 8核心/16线程，4.6GHz加速频率，搭载Radeon Vega Graphic",
-      "zolId": "1355716"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6136",
@@ -4478,11 +4072,7 @@
       "slug": "intel-core-i5-12400",
       "name": "Intel Core i5-12400",
       "score": 8845,
-      "price": 1219,
-      "refPrice": 1480,
-      "shopPrice": 1219,
-      "priceFrom": "Intel 酷睿 i5 12400 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.5GHz 核心数量:六核心",
-      "zolId": "1394653"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-1290p",
@@ -4500,21 +4090,13 @@
       "slug": "intel-core-i9-7900x",
       "name": "Intel Core i9-7900X",
       "score": 8782,
-      "price": 4299,
-      "refPrice": 4299,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 7900X LGA 2066，3.3GHz，13.75M三级缓存",
-      "zolId": "1172347"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-5800",
       "name": "AMD Ryzen 7 5800",
       "score": 8732,
-      "price": 692,
-      "refPrice": null,
-      "shopPrice": 692,
-      "priceFrom": "AMD Ryzen 7 5800 适用类型:台式机 CPU系列:Ryzen 7 5000系列 制作工艺:7纳米 插槽类型:Socket AM4 CPU主频:3.4GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1355949"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6244",
@@ -4544,31 +4126,19 @@
       "slug": "intel-core-i7-11700f",
       "name": "Intel Core i7 11700F",
       "score": 8670,
-      "price": 2349,
-      "refPrice": 2349,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 11700F 八核心，十六线程，睿频至高可达4.9GHz",
-      "zolId": "1363255"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-1370",
       "name": "Intel Xeon W-1370",
       "score": 8649,
-      "price": 3999,
-      "refPrice": null,
-      "shopPrice": 3999,
-      "priceFrom": "Intel Xeon W-1370 适用类型:企业级 CPU系列:Xeon W1300系列 制作工艺:14纳米 插槽类型:LGA 1200 CPU主频:2.9GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1381850"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-5600x",
       "name": "AMD Ryzen 5 5600X",
       "score": 8646,
-      "price": 949,
-      "refPrice": 1510,
-      "shopPrice": 949,
-      "priceFrom": "AMD Ryzen 5 5600X 6核心/12线程，4.6GHz加速频率，支持PCIe 4.0 NVM驱动器",
-      "zolId": "1342305"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-2155",
@@ -4592,21 +4162,13 @@
       "slug": "intel-core-i7-11700",
       "name": "Intel Core i7 11700",
       "score": 8618,
-      "price": 2300,
-      "refPrice": 2300,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 11700 八核心，十六线程，睿频至高可达4.9GHz",
-      "zolId": "1359776"
+      "price": null
     },
     {
       "slug": "intel-core-i5-11600kf",
       "name": "Intel Core i5 11600KF",
       "score": 8616,
-      "price": 1699,
-      "refPrice": 1699,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 11600KF 六核心，十二线程，睿频至高可达4.4GHz",
-      "zolId": "1362948"
+      "price": null
     },
     {
       "slug": "amd-epyc-7302",
@@ -4618,21 +4180,13 @@
       "slug": "amd-ryzen-5-5600",
       "name": "AMD Ryzen 5 5600",
       "score": 8592,
-      "price": 769,
-      "refPrice": 1359,
-      "shopPrice": 769,
-      "priceFrom": "AMD Ryzen 5 5600 适用类型:笔记本 CPU系列:AMD Ryzen 5 5000 制作工艺:7纳米 插槽类型:Socket AM4 内存类型:DDR4 CPU主频:3.5GHz 核心数量:六核心",
-      "zolId": "1403088"
+      "price": null
     },
     {
       "slug": "intel-core-i9-9900ks",
       "name": "Intel Core i9-9900KS",
       "score": 8589,
-      "price": 3499,
-      "refPrice": 3499,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 9900KS 适用类型:台式机 CPU系列:酷睿i9 9代系列 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:4GHz 核心数量:八核心",
-      "zolId": "1276748"
+      "price": null
     },
     {
       "slug": "amd-ryzen-9-pro-6950hs",
@@ -4662,11 +4216,7 @@
       "slug": "intel-core-i5-11600k",
       "name": "Intel Core i5 11600K",
       "score": 8558,
-      "price": 1949,
-      "refPrice": 1949,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 11600K 六核心，十二线程，睿频至高可达4.9GHz",
-      "zolId": "1360148"
+      "price": null
     },
     {
       "slug": "intel-xeon-silver-4310t",
@@ -4678,11 +4228,7 @@
       "slug": "amd-ryzen-7-3800xt",
       "name": "AMD Ryzen 7 3800XT",
       "score": 8534,
-      "price": 2999,
-      "refPrice": 2999,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 7 3800XT 适用类型:台式机 CPU系列:Ryzen 7 制作工艺:7纳米 插槽类型:Socket AM4 CPU主频:3.9GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1325522"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-2699-v4",
@@ -4718,31 +4264,19 @@
       "slug": "amd-ryzen-threadripper-2950x",
       "name": "AMD Ryzen Threadripper 2950X",
       "score": 8466,
-      "price": 5999,
-      "refPrice": 5999,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen Threadripper 2950X 适用类型:台式机 制作工艺:12纳米 插槽类型:Socket TR4 CPU主频:3.5GHz 核心数量:十六核心 线程数量:三十二线程 二级缓存:8MB",
-      "zolId": "1227459"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-1290",
       "name": "Intel Xeon W-1290 @ 3.20GHz",
       "score": 8455,
-      "price": 4999,
-      "refPrice": null,
-      "shopPrice": 4999,
-      "priceFrom": "Intel Xeon W-1290 适用类型:台式机 CPU系列:Xeon W1200系列 制作工艺:14纳米 核心代号:Comet Lake 插槽类型:LGA 1200 CPU主频:3.2GHz 核心数量:十核心",
-      "zolId": "1388438"
+      "price": null
     },
     {
       "slug": "intel-core-i9-10900f",
       "name": "Intel Core i9-10900F",
       "score": 8438,
-      "price": 3099,
-      "refPrice": 3099,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i9 10900F 适用类型:台式机 CPU系列:酷睿i9 10代系列 制作工艺:14纳米 核心代号:Comet Lake-S 插槽类型:LGA 1200 CPU主频:2.8GHz 核心数量:十核心",
-      "zolId": "1312012"
+      "price": null
     },
     {
       "slug": "intel-core-i5-13400t",
@@ -4820,11 +4354,7 @@
       "slug": "amd-ryzen-7-3800x",
       "name": "AMD Ryzen 7 3800X",
       "score": 8232,
-      "price": 2599,
-      "refPrice": 2599,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 7 3800X 适用类型:台式机 CPU系列:Ryzen 7 制作工艺:7纳米 插槽类型:Socket AM4 CPU主频:3.9GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1276701"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-5218",
@@ -4836,11 +4366,7 @@
       "slug": "intel-core-i9-9900kf",
       "name": "Intel Core i9-9900KF",
       "score": 8210,
-      "price": 3400,
-      "refPrice": 2399,
-      "shopPrice": 3400,
-      "priceFrom": "Intel 酷睿i9 9900KF 适用类型:台式机 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:3.6GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1249010"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-2696-v3",
@@ -4870,11 +4396,7 @@
       "slug": "intel-core-i3-14100f",
       "name": "Intel Core i3-14100F",
       "score": 8140,
-      "price": 699,
-      "refPrice": 699,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿 i3 14100F",
-      "zolId": "2111488"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-1350",
@@ -4892,21 +4414,13 @@
       "slug": "intel-core-i7-10700kf",
       "name": "Intel Core i7 10700KF",
       "score": 8123,
-      "price": 2560,
-      "refPrice": 2199,
-      "shopPrice": 2560,
-      "priceFrom": "Intel 酷睿i7 10700KF 8核心/16线程，睿频至高可达5.1GHz，轻松快速超频，精准调优",
-      "zolId": "1312009"
+      "price": null
     },
     {
       "slug": "intel-core-i7-10700k",
       "name": "Intel Core i7 10700K",
       "score": 8105,
-      "price": 2150,
-      "refPrice": 2150,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 10700K 复仇者联盟珍藏版 适用类型:台式机 CPU系列:酷睿i7 10代系列 制作工艺:14纳米 核心代号:Comet Lake 插槽类型:LGA 1200 CPU主频:3.8GHz 核心数量:八核心",
-      "zolId": "1340633"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-1350p",
@@ -4924,11 +4438,7 @@
       "slug": "amd-ryzen-7-3700x",
       "name": "AMD Ryzen 7 3700X",
       "score": 8084,
-      "price": 1729,
-      "refPrice": 1729,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 7 3700X 8核心/16线程，支持PCIe 4.0技术，7nm工艺",
-      "zolId": "1276700"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-2698-v4",
@@ -4946,11 +4456,7 @@
       "slug": "intel-core-i9-9900k",
       "name": "Intel Core i9 9900K",
       "score": 8060,
-      "price": 3400,
-      "refPrice": 3049,
-      "shopPrice": 3400,
-      "priceFrom": "Intel 酷睿i9 9900K 8核心/16线程，睿频至高可达5GHz，智能睿频",
-      "zolId": "1233484"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6152",
@@ -4974,11 +4480,7 @@
       "slug": "intel-xeon-w-1270",
       "name": "Intel Xeon W-1270 @ 3.40GHz",
       "score": 8002,
-      "price": 3999,
-      "refPrice": null,
-      "shopPrice": 3999,
-      "priceFrom": "Intel Xeon W-1270 适用类型:台式机 CPU系列:Xeon W1200系列 制作工艺:14纳米 核心代号:Comet Lake 插槽类型:LGA 1200 CPU主频:3.4GHz 核心数量:八核心",
-      "zolId": "1388442"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-1950x",
@@ -5014,11 +4516,7 @@
       "slug": "amd-ryzen-5-5600gt",
       "name": "AMD Ryzen 5 5600GT",
       "score": 7917,
-      "price": 949,
-      "refPrice": 1049,
-      "shopPrice": 949,
-      "priceFrom": "AMD Ryzen 5 5600GT",
-      "zolId": "1980887"
+      "price": null
     },
     {
       "slug": "intel-xeon-silver-4216",
@@ -5036,11 +4534,7 @@
       "slug": "intel-core-i5-11600",
       "name": "Intel Core i5-11600",
       "score": 7882,
-      "price": 2000,
-      "refPrice": 2000,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 11600 六核心，十二线程，睿频至高可达4.8GHz",
-      "zolId": "1363241"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-8640hs",
@@ -5064,11 +4558,7 @@
       "slug": "intel-core-i7-7820x",
       "name": "Intel Core i7-7820X",
       "score": 7776,
-      "price": 3999,
-      "refPrice": 3999,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 7820X LGA 2066，3.6GHz，11M三级缓存",
-      "zolId": "1159483"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2336",
@@ -5104,11 +4594,7 @@
       "slug": "amd-ryzen-5-5600g",
       "name": "AMD Ryzen 5 5600G",
       "score": 7662,
-      "price": 679,
-      "refPrice": 1599,
-      "shopPrice": 679,
-      "priceFrom": "AMD Ryzen 5 5600G 6核心/12线程，4.4GHz加速频率，搭载Radeon Vega Graphic",
-      "zolId": "1366838"
+      "price": null
     },
     {
       "slug": "intel-core-i3-12100e",
@@ -5132,31 +4618,19 @@
       "slug": "intel-core-i7-9800x",
       "name": "Intel Core i7-9800X",
       "score": 7633,
-      "price": 2699,
-      "refPrice": 2699,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 9800X 适用类型:台式机 制作工艺:14纳米 核心代号:Skylake CPU主频:3.8GHz 核心数量:八核心 线程数量:十六线程 三级缓存:17MB",
-      "zolId": "1233501"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-2990wx",
       "name": "AMD Ryzen Threadripper 2990WX",
       "score": 7627,
-      "price": 10999,
-      "refPrice": 10999,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen Threadripper 2990WX 适用类型:台式机 制作工艺:12纳米 CPU主频:3GHz 核心数量:三十二核心 线程数量:六十四线程 二级缓存:16MB 三级缓存:64MB",
-      "zolId": "1227458"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-5500",
       "name": "AMD Ryzen 5 5500",
       "score": 7624,
-      "price": 549,
-      "refPrice": 1099,
-      "shopPrice": 549,
-      "priceFrom": "AMD Ryzen 5 5500 适用类型:笔记本 CPU系列:AMD Ryzen 5 5000 制作工艺:7纳米 插槽类型:Socket AM4 内存类型:DDR4 CPU主频:3.6GHz 核心数量:六核心",
-      "zolId": "1403086"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6230",
@@ -5174,21 +4648,13 @@
       "slug": "intel-core-i5-11400f",
       "name": "Intel Core i5 11400F",
       "score": 7576,
-      "price": 1130,
-      "refPrice": 1130,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 11400F 六核心，十二线程，睿频至高可达4.4GHz",
-      "zolId": "1362953"
+      "price": null
     },
     {
       "slug": "intel-core-i3-14100",
       "name": "Intel Core i3-14100",
       "score": 7569,
-      "price": 1299,
-      "refPrice": null,
-      "shopPrice": 1299,
-      "priceFrom": "Intel 酷睿 i3 14100",
-      "zolId": "1972515"
+      "price": null
     },
     {
       "slug": "intel-core-i5-12500t",
@@ -5206,11 +4672,7 @@
       "slug": "intel-core-i3-13100f",
       "name": "Intel Core i3-13100F",
       "score": 7537,
-      "price": 559,
-      "refPrice": 949,
-      "shopPrice": 559,
-      "priceFrom": "Intel 酷睿 i3 13100F",
-      "zolId": "1440455"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2288g",
@@ -5228,11 +4690,7 @@
       "slug": "amd-ryzen-threadripper-2920x",
       "name": "AMD Ryzen Threadripper 2920X",
       "score": 7517,
-      "price": 4699,
-      "refPrice": 4699,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen Threadripper 2920X 适用类型:台式机 制作工艺:12纳米 插槽类型:Socket TR4 CPU主频:3.5GHz 核心数量:十二核心 线程数量:二十四线程 二级缓存:6MB",
-      "zolId": "1227461"
+      "price": null
     },
     {
       "slug": "intel-core-i7-10700te",
@@ -5298,11 +4756,7 @@
       "slug": "intel-core-i3-12100f",
       "name": "Intel Core i3-12100F",
       "score": 7369,
-      "price": 1149,
-      "refPrice": 850,
-      "shopPrice": 1149,
-      "priceFrom": "Intel 酷睿 i3 12100F 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:0GHz 核心数量:四核心",
-      "zolId": "1396494"
+      "price": null
     },
     {
       "slug": "intel-core-i5-12500te",
@@ -5356,11 +4810,7 @@
       "slug": "intel-core-i7-10700f",
       "name": "Intel Core i7 10700F",
       "score": 7287,
-      "price": 2560,
-      "refPrice": 1890,
-      "shopPrice": 2560,
-      "priceFrom": "Intel 酷睿i7 10700F 8核心/16线程，睿频至高可达4.8GHz，超线程技术，睿频加速Max技术3.0",
-      "zolId": "1311821"
+      "price": null
     },
     {
       "slug": "intel-core-i3-12300",
@@ -5384,21 +4834,13 @@
       "slug": "amd-ryzen-5-3600xt",
       "name": "AMD Ryzen 5 3600XT",
       "score": 7251,
-      "price": 1859,
-      "refPrice": 1859,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 5 3600XT 适用类型:台式机 CPU系列:Ryzen 5 制作工艺:7纳米 插槽类型:Socket AM4 CPU主频:3.8GHz 核心数量:六核心 线程数量:十二线程",
-      "zolId": "1327667"
+      "price": null
     },
     {
       "slug": "amd-ryzen-threadripper-2970wx",
       "name": "AMD Ryzen Threadripper 2970WX",
       "score": 7250,
-      "price": 6799,
-      "refPrice": 6799,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen Threadripper 2970WX 适用类型:台式机 制作工艺:12纳米 插槽类型:Socket TR4 CPU主频:3GHz 核心数量:二十四核心 线程数量:四十八线程 二级缓存:12MB",
-      "zolId": "1227460"
+      "price": null
     },
     {
       "slug": "amd-epyc-7601",
@@ -5410,21 +4852,13 @@
       "slug": "intel-core-i7-9700k",
       "name": "Intel Core i7 9700K",
       "score": 7236,
-      "price": 3849,
-      "refPrice": 2499,
-      "shopPrice": 3849,
-      "priceFrom": "Intel 酷睿i7 9700K 8核心/8线程，睿频至高可达4.9GHz，兼容英特尔Z390芯片组",
-      "zolId": "1233483"
+      "price": null
     },
     {
       "slug": "intel-core-i5-11500",
       "name": "Intel Core i5-11500",
       "score": 7224,
-      "price": 1799,
-      "refPrice": 1799,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 11500 六核心，十二线程，睿频至高可达4.6GHz",
-      "zolId": "1357482"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2356g",
@@ -5436,21 +4870,13 @@
       "slug": "intel-core-i5-11400",
       "name": "Intel Core i5 11400",
       "score": 7206,
-      "price": 1359,
-      "refPrice": 1359,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 11400 六核心，十二线程，睿频至高可达4.4GHz",
-      "zolId": "1356930"
+      "price": null
     },
     {
       "slug": "intel-core-i3-13100",
       "name": "Intel Core i3-13100",
       "score": 7202,
-      "price": 1099,
-      "refPrice": null,
-      "shopPrice": 1099,
-      "priceFrom": "Intel 酷睿 i3 13100",
-      "zolId": "1430667"
+      "price": null
     },
     {
       "slug": "intel-xeon-silver-4215r",
@@ -5468,11 +4894,7 @@
       "slug": "amd-ryzen-threadripper-1920x",
       "name": "AMD Ryzen Threadripper 1920X",
       "score": 7115,
-      "price": 688,
-      "refPrice": 799,
-      "shopPrice": 688,
-      "priceFrom": "AMD Ryzen Threadripper 1920X Socket TR4，3.5GHz，32M三级缓存",
-      "zolId": "1173190"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-1660-v3",
@@ -5484,41 +4906,25 @@
       "slug": "intel-core-i7-10700",
       "name": "Intel Core i7 10700",
       "score": 7102,
-      "price": 2560,
-      "refPrice": 2230,
-      "shopPrice": 2560,
-      "priceFrom": "Intel 酷睿i7 10700 8核心/16线程，睿频至高可达4.8GHz，睿频加速Max技术3.0",
-      "zolId": "1307620"
+      "price": null
     },
     {
       "slug": "intel-core-i7-9700kf",
       "name": "Intel Core i7-9700KF",
       "score": 7091,
-      "price": 2169,
-      "refPrice": 2169,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 9700KF 酷睿八核，12M高速缓存，高达4.9GHz",
-      "zolId": "1249007"
+      "price": null
     },
     {
       "slug": "intel-core-i7-8086k",
       "name": "Intel Core i7-8086K",
       "score": 7084,
-      "price": 389,
-      "refPrice": 2439,
-      "shopPrice": 389,
-      "priceFrom": "Intel 酷睿i7 8086K（限量版） 适用类型:台式机 CPU系列:酷睿i7 8代系列 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:4GHz 核心数量:六核心",
-      "zolId": "1220858"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-3600x",
       "name": "AMD Ryzen 5 3600X",
       "score": 7069,
-      "price": 1749,
-      "refPrice": 1749,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 5 3600X 6核心/12线程，3.8GHz，95W，3M二级缓存",
-      "zolId": "1277874"
+      "price": null
     },
     {
       "slug": "intel-xeon-processor-e5-1680-v3",
@@ -5596,11 +5002,7 @@
       "slug": "amd-ryzen-5-3600",
       "name": "AMD Ryzen 5 3600",
       "score": 6885,
-      "price": 1199,
-      "refPrice": 1199,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 5 3600 6核心/12线程，3.6GHz，4.2GHz动态加速，65W，3MB二级缓存",
-      "zolId": "1277878"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-2680-v4",
@@ -5618,11 +5020,7 @@
       "slug": "intel-core-i5-10600k",
       "name": "Intel Core i5 10600K",
       "score": 6850,
-      "price": 1059,
-      "refPrice": 1849,
-      "shopPrice": 1059,
-      "priceFrom": "Intel 酷睿i5 10600K 6核心/12线程，睿频至高可达4.8GHz，支持超频",
-      "zolId": "1307622"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-1680-v4",
@@ -5634,11 +5032,7 @@
       "slug": "intel-core-i5-10600kf",
       "name": "Intel Core i5 10600KF",
       "score": 6780,
-      "price": 1059,
-      "refPrice": 1230,
-      "shopPrice": 1059,
-      "priceFrom": "Intel 酷睿i5 10600KF 6核心/12线程，睿频至高可达4.8GHz，睿频加速2.0",
-      "zolId": "1312010"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-6134",
@@ -5662,11 +5056,7 @@
       "slug": "intel-core-i3-12100",
       "name": "Intel Core i3-12100",
       "score": 6740,
-      "price": 1149,
-      "refPrice": 990,
-      "shopPrice": 1149,
-      "priceFrom": "Intel 酷睿 i3 12100 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7（10纳米） 核心代号:Alder Lake 插槽类型:LGA 1700 内存类型:DDR5 4800MHz，DDR4 3200MHz CPU主频:3.3GHz",
-      "zolId": "1394655"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-10885m",
@@ -5726,21 +5116,13 @@
       "slug": "intel-core-i7-8700k",
       "name": "Intel Core i7 8700K",
       "score": 6571,
-      "price": 389,
-      "refPrice": 2799,
-      "shopPrice": 389,
-      "priceFrom": "Intel 酷睿i7 8700K 6核心/12线程，LGA 1151，3.7GHz，12M三级缓存",
-      "zolId": "1177026"
+      "price": null
     },
     {
       "slug": "intel-core-i7-10875h",
       "name": "Intel Core i7-10875H @ 2.30GHz",
       "score": 6569,
-      "price": 2560,
-      "refPrice": null,
-      "shopPrice": 2560,
-      "priceFrom": "Intel 酷睿i7 10875H 适用类型:笔记本 CPU系列:酷睿i7 10代系列 制作工艺:14纳米 核心代号:Comet Lake-H CPU主频:2.3GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1317599"
+      "price": null
     },
     {
       "slug": "intel-xeon-gold-5215",
@@ -5824,11 +5206,7 @@
       "slug": "intel-core-i7-9700f",
       "name": "Intel Core i7-9700F",
       "score": 6399,
-      "price": 889,
-      "refPrice": 2399,
-      "shopPrice": 889,
-      "priceFrom": "Intel 酷睿i7 9700F 适用类型:台式机 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:3GHz 核心数量:八核心 线程数量:八线程",
-      "zolId": "1269856"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-2660-v4",
@@ -5870,11 +5248,7 @@
       "slug": "intel-xeon-w-1250",
       "name": "Intel Xeon W-1250 @ 3.30GHz",
       "score": 6316,
-      "price": 2699,
-      "refPrice": null,
-      "shopPrice": 2699,
-      "priceFrom": "Intel Xeon W-1250 适用类型:台式机 CPU系列:Xeon W1200系列 制作工艺:14纳米 核心代号:Comet Lake 插槽类型:LGA 1200 CPU主频:3.3GHz 核心数量:六核心",
-      "zolId": "1388434"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2146g",
@@ -5928,21 +5302,13 @@
       "slug": "amd-ryzen-5-4500",
       "name": "AMD Ryzen 5 4500",
       "score": 6222,
-      "price": 548,
-      "refPrice": 939,
-      "shopPrice": 548,
-      "priceFrom": "AMD Ryzen 5 4500 适用类型:笔记本 CPU系列:AMD Ryzen 5 5000 制作工艺:7纳米 插槽类型:Socket AM4 内存类型:DDR4 CPU主频:3.6GHz 核心数量:六核心",
-      "zolId": "1403092"
+      "price": null
     },
     {
       "slug": "intel-core-i7-9700",
       "name": "Intel Core i7 9700",
       "score": 6208,
-      "price": 964,
-      "refPrice": 2599,
-      "shopPrice": 964,
-      "priceFrom": "Intel 酷睿i7 9700 8核心/8线程，睿频至高可达4.7GHz，睿频加速2.0，12MB三级缓存",
-      "zolId": "1269848"
+      "price": null
     },
     {
       "slug": "intel-core-i7-1260u",
@@ -5954,11 +5320,7 @@
       "slug": "intel-core-i5-9600k",
       "name": "Intel Core i5 9600K",
       "score": 6181,
-      "price": 1649,
-      "refPrice": 1649,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 9600K 适用类型:台式机 CPU系列:酷睿i5 9代系列 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:3.7GHz 核心数量:六核心",
-      "zolId": "1233481"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2186g",
@@ -6000,11 +5362,7 @@
       "slug": "amd-ryzen-7-2700x",
       "name": "AMD Ryzen 7 2700X",
       "score": 6122,
-      "price": 1399,
-      "refPrice": 1399,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 7 2700X 适用类型:台式机 制作工艺:12纳米 插槽类型:Socket AM4 CPU主频:3.7GHz 核心数量:八核心 线程数量:十六线程 二级缓存:4MB",
-      "zolId": "1204791"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-4600g",
@@ -6040,11 +5398,7 @@
       "slug": "intel-core-i9-9880h",
       "name": "Intel Core i9-9880H @ 2.30GHz",
       "score": 6089,
-      "price": 3400,
-      "refPrice": null,
-      "shopPrice": 3400,
-      "priceFrom": "Intel 酷睿i9 9880H 适用类型:笔记本 CPU系列:酷睿i9 9代系列 制作工艺:14纳米 核心代号:Coffee Lake CPU主频:2.3GHz 核心数量:八核心 线程数量:十六线程",
-      "zolId": "1266568"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2246g",
@@ -6098,11 +5452,7 @@
       "slug": "intel-core-i7-8700",
       "name": "Intel Core i7 8700",
       "score": 5963,
-      "price": 719,
-      "refPrice": 2859,
-      "shopPrice": 719,
-      "priceFrom": "Intel 酷睿i7 8700 6核心/12线程，睿频至高可达4.6GHz，LGA 1151，12M三级缓存",
-      "zolId": "1177029"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-2670-v3",
@@ -6126,21 +5476,13 @@
       "slug": "intel-core-i5-9600kf",
       "name": "Intel Core i5-9600KF",
       "score": 5880,
-      "price": 1299,
-      "refPrice": 1299,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 9600KF 适用类型:台式机 CPU系列:酷睿i5 9代系列 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:3.7GHz 核心数量:六核心",
-      "zolId": "1249008"
+      "price": null
     },
     {
       "slug": "amd-ryzen-3-3300x",
       "name": "AMD Ryzen 3 3300X",
       "score": 5869,
-      "price": 899,
-      "refPrice": 899,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 3 3300X 适用类型:台式机 CPU系列:Ryzen 3 制作工艺:7纳米 核心代号:Zen 2 插槽类型:Socket AM4 CPU主频:3.8GHz 核心数量:四核心",
-      "zolId": "1320218"
+      "price": null
     },
     {
       "slug": "intel-core-i5-11500t",
@@ -6152,11 +5494,7 @@
       "slug": "amd-ryzen-5-3500x",
       "name": "AMD Ryzen 5 3500X",
       "score": 5834,
-      "price": 599,
-      "refPrice": 1099,
-      "shopPrice": 599,
-      "priceFrom": "AMD Ryzen 5 3500X 6核心/6线程，3.6GHz ，3MB二级缓存，4.1GHz动态加速",
-      "zolId": "1295080"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-2133",
@@ -6180,11 +5518,7 @@
       "slug": "intel-core-i5-10400f",
       "name": "Intel Core i5 10400F",
       "score": 5781,
-      "price": 1059,
-      "refPrice": 880,
-      "shopPrice": 1059,
-      "priceFrom": "Intel 酷睿i5 10400F 6核心/12线程，睿频至高可达4.3GHz，无缝AAA级游戏",
-      "zolId": "1307002"
+      "price": null
     },
     {
       "slug": "intel-xeon-w-10855m",
@@ -6196,11 +5530,7 @@
       "slug": "intel-core-i5-8600k",
       "name": "Intel Core i5 8600K",
       "score": 5765,
-      "price": 219,
-      "refPrice": 1999,
-      "shopPrice": 219,
-      "priceFrom": "Intel 酷睿i5 8600K LGA 1151，3.5GHz，9M三级缓存",
-      "zolId": "1177031"
+      "price": null
     },
     {
       "slug": "amd-ryzen-5-pro-7530u",
@@ -6230,11 +5560,7 @@
       "slug": "amd-ryzen-7-1800x",
       "name": "AMD Ryzen 7 1800X",
       "score": 5716,
-      "price": 3319,
-      "refPrice": 3319,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 7 1800X Socket AM4，3.6GHz，16M三级缓存",
-      "zolId": "1164799"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-2640-v4",
@@ -6294,11 +5620,7 @@
       "slug": "intel-core-i5-10400",
       "name": "Intel Core i5 10400",
       "score": 5548,
-      "price": 1059,
-      "refPrice": 1180,
-      "shopPrice": 1059,
-      "priceFrom": "Intel 酷睿i5 10400 6核心/12线程，睿频至高可达4.1GHz，傲腾技术",
-      "zolId": "1307626"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2226g",
@@ -6322,21 +5644,13 @@
       "slug": "intel-core-i5-10500",
       "name": "Intel Core i5 10500",
       "score": 5517,
-      "price": 748,
-      "refPrice": 1449,
-      "shopPrice": 748,
-      "priceFrom": "Intel 酷睿i5 10500 6核心/12线程，睿频至高可达4.5GHz，12M三级缓存",
-      "zolId": "1307623"
+      "price": null
     },
     {
       "slug": "amd-ryzen-7-2700",
       "name": "AMD Ryzen 7 2700",
       "score": 5510,
-      "price": 899,
-      "refPrice": 899,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 7 2700 适用类型:台式机 制作工艺:12纳米 插槽类型:Socket AM4 CPU主频:3.2GHz 核心数量:八核心 线程数量:十六线程 二级缓存:4MB",
-      "zolId": "1213501"
+      "price": null
     },
     {
       "slug": "intel-xeon-e5-1650-v3",
@@ -6432,11 +5746,7 @@
       "slug": "intel-core-i7-10750h",
       "name": "Intel Core i7-10750H @ 2.60GHz",
       "score": 5372,
-      "price": 2560,
-      "refPrice": null,
-      "shopPrice": 2560,
-      "priceFrom": "Intel 酷睿i7 10750H 6核心/12线程，睿频至高可达5GHz，支持Wi-Fi 6，12MB三级缓存",
-      "zolId": "1293125"
+      "price": null
     },
     {
       "slug": "intel-core-i7-11375h",
@@ -6634,11 +5944,7 @@
       "slug": "amd-ryzen-3-3100",
       "name": "AMD Ryzen 3 3100",
       "score": 5067,
-      "price": 779,
-      "refPrice": 779,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 3 3100 适用类型:台式机 CPU系列:Ryzen 3 制作工艺:7纳米 核心代号:Zen 2 插槽类型:Socket AM4 CPU主频:3.6GHz 核心数量:四核心",
-      "zolId": "1320221"
+      "price": null
     },
     {
       "slug": "intel-core-i3-13100t",
@@ -6686,11 +5992,7 @@
       "slug": "intel-core-i5-8600",
       "name": "Intel Core i5-8600",
       "score": 5016,
-      "price": 219,
-      "refPrice": 2099,
-      "shopPrice": 219,
-      "priceFrom": "Intel 酷睿i5 8600 适用类型:台式机 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:3.1GHz 核心数量:六核心 线程数量:六线程",
-      "zolId": "1208176"
+      "price": null
     },
     {
       "slug": "intel-xeon-e-2134",
@@ -6702,17 +6004,17 @@
       "slug": "intel-core-i5-7640x",
       "name": "Intel Core i5-7640X",
       "score": 4987,
-      "price": null
+      "price": 1419,
+      "refPrice": 1419,
+      "shopPrice": null,
+      "priceFrom": "Intel 酷睿i5 7640X LGA 2066，4GHz，6M三级缓存",
+      "zolId": "1165096"
     },
     {
       "slug": "intel-core-i7-9750h",
       "name": "Intel Core i7-9750H @ 2.60GHz",
       "score": 4978,
-      "price": 2049,
-      "refPrice": null,
-      "shopPrice": 2049,
-      "priceFrom": "Intel 酷睿i7 9750H 适用类型:笔记本 制作工艺:14纳米 CPU主频:2.6GHz 核心数量:六核心 线程数量:十二线程 三级缓存:12MB 总线规格:DMI3 8GT/s",
-      "zolId": "1266268"
+      "price": null
     },
     {
       "slug": "intel-core-i5-10600t",
@@ -6724,21 +6026,13 @@
       "slug": "intel-core-i5-9500",
       "name": "Intel Core i5 9500",
       "score": 4949,
-      "price": 1849,
-      "refPrice": 1849,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i5 9500 适用类型:台式机 CPU系列:酷睿i5 9代系列 制作工艺:14纳米 核心代号:Coffee Lake CPU主频:3GHz 核心数量:六核心 线程数量:六线程",
-      "zolId": "1269886"
+      "price": null
     },
     {
       "slug": "intel-core-i5-9400f",
       "name": "Intel Core i5 9400F",
       "score": 4943,
-      "price": 670,
-      "refPrice": 1119,
-      "shopPrice": 670,
-      "priceFrom": "Intel 酷睿i5 9400F 6核心/6线程，睿频至高可达4.1GHz，LGA 1151",
-      "zolId": "1249003"
+      "price": null
     },
     {
       "slug": "intel-core-i7-5775c",
@@ -6810,11 +6104,7 @@
       "slug": "amd-ryzen-3-4100",
       "name": "AMD Ryzen 3 4100",
       "score": 4869,
-      "price": 699,
-      "refPrice": 699,
-      "shopPrice": null,
-      "priceFrom": "AMD Ryzen 3 4100 适用类型:笔记本 CPU系列:AMD Ryzen 3 4000 制作工艺:7纳米 插槽类型:Socket AM4 内存类型:DDR4 CPU主频:3.8GHz 核心数量:四核心",
-      "zolId": "1403093"
+      "price": null
     },
     {
       "slug": "intel-core-i5-8500",
@@ -6838,11 +6128,7 @@
       "slug": "intel-core-i5-8400",
       "name": "Intel Core i5 8400",
       "score": 4855,
-      "price": 409,
-      "refPrice": 1689,
-      "shopPrice": 409,
-      "priceFrom": "Intel 酷睿i5 8400 6核心/6线程，LGA 1151，睿频至高可达4.0GHz，9M三级缓存",
-      "zolId": "1177032"
+      "price": null
     },
     {
       "slug": "intel-core-i7-9750hf",
@@ -6884,11 +6170,7 @@
       "slug": "intel-core-i5-9400",
       "name": "Intel Core i5-9400",
       "score": 4807,
-      "price": 549,
-      "refPrice": 1399,
-      "shopPrice": 549,
-      "priceFrom": "Intel 酷睿i5 9400 6核心/6线程，睿频至高可达4.9GHz，LGA 1151",
-      "zolId": "1256973"
+      "price": null
     },
     {
       "slug": "intel-core-i5-1155g7",
@@ -7056,11 +6338,7 @@
       "slug": "intel-core-i3-10105f",
       "name": "Intel Core i3 10105F",
       "score": 4573,
-      "price": 699,
-      "refPrice": 560,
-      "shopPrice": 699,
-      "priceFrom": "Intel 酷睿i3 10105F 4核心/8线程，睿频至高可达4.4GHz，14纳米工艺，6MB三级缓存",
-      "zolId": "1369031"
+      "price": null
     },
     {
       "slug": "intel-xeon-e3-1245-v6",
@@ -7096,21 +6374,13 @@
       "slug": "intel-core-i3-10100f",
       "name": "Intel Core i3 10100F",
       "score": 4497,
-      "price": 699,
-      "refPrice": 630,
-      "shopPrice": 699,
-      "priceFrom": "Intel 酷睿i3 10100F 4核心/4线程，睿频至高可达4.3GHz，超线程优化",
-      "zolId": "1342890"
+      "price": null
     },
     {
       "slug": "intel-core-i7-7700",
       "name": "Intel Core i7 7700",
       "score": 4488,
-      "price": 3150,
-      "refPrice": 2898,
-      "shopPrice": 3150,
-      "priceFrom": "Intel 酷睿i7 7700 4核心/8线程，LGA 1151，3.6GHz，8M三级缓存",
-      "zolId": "1159128"
+      "price": null
     },
     {
       "slug": "intel-xeon-e3-1280-v5",
