@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-05T06:23:52.268Z",
-  "scoresUpdatedAt": "2026-10-05T06:23:52.268Z",
-  "pricesUpdatedAt": "2026-10-05T06:23:52.268Z",
-  "estimatesUpdatedAt": "2026-10-05T06:23:52.268Z",
+  "fetchedAt": "2026-10-06T06:59:48.049Z",
+  "scoresUpdatedAt": "2026-10-06T06:59:48.049Z",
+  "pricesUpdatedAt": "2026-10-06T06:59:48.049Z",
+  "estimatesUpdatedAt": "2026-10-06T06:59:48.049Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -18,7 +18,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "zolId": "2119967",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
@@ -38,7 +43,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "zolId": "2119967",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-4090",
@@ -367,8 +377,8 @@
       "price": 4599,
       "refPrice": 4599,
       "shopPrice": null,
-      "priceFrom": "撼讯Radeon RX 6800 16GB 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1346350"
+      "priceFrom": "华硕Radeon RX6800-16G 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1348915"
     },
     {
       "slug": "amd-radeon-rx-7700-xt",
@@ -415,8 +425,8 @@
       "price": 4599,
       "refPrice": 4599,
       "shopPrice": null,
-      "priceFrom": "撼讯Radeon RX 6800 16GB 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1346350"
+      "priceFrom": "华硕Radeon RX6800-16G 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1348915"
     },
     {
       "slug": "amd-radeon-pro-w7700",
