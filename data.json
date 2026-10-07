@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-06T06:59:48.049Z",
-  "scoresUpdatedAt": "2026-10-06T06:59:48.049Z",
-  "pricesUpdatedAt": "2026-10-06T06:59:48.049Z",
-  "estimatesUpdatedAt": "2026-10-06T06:59:48.049Z",
+  "fetchedAt": "2026-10-07T06:40:09.950Z",
+  "scoresUpdatedAt": "2026-10-07T06:40:09.950Z",
+  "pricesUpdatedAt": "2026-10-07T06:40:09.950Z",
+  "estimatesUpdatedAt": "2026-10-07T06:40:09.950Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -18,12 +18,7 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967",
-      "estimate": {
-        "price": 66920,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "2119967"
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
@@ -1522,8 +1517,8 @@
       "price": 2399,
       "refPrice": 2399,
       "shopPrice": null,
-      "priceFrom": "影驰GeForce RTX 4060 大将W",
-      "zolId": "2109067"
+      "priceFrom": "影驰GeForce RTX 4060 大将B",
+      "zolId": "2109068"
     },
     {
       "slug": "nvidia-geforce-gtx-980-ti",
@@ -3545,9 +3540,9 @@
       "slug": "intel-core-i5-12600k",
       "name": "Intel Core i5-12600K",
       "score": 11837,
-      "price": 976,
+      "price": 1219,
       "refPrice": 1930,
-      "shopPrice": 976,
+      "shopPrice": 1219,
       "priceFrom": "Intel 酷睿 i5 12600K 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:10纳米 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十核心",
       "zolId": "1393370"
     },
@@ -4399,9 +4394,9 @@
       "slug": "intel-core-i5-12500",
       "name": "Intel Core i5-12500",
       "score": 9012,
-      "price": 976,
+      "price": 1219,
       "refPrice": null,
-      "shopPrice": 976,
+      "shopPrice": 1219,
       "priceFrom": "Intel 酷睿 i5 12500 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3GHz 核心数量:六核心",
       "zolId": "1394650"
     },
@@ -4493,9 +4488,9 @@
       "slug": "intel-core-i5-12400",
       "name": "Intel Core i5-12400",
       "score": 8845,
-      "price": 976,
+      "price": 1219,
       "refPrice": 1480,
-      "shopPrice": 976,
+      "shopPrice": 1219,
       "priceFrom": "Intel 酷睿 i5 12400 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.5GHz 核心数量:六核心",
       "zolId": "1394653"
     },
@@ -5969,9 +5964,9 @@
       "slug": "intel-core-i5-9600k",
       "name": "Intel Core i5 9600K",
       "score": 6181,
-      "price": 405,
+      "price": 1649,
       "refPrice": 1649,
-      "shopPrice": 405,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿i5 9600K 适用类型:台式机 CPU系列:酷睿i5 9代系列 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:3.7GHz 核心数量:六核心",
       "zolId": "1233481"
     },
@@ -6141,9 +6136,9 @@
       "slug": "intel-core-i5-9600kf",
       "name": "Intel Core i5-9600KF",
       "score": 5880,
-      "price": 405,
+      "price": 1299,
       "refPrice": 1299,
-      "shopPrice": 405,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿i5 9600KF 适用类型:台式机 CPU系列:酷睿i5 9代系列 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:3.7GHz 核心数量:六核心",
       "zolId": "1249008"
     },
@@ -6739,11 +6734,16 @@
       "slug": "intel-core-i5-9500",
       "name": "Intel Core i5 9500",
       "score": 4949,
-      "price": 405,
+      "price": 1849,
       "refPrice": 1849,
-      "shopPrice": 405,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿i5 9500 适用类型:台式机 CPU系列:酷睿i5 9代系列 制作工艺:14纳米 核心代号:Coffee Lake CPU主频:3GHz 核心数量:六核心 线程数量:六线程",
-      "zolId": "1269886"
+      "zolId": "1269886",
+      "estimate": {
+        "price": 405,
+        "source": "zol-detail",
+        "searchUrl": "https://detail.zol.com.cn/cpu/index1269886.shtml"
+      }
     },
     {
       "slug": "intel-core-i5-9400f",
