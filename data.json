@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-08T06:47:00.360Z",
-  "scoresUpdatedAt": "2026-10-08T06:47:00.360Z",
-  "pricesUpdatedAt": "2026-10-08T06:47:00.360Z",
-  "estimatesUpdatedAt": "2026-10-08T06:47:00.360Z",
+  "fetchedAt": "2026-10-09T06:55:19.656Z",
+  "scoresUpdatedAt": "2026-10-09T06:55:19.656Z",
+  "pricesUpdatedAt": "2026-10-09T06:55:19.656Z",
+  "estimatesUpdatedAt": "2026-10-09T06:55:19.656Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -18,12 +18,7 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967",
-      "estimate": {
-        "price": 66920,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "2119967"
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
@@ -1236,12 +1231,7 @@
       "refPrice": 1199,
       "shopPrice": null,
       "priceFrom": "升技GTX 1660 TI 6G D6 风扇散热，超高频率，畅玩游戏",
-      "zolId": "1972508",
-      "estimate": {
-        "price": 4975,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/gtx%201660%20ti%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "1972508"
     },
     {
       "slug": "lisuan-7g100-series-graphics",
@@ -1512,8 +1502,8 @@
       "price": 2399,
       "refPrice": 2399,
       "shopPrice": null,
-      "priceFrom": "影驰GeForce RTX 4060 大将B",
-      "zolId": "2109068"
+      "priceFrom": "影驰GeForce RTX 4060 大将W",
+      "zolId": "2109067"
     },
     {
       "slug": "nvidia-geforce-gtx-980-ti",
@@ -2937,9 +2927,9 @@
       "slug": "intel-core-i5-14600kf",
       "name": "Intel Core i5-14600KF",
       "score": 15436,
-      "price": 1629,
+      "price": 1619,
       "refPrice": 2499,
-      "shopPrice": 1629,
+      "shopPrice": 1619,
       "priceFrom": "Intel 酷睿 i5 14600KF 14核20线程，睿频至高可达5.3Ghz，24M三级缓存",
       "zolId": "1929615"
     },
@@ -3199,9 +3189,9 @@
       "slug": "intel-core-i5-14600",
       "name": "Intel Core i5-14600",
       "score": 13723,
-      "price": 1500,
+      "price": 1449,
       "refPrice": null,
-      "shopPrice": 1500,
+      "shopPrice": 1449,
       "priceFrom": "Intel 酷睿 i5 14600",
       "zolId": "1972506"
     },
@@ -3343,9 +3333,9 @@
       "slug": "intel-core-i5-14600t",
       "name": "Intel Core i5-14600T",
       "score": 12627,
-      "price": 1500,
+      "price": 1449,
       "refPrice": null,
-      "shopPrice": 1500,
+      "shopPrice": 1449,
       "priceFrom": "Intel 酷睿 i5 14600T",
       "zolId": "1972507"
     },
@@ -3365,9 +3355,9 @@
       "slug": "intel-core-i5-14500",
       "name": "Intel Core i5-14500",
       "score": 12569,
-      "price": 1500,
+      "price": 1449,
       "refPrice": null,
-      "shopPrice": 1500,
+      "shopPrice": 1449,
       "priceFrom": "Intel酷睿i5 14500",
       "zolId": "1972503"
     },
@@ -3745,9 +3735,9 @@
       "slug": "intel-core-i5-14400f",
       "name": "Intel Core i5-14400F",
       "score": 10916,
-      "price": 1129,
+      "price": 1179,
       "refPrice": null,
-      "shopPrice": 1129,
+      "shopPrice": 1179,
       "priceFrom": "Intel 酷睿 i5 14400F",
       "zolId": "1972500"
     },
@@ -4365,9 +4355,9 @@
       "slug": "intel-core-i5-12400f",
       "name": "Intel Core i5-12400F",
       "score": 9101,
-      "price": 969,
+      "price": 989,
       "refPrice": 1210,
-      "shopPrice": 969,
+      "shopPrice": 989,
       "priceFrom": "Intel 酷睿 i5 12400F 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake-S 插槽类型:LGA 1700 CPU主频:2.5GHz 核心数量:六核心",
       "zolId": "1338644"
     },
