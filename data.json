@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-13T07:12:03.401Z",
-  "scoresUpdatedAt": "2026-10-13T07:12:03.401Z",
-  "pricesUpdatedAt": "2026-10-13T07:12:03.401Z",
-  "estimatesUpdatedAt": "2026-10-13T07:12:03.401Z",
+  "fetchedAt": "2026-10-14T05:35:58.548Z",
+  "scoresUpdatedAt": "2026-10-14T05:35:58.548Z",
+  "pricesUpdatedAt": "2026-10-14T05:35:58.548Z",
+  "estimatesUpdatedAt": "2026-10-14T05:35:58.548Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -57,8 +57,8 @@
       "price": 12999,
       "refPrice": 12999,
       "shopPrice": null,
-      "priceFrom": "索泰GeForce RTX 4090 天启 OC",
-      "zolId": "1430499"
+      "priceFrom": "索泰GeForce RTX 4090 天启",
+      "zolId": "1466559"
     },
     {
       "slug": "nvidia-h200",
@@ -93,8 +93,8 @@
       "price": 6299,
       "refPrice": 6299,
       "shopPrice": null,
-      "priceFrom": "NVIDIA RTX 5070 Ti",
-      "zolId": "2118118"
+      "priceFrom": "索泰RTX 5070 Ti 16GB XGAMING 冰芯2.0散热系统，ARGB炫彩信仰灯，DLSS4",
+      "zolId": "2121435"
     },
     {
       "slug": "nvidia-geforce-rtx-4080-super",
@@ -143,8 +143,8 @@
       "price": 14999,
       "refPrice": 14999,
       "shopPrice": null,
-      "priceFrom": "NVIDIA GeForce RTX 3090 Ti显卡 显卡芯片:GeForce RTX 3090 Ti 显存类型:GDDR6X 显存容量:24GB 芯片厂商:NVIDIA CUDA核心:10752个 显示芯片系列:NVIDIA RTX 30系列 最大功耗:450W",
-      "zolId": "1395199"
+      "priceFrom": "技嘉GeForce RTX 3090 Ti GAMING 24G 散热方式:三风扇散热 3D API:DirectX 12，OpenGL 4.6 显卡芯片:GeForce RTX 3090 制作工艺:8纳米 显存类型:GDDR6X 显存容量:24GB 显存位宽:384bit",
+      "zolId": "1402700"
     },
     {
       "slug": "nvidia-geforce-rtx-5070",
@@ -173,8 +173,8 @@
       "price": 4899,
       "refPrice": 4899,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 4070 SUPER WINDFORCE OC 12G",
-      "zolId": "1977574"
+      "priceFrom": "ASL翔升Geforce RTX 4070 SUPER 战神 12GD6X",
+      "zolId": "1991211"
     },
     {
       "slug": "amd-radeon-ai-pro-r9700",
@@ -387,8 +387,8 @@
       "price": 3149,
       "refPrice": 3149,
       "shopPrice": null,
-      "priceFrom": "瀚铠Radeon RX 7700 XT 星空",
-      "zolId": "1995519"
+      "priceFrom": "盈通RX 7700 XT 12G D6 大地之神 PLUS 三风扇强劲散热，纯白配色，百搭",
+      "zolId": "2082441"
     },
     {
       "slug": "amd-radeon-pro-w7900",
@@ -459,8 +459,8 @@
       "price": 2699,
       "refPrice": 2699,
       "shopPrice": null,
-      "priceFrom": "微星GeForce RTX 4060 Ti VENTUS 3X 16G OC",
-      "zolId": "1958490"
+      "priceFrom": "七彩虹iGame GeForce RTX 4060 Ti 雾山五行定制版 8GB",
+      "zolId": "2104418"
     },
     {
       "slug": "nvidia-geforce-rtx-5060",
@@ -469,8 +469,8 @@
       "price": 2499,
       "refPrice": 2499,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 5060 WINDFORCE 8G DLSS 4，风之力散热系统，加固结构",
-      "zolId": "2128729"
+      "priceFrom": "耕升RTX 5060 追风 4+2相供电，第三代炫风之刃，风灵Mini散热器",
+      "zolId": "2148084"
     },
     {
       "slug": "nvidia-geforce-rtx-3070",
@@ -679,8 +679,8 @@
       "price": 2199,
       "refPrice": 2199,
       "shopPrice": null,
-      "priceFrom": "瀚铠Radeon RX 6650 XT 合金",
-      "zolId": "1466177"
+      "priceFrom": "微星RX 6650 XT MECH 2X 8G OC",
+      "zolId": "1975388"
     },
     {
       "slug": "amd-radeon-rx-7600",
@@ -897,8 +897,8 @@
       "price": 2499,
       "refPrice": 2499,
       "shopPrice": null,
-      "priceFrom": "AMD Radeon RX 6600显卡  显卡芯片:Radeon RX 6600 散热方式:散热风扇 显存类型:GDDR6 显存位宽:128bit 显存容量:8GB 芯片厂商:AMD 显存频率:14000MHz",
-      "zolId": "1370319"
+      "priceFrom": "XFX讯景RADEON RX 6600 8G 黑狼 显卡芯片:Radeon RX 6600 制作工艺:7纳米 散热方式:双风扇散热 显存类型:GDDR6 显存位宽:128bit 显存容量:8GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1391627"
     },
     {
       "slug": "amd-instinct-mi50-mi60",
@@ -955,8 +955,8 @@
       "price": 959,
       "refPrice": 959,
       "shopPrice": null,
-      "priceFrom": "铭影RX 5700 XT 8G 战将 风扇散热，丰富接口，磨砂外观",
-      "zolId": "1970808"
+      "priceFrom": "祺祥RX 5700 XT 8GB 游戏显卡，办公显卡，双风扇",
+      "zolId": "1970908"
     },
     {
       "slug": "amd-radeon-pro-vega-64",
@@ -983,8 +983,8 @@
       "price": 959,
       "refPrice": 959,
       "shopPrice": null,
-      "priceFrom": "铭影RX 5700 XT 8G 战将 风扇散热，丰富接口，磨砂外观",
-      "zolId": "1970808"
+      "priceFrom": "祺祥RX 5700 XT 8GB 游戏显卡，办公显卡，双风扇",
+      "zolId": "1970908"
     },
     {
       "slug": "amd-radeon-vega-frontier-edition",
@@ -1241,7 +1241,12 @@
       "refPrice": 1199,
       "shopPrice": null,
       "priceFrom": "升技GTX 1660 TI 6G D6 风扇散热，超高频率，畅玩游戏",
-      "zolId": "1972508"
+      "zolId": "1972508",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20ti%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "lisuan-7g100-series-graphics",
@@ -1512,8 +1517,8 @@
       "price": 2399,
       "refPrice": 2399,
       "shopPrice": null,
-      "priceFrom": "影驰GeForce RTX 4060 大将W",
-      "zolId": "2109067"
+      "priceFrom": "影驰GeForce RTX 4060 大将B",
+      "zolId": "2109068"
     },
     {
       "slug": "nvidia-geforce-gtx-980-ti",
@@ -2198,8 +2203,8 @@
       "price": 799,
       "refPrice": 799,
       "shopPrice": null,
-      "priceFrom": "蓝戟Intel Arc A380 Index 6G 6G大显存，畅快运行，品质加倍",
-      "zolId": "1990870"
+      "priceFrom": "撼与科技Arc A380 GENIE 妖精系列，游戏显卡，双槽双风扇",
+      "zolId": "2066369"
     },
     {
       "slug": "amd-radeon-pro-wx-5100-graphics",
@@ -2887,9 +2892,9 @@
       "slug": "intel-core-i5-14600k",
       "name": "Intel Core i5-14600K",
       "score": 15874,
-      "price": 1749,
+      "price": 1659,
       "refPrice": 2599,
-      "shopPrice": 1749,
+      "shopPrice": 1659,
       "priceFrom": "Intel 酷睿 i5 14600K 14核20线程，睿频至高可达5.3Ghz，24M三级缓存",
       "zolId": "1929614"
     },
