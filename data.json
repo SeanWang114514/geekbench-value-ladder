@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-14T05:35:58.548Z",
-  "scoresUpdatedAt": "2026-10-14T05:35:58.548Z",
-  "pricesUpdatedAt": "2026-10-14T05:35:58.548Z",
-  "estimatesUpdatedAt": "2026-10-14T05:35:58.548Z",
+  "fetchedAt": "2026-10-15T05:23:23.919Z",
+  "scoresUpdatedAt": "2026-10-15T05:23:23.919Z",
+  "pricesUpdatedAt": "2026-10-15T05:23:23.919Z",
+  "estimatesUpdatedAt": "2026-10-15T05:23:23.919Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -3086,9 +3086,9 @@
       "slug": "amd-ryzen-5-9600x",
       "name": "AMD Ryzen 5 9600X",
       "score": 14742,
-      "price": 1169,
+      "price": 1349,
       "refPrice": 1499,
-      "shopPrice": 1169,
+      "shopPrice": 1349,
       "priceFrom": "AMD Ryzen 5 9600X",
       "zolId": "2018967"
     },
