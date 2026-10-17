@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-16T05:15:25.568Z",
-  "scoresUpdatedAt": "2026-10-16T05:15:25.568Z",
-  "pricesUpdatedAt": "2026-10-16T05:15:25.568Z",
-  "estimatesUpdatedAt": "2026-10-16T05:15:25.568Z",
+  "fetchedAt": "2026-10-17T05:10:35.417Z",
+  "scoresUpdatedAt": "2026-10-17T05:10:35.417Z",
+  "pricesUpdatedAt": "2026-10-17T05:10:35.417Z",
+  "estimatesUpdatedAt": "2026-10-17T05:10:35.417Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -1231,12 +1231,7 @@
       "refPrice": 1199,
       "shopPrice": null,
       "priceFrom": "升技GTX 1660 TI 6G D6 风扇散热，超高频率，畅玩游戏",
-      "zolId": "1972508",
-      "estimate": {
-        "price": 4975,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/gtx%201660%20ti%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "1972508"
     },
     {
       "slug": "lisuan-7g100-series-graphics",
@@ -2472,9 +2467,9 @@
       "slug": "intel-core-i9-13900ks",
       "name": "Intel Core i9-13900KS",
       "score": 21359,
-      "price": 5999,
+      "price": 895,
       "refPrice": 5999,
-      "shopPrice": null,
+      "shopPrice": 895,
       "priceFrom": "Intel 酷睿 i9 13900KS",
       "zolId": "1454017"
     },
@@ -2734,9 +2729,9 @@
       "slug": "intel-core-i9-13900f",
       "name": "Intel Core i9-13900F",
       "score": 17128,
-      "price": 4599,
+      "price": 895,
       "refPrice": 4599,
-      "shopPrice": null,
+      "shopPrice": 895,
       "priceFrom": "Intel 酷睿 i9 13900F",
       "zolId": "1440236"
     },
@@ -2832,9 +2827,9 @@
       "slug": "intel-core-i9-13900",
       "name": "Intel Core i9-13900",
       "score": 16286,
-      "price": 4899,
+      "price": 895,
       "refPrice": 4899,
-      "shopPrice": null,
+      "shopPrice": 895,
       "priceFrom": "Intel 酷睿 i9 13900",
       "zolId": "1440235"
     },
@@ -3780,9 +3775,9 @@
       "slug": "intel-core-i5-13400f",
       "name": "Intel Core i5-13400F",
       "score": 10765,
-      "price": 1699,
+      "price": 1182,
       "refPrice": 1699,
-      "shopPrice": null,
+      "shopPrice": 1182,
       "priceFrom": "Intel 酷睿 i5 13400F",
       "zolId": "1440555"
     },
@@ -4052,9 +4047,9 @@
       "slug": "intel-core-i5-13400",
       "name": "Intel Core i5-13400",
       "score": 9920,
-      "price": 1799,
+      "price": 1182,
       "refPrice": 1799,
-      "shopPrice": null,
+      "shopPrice": 1182,
       "priceFrom": "Intel 酷睿 i5 13400",
       "zolId": "1440553"
     },
@@ -5144,9 +5139,9 @@
       "slug": "amd-ryzen-5-5500",
       "name": "AMD Ryzen 5 5500",
       "score": 7624,
-      "price": 599,
+      "price": 549,
       "refPrice": 1099,
-      "shopPrice": 599,
+      "shopPrice": 549,
       "priceFrom": "AMD Ryzen 5 5500 适用类型:笔记本 CPU系列:AMD Ryzen 5 5000 制作工艺:7纳米 插槽类型:Socket AM4 内存类型:DDR4 CPU主频:3.6GHz 核心数量:六核心",
       "zolId": "1403086"
     },
