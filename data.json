@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-17T05:10:35.417Z",
-  "scoresUpdatedAt": "2026-10-17T05:10:35.417Z",
-  "pricesUpdatedAt": "2026-10-17T05:10:35.417Z",
-  "estimatesUpdatedAt": "2026-10-17T05:10:35.417Z",
+  "fetchedAt": "2026-10-18T05:15:02.124Z",
+  "scoresUpdatedAt": "2026-10-18T05:15:02.124Z",
+  "pricesUpdatedAt": "2026-10-18T05:15:02.124Z",
+  "estimatesUpdatedAt": "2026-10-18T05:15:02.124Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -38,7 +38,12 @@
       "refPrice": 16499,
       "shopPrice": null,
       "priceFrom": "微星GeForce RTX 5090 D v2 24G VENTUS 3X OC 刀锋7代风扇，DLSS4，24GB GDDR7",
-      "zolId": "2153401"
+      "zolId": "2153401",
+      "estimate": {
+        "price": 66920,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/rtx%205090%20d%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-rtx-4090",
@@ -1231,7 +1236,12 @@
       "refPrice": 1199,
       "shopPrice": null,
       "priceFrom": "升技GTX 1660 TI 6G D6 风扇散热，超高频率，畅玩游戏",
-      "zolId": "1972508"
+      "zolId": "1972508",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20ti%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "lisuan-7g100-series-graphics",
@@ -3775,9 +3785,9 @@
       "slug": "intel-core-i5-13400f",
       "name": "Intel Core i5-13400F",
       "score": 10765,
-      "price": 1182,
+      "price": 1699,
       "refPrice": 1699,
-      "shopPrice": 1182,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿 i5 13400F",
       "zolId": "1440555"
     },
@@ -4047,9 +4057,9 @@
       "slug": "intel-core-i5-13400",
       "name": "Intel Core i5-13400",
       "score": 9920,
-      "price": 1182,
+      "price": 1799,
       "refPrice": 1799,
-      "shopPrice": 1182,
+      "shopPrice": null,
       "priceFrom": "Intel 酷睿 i5 13400",
       "zolId": "1440553"
     },
