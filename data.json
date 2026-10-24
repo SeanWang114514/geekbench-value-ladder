@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-23T05:32:43.179Z",
-  "scoresUpdatedAt": "2026-10-23T05:32:43.179Z",
-  "pricesUpdatedAt": "2026-10-23T05:32:43.179Z",
-  "estimatesUpdatedAt": "2026-10-23T05:32:43.179Z",
+  "fetchedAt": "2026-10-24T05:11:38.846Z",
+  "scoresUpdatedAt": "2026-10-24T05:11:38.846Z",
+  "pricesUpdatedAt": "2026-10-24T05:11:38.846Z",
+  "estimatesUpdatedAt": "2026-10-24T05:11:38.846Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -1202,7 +1202,12 @@
       "refPrice": 898,
       "shopPrice": null,
       "priceFrom": "精影GTX 1660 SUPER 6G 高效游戏，畅爽体验，强劲散热",
-      "zolId": "1968973"
+      "zolId": "1968973",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20super%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-gtx-1070-ti",
