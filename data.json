@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-10-26T05:33:17.350Z",
-  "scoresUpdatedAt": "2026-10-26T05:33:17.350Z",
-  "pricesUpdatedAt": "2026-10-26T05:33:17.350Z",
-  "estimatesUpdatedAt": "2026-10-26T05:33:17.350Z",
+  "fetchedAt": "2026-10-27T05:47:21.145Z",
+  "scoresUpdatedAt": "2026-10-27T05:47:21.145Z",
+  "pricesUpdatedAt": "2026-10-27T05:47:21.145Z",
+  "estimatesUpdatedAt": "2026-10-27T05:47:21.145Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
