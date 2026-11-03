@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-11-02T06:58:01.597Z",
-  "scoresUpdatedAt": "2026-11-02T06:58:01.597Z",
-  "pricesUpdatedAt": "2026-11-02T06:58:01.597Z",
-  "estimatesUpdatedAt": "2026-11-02T06:58:01.597Z",
+  "fetchedAt": "2026-11-03T07:22:07.666Z",
+  "scoresUpdatedAt": "2026-11-03T07:22:07.666Z",
+  "pricesUpdatedAt": "2026-11-03T07:22:07.666Z",
+  "estimatesUpdatedAt": "2026-11-03T07:22:07.666Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -498,11 +498,11 @@
       "slug": "nvidia-geforce-rtx-4000-sff-ada-generation",
       "name": "NVIDIA GeForce RTX 4000 SFF Ada Generation",
       "score": 110520,
-      "price": 10499,
-      "refPrice": 10499,
-      "shopPrice": null,
-      "priceFrom": "丽台RTX 4000 SFF Ada",
-      "zolId": "1610557"
+      "price": 11800,
+      "refPrice": 9999,
+      "shopPrice": 11800,
+      "priceFrom": "NVIDIA RTX 4000 SFF Ada 20G",
+      "zolId": "1631534"
     },
     {
       "slug": "amd-radeon-pro-w6800",
@@ -2800,9 +2800,9 @@
       "slug": "intel-core-i9-14900",
       "name": "Intel Core i9-14900",
       "score": 16407,
-      "price": 1849,
+      "price": 3998,
       "refPrice": null,
-      "shopPrice": 1849,
+      "shopPrice": 3998,
       "priceFrom": "Intel 酷睿 i9 14900",
       "zolId": "1972477"
     },
@@ -3534,9 +3534,9 @@
       "slug": "intel-core-i5-12600k",
       "name": "Intel Core i5-12600K",
       "score": 11837,
-      "price": 954,
+      "price": 943,
       "refPrice": 1930,
-      "shopPrice": 954,
+      "shopPrice": 943,
       "priceFrom": "Intel 酷睿 i5 12600K 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:10纳米 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十核心",
       "zolId": "1393370"
     },
@@ -4384,9 +4384,9 @@
       "slug": "intel-core-i5-12500",
       "name": "Intel Core i5-12500",
       "score": 9012,
-      "price": 954,
+      "price": 943,
       "refPrice": null,
-      "shopPrice": 954,
+      "shopPrice": 943,
       "priceFrom": "Intel 酷睿 i5 12500 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3GHz 核心数量:六核心",
       "zolId": "1394650"
     },
@@ -4478,9 +4478,9 @@
       "slug": "intel-core-i5-12400",
       "name": "Intel Core i5-12400",
       "score": 8845,
-      "price": 954,
+      "price": 943,
       "refPrice": 1480,
-      "shopPrice": 954,
+      "shopPrice": 943,
       "priceFrom": "Intel 酷睿 i5 12400 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.5GHz 核心数量:六核心",
       "zolId": "1394653"
     },
