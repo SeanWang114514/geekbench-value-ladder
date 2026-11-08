@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-11-07T06:41:39.271Z",
-  "scoresUpdatedAt": "2026-11-07T06:41:39.271Z",
-  "pricesUpdatedAt": "2026-11-07T06:41:39.271Z",
-  "estimatesUpdatedAt": "2026-11-07T06:41:39.271Z",
+  "fetchedAt": "2026-11-08T06:48:25.557Z",
+  "scoresUpdatedAt": "2026-11-08T06:48:25.557Z",
+  "pricesUpdatedAt": "2026-11-08T06:48:25.557Z",
+  "estimatesUpdatedAt": "2026-11-08T06:48:25.557Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -367,8 +367,8 @@
       "price": 4599,
       "refPrice": 4599,
       "shopPrice": null,
-      "priceFrom": "蓝宝石Radeon RX 6800 16G GDDR6 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1346854"
+      "priceFrom": "技嘉Radeon RX 6800 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1349682"
     },
     {
       "slug": "amd-radeon-rx-7700-xt",
@@ -415,8 +415,8 @@
       "price": 4599,
       "refPrice": 4599,
       "shopPrice": null,
-      "priceFrom": "蓝宝石Radeon RX 6800 16G GDDR6 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
-      "zolId": "1346854"
+      "priceFrom": "技嘉Radeon RX 6800 显卡芯片:Radeon RX 6800 制作工艺:7纳米 散热方式:三风扇散热 显存类型:GDDR6 显存位宽:256bit 显存容量:16GB 接口类型:PCI Express 4.0 16X",
+      "zolId": "1349682"
     },
     {
       "slug": "amd-radeon-pro-w7700",
@@ -5092,9 +5092,9 @@
       "slug": "amd-ryzen-5-5600g",
       "name": "AMD Ryzen 5 5600G",
       "score": 7662,
-      "price": 659,
+      "price": 692,
       "refPrice": 1599,
-      "shopPrice": 659,
+      "shopPrice": 692,
       "priceFrom": "AMD Ryzen 5 5600G 6核心/12线程，4.4GHz加速频率，搭载Radeon Vega Graphic",
       "zolId": "1366838"
     },
@@ -5286,9 +5286,9 @@
       "slug": "intel-core-i3-12100f",
       "name": "Intel Core i3-12100F",
       "score": 7369,
-      "price": 536,
+      "price": 1149,
       "refPrice": 850,
-      "shopPrice": 536,
+      "shopPrice": 1149,
       "priceFrom": "Intel 酷睿 i3 12100F 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:0GHz 核心数量:四核心",
       "zolId": "1396494"
     },
@@ -5650,9 +5650,9 @@
       "slug": "intel-core-i3-12100",
       "name": "Intel Core i3-12100",
       "score": 6740,
-      "price": 536,
+      "price": 1149,
       "refPrice": 990,
-      "shopPrice": 536,
+      "shopPrice": 1149,
       "priceFrom": "Intel 酷睿 i3 12100 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7（10纳米） 核心代号:Alder Lake 插槽类型:LGA 1700 内存类型:DDR5 4800MHz，DDR4 3200MHz CPU主频:3.3GHz",
       "zolId": "1394655"
     },
