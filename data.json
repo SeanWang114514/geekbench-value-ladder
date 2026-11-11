@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-11-10T07:51:49.860Z",
-  "scoresUpdatedAt": "2026-11-10T07:51:49.860Z",
-  "pricesUpdatedAt": "2026-11-10T07:51:49.860Z",
-  "estimatesUpdatedAt": "2026-11-10T07:51:49.860Z",
+  "fetchedAt": "2026-11-11T07:20:03.543Z",
+  "scoresUpdatedAt": "2026-11-11T07:20:03.543Z",
+  "pricesUpdatedAt": "2026-11-11T07:20:03.543Z",
+  "estimatesUpdatedAt": "2026-11-11T07:20:03.543Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -100,11 +100,11 @@
       "slug": "nvidia-geforce-rtx-4080-super",
       "name": "NVIDIA GeForce RTX 4080 SUPER",
       "score": 229618,
-      "price": 7599,
-      "refPrice": null,
-      "shopPrice": 7599,
-      "priceFrom": "PNY GeForce RTX 4080 SUPER 16GB VERTO ARGB OC",
-      "zolId": "1980528"
+      "price": 8099,
+      "refPrice": 8099,
+      "shopPrice": null,
+      "priceFrom": "技嘉风魔 GeForce RTX 4080 SUPER WindForce 16G 正逆转导流风厨，进气格栅散热，造型金属背板",
+      "zolId": "1980438"
     },
     {
       "slug": "nvidia-geforce-rtx-4080",
@@ -387,8 +387,8 @@
       "price": 3149,
       "refPrice": 3149,
       "shopPrice": null,
-      "priceFrom": "盈通RX 7700 XT 12G D6 大地之神 PLUS 三风扇强劲散热，纯白配色，百搭",
-      "zolId": "2082441"
+      "priceFrom": "瀚铠Radeon RX 7700 XT 星空",
+      "zolId": "1995519"
     },
     {
       "slug": "amd-radeon-pro-w7900",
@@ -544,11 +544,11 @@
       "slug": "amd-radeon-rx-6750-gre-12gb",
       "name": "AMD Radeon RX 6750 GRE 12GB",
       "score": 109027,
-      "price": 1919,
-      "refPrice": 2049,
-      "shopPrice": 1919,
-      "priceFrom": "撼讯RX 6750 GRE 竞技白卡 10G 双风扇散热，强化金属背板，竞技白卡",
-      "zolId": "2070373"
+      "price": 1999,
+      "refPrice": 1999,
+      "shopPrice": null,
+      "priceFrom": "撼讯RX 6750 GRE 竞技 10G 双风扇散热，强化金属背板，强大性能",
+      "zolId": "2070374"
     },
     {
       "slug": "adreno-740",
@@ -660,11 +660,11 @@
       "slug": "amd-radeon-rx-6750-gre-10gb",
       "name": "AMD Radeon RX 6750 GRE 10GB",
       "score": 95277,
-      "price": 1919,
-      "refPrice": 2049,
-      "shopPrice": 1919,
-      "priceFrom": "撼讯RX 6750 GRE 竞技白卡 10G 双风扇散热，强化金属背板，竞技白卡",
-      "zolId": "2070373"
+      "price": 1999,
+      "refPrice": 1999,
+      "shopPrice": null,
+      "priceFrom": "撼讯RX 6750 GRE 竞技 10G 双风扇散热，强化金属背板，强大性能",
+      "zolId": "2070374"
     },
     {
       "slug": "amd-radeon-rx-6800m",
@@ -784,11 +784,11 @@
       "slug": "intel-arc-a770-graphics",
       "name": "Intel Arc A770 Graphics",
       "score": 86205,
-      "price": 2049,
-      "refPrice": 2249,
-      "shopPrice": 2049,
-      "priceFrom": "蓝戟Arc A770 Photon 16G OC ELDEN RING Shadow of the Erdtree",
-      "zolId": "2073829"
+      "price": 2199,
+      "refPrice": 2199,
+      "shopPrice": null,
+      "priceFrom": "蓝戟Arc A770 Photon 16G OC W X ASIAN GAMES 亚运联名款，智能启停，散热鳍i片",
+      "zolId": "1950003"
     },
     {
       "slug": "amd-radeon-rx-6600-xt",
@@ -1202,12 +1202,7 @@
       "refPrice": 898,
       "shopPrice": null,
       "priceFrom": "精影GTX 1660 SUPER 6G 高效游戏，畅爽体验，强劲散热",
-      "zolId": "1968973",
-      "estimate": {
-        "price": 4975,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/gtx%201660%20super%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "1968973"
     },
     {
       "slug": "nvidia-geforce-gtx-1070-ti",
@@ -1241,12 +1236,7 @@
       "refPrice": 1199,
       "shopPrice": null,
       "priceFrom": "升技GTX 1660 TI 6G D6 风扇散热，超高频率，畅玩游戏",
-      "zolId": "1972508",
-      "estimate": {
-        "price": 4975,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/gtx%201660%20ti%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "1972508"
     },
     {
       "slug": "lisuan-7g100-series-graphics",
@@ -2448,7 +2438,11 @@
       "slug": "amd-ryzen-9-9950x3d",
       "name": "AMD Ryzen 9 9950X3D",
       "score": 22169,
-      "price": null
+      "price": 5659,
+      "refPrice": null,
+      "shopPrice": 5659,
+      "priceFrom": "AMD Ryzen 9 9950X3D",
+      "zolId": "2118101"
     },
     {
       "slug": "amd-epyc-9654p",
@@ -2526,7 +2520,11 @@
       "slug": "amd-ryzen-9-9900x3d",
       "name": "AMD Ryzen 9 9900X3D",
       "score": 20060,
-      "price": null
+      "price": 5659,
+      "refPrice": null,
+      "shopPrice": 5659,
+      "priceFrom": "AMD Ryzen 9 9900X3D",
+      "zolId": "2118100"
     },
     {
       "slug": "intel-core-i9-14900k",
@@ -2614,9 +2612,9 @@
       "slug": "intel-core-i7-14700k",
       "name": "Intel Core i7-14700K",
       "score": 18760,
-      "price": 3049,
+      "price": 2699,
       "refPrice": 3499,
-      "shopPrice": 3049,
+      "shopPrice": 2699,
       "priceFrom": "Intel 酷睿 i7 14700K 酷睿14代，20核28线程， 睿频至高可达5.6Ghz",
       "zolId": "1814492"
     },
@@ -2810,9 +2808,9 @@
       "slug": "intel-core-i9-14900",
       "name": "Intel Core i9-14900",
       "score": 16407,
-      "price": 3499,
+      "price": 2549,
       "refPrice": null,
-      "shopPrice": 3499,
+      "shopPrice": 2549,
       "priceFrom": "Intel 酷睿 i9 14900",
       "zolId": "1972477"
     },
@@ -2832,9 +2830,9 @@
       "slug": "intel-core-i7-14700f",
       "name": "Intel Core i7-14700F",
       "score": 16300,
-      "price": 2599,
+      "price": 2549,
       "refPrice": null,
-      "shopPrice": 2599,
+      "shopPrice": 2549,
       "priceFrom": "Intel 酷睿 i7 14700F",
       "zolId": "1972512"
     },
@@ -2952,9 +2950,9 @@
       "slug": "intel-core-i7-14700",
       "name": "Intel Core i7-14700",
       "score": 15409,
-      "price": 2599,
+      "price": 2549,
       "refPrice": null,
-      "shopPrice": 2599,
+      "shopPrice": 2549,
       "priceFrom": "Intel 酷睿 i7 14700",
       "zolId": "1972511"
     },
@@ -3232,9 +3230,9 @@
       "slug": "intel-core-i7-12700kf",
       "name": "Intel Core i7-12700KF",
       "score": 13370,
-      "price": 1549,
+      "price": 1763,
       "refPrice": 2730,
-      "shopPrice": 1549,
+      "shopPrice": 1763,
       "priceFrom": "Intel 酷睿 i7 12700KF 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.6GHz 核心数量:十二核心",
       "zolId": "1393369"
     },
@@ -3286,7 +3284,11 @@
       "slug": "intel-core-i7-12700e",
       "name": "Intel Core i7-12700E",
       "score": 12891,
-      "price": null
+      "price": 1763,
+      "refPrice": null,
+      "shopPrice": 1763,
+      "priceFrom": "Intel 酷睿 i7 12700E 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:十二核心",
+      "zolId": "1396471"
     },
     {
       "slug": "amd-ryzen-5-7600x",
@@ -4166,7 +4168,11 @@
       "slug": "intel-core-i5-12600",
       "name": "Intel Core i5-12600",
       "score": 9620,
-      "price": null
+      "price": 1219,
+      "refPrice": null,
+      "shopPrice": 1219,
+      "priceFrom": "Intel 酷睿 i5 12600 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:3.3GHz 核心数量:六核心",
+      "zolId": "1394649"
     },
     {
       "slug": "intel-xeon-e5-2679-v9",
@@ -4184,7 +4190,11 @@
       "slug": "intel-core-i5-14500t",
       "name": "Intel Core i5-14500T",
       "score": 9597,
-      "price": null
+      "price": 1400,
+      "refPrice": null,
+      "shopPrice": 1400,
+      "priceFrom": "Intel 酷睿 i5 14500T",
+      "zolId": "1972505"
     },
     {
       "slug": "intel-xeon-silver-4410y",
@@ -4208,7 +4218,11 @@
       "slug": "intel-core-i7-12700t",
       "name": "Intel Core i7-12700T",
       "score": 9520,
-      "price": null
+      "price": 1763,
+      "refPrice": null,
+      "shopPrice": 1763,
+      "priceFrom": "Intel 酷睿 i7 12700T 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:0GHz 核心数量:十二核心",
+      "zolId": "1394717"
     },
     {
       "slug": "intel-core-i9-11900f",
@@ -4634,9 +4648,9 @@
       "slug": "intel-core-i9-9900ks",
       "name": "Intel Core i9-9900KS",
       "score": 8589,
-      "price": 3499,
+      "price": 3400,
       "refPrice": 3499,
-      "shopPrice": null,
+      "shopPrice": 3400,
       "priceFrom": "Intel 酷睿i9 9900KS 适用类型:台式机 CPU系列:酷睿i9 9代系列 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:4GHz 核心数量:八核心",
       "zolId": "1276748"
     },
@@ -4712,7 +4726,11 @@
       "slug": "intel-core-i5-12500e",
       "name": "Intel Core i5-12500E",
       "score": 8489,
-      "price": null
+      "price": 1219,
+      "refPrice": null,
+      "shopPrice": 1219,
+      "priceFrom": "Intel 酷睿 i5 12500E 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.9GHz 核心数量:六核心",
+      "zolId": "1396479"
     },
     {
       "slug": "intel-xeon-w-2150b",
@@ -4904,11 +4922,11 @@
       "slug": "intel-core-i7-10700k",
       "name": "Intel Core i7 10700K",
       "score": 8105,
-      "price": 2150,
-      "refPrice": 2150,
-      "shopPrice": null,
-      "priceFrom": "Intel 酷睿i7 10700K 复仇者联盟珍藏版 适用类型:台式机 CPU系列:酷睿i7 10代系列 制作工艺:14纳米 核心代号:Comet Lake 插槽类型:LGA 1200 CPU主频:3.8GHz 核心数量:八核心",
-      "zolId": "1340633"
+      "price": 2560,
+      "refPrice": 2699,
+      "shopPrice": 2560,
+      "priceFrom": "Intel 酷睿i7 10700K LGA 1200，八核心，十六线程，最高5.1GHz睿频",
+      "zolId": "1299169"
     },
     {
       "slug": "intel-xeon-w-1350p",
@@ -5112,7 +5130,11 @@
       "slug": "intel-core-i3-12100e",
       "name": "Intel Core i3-12100E",
       "score": 7661,
-      "price": null
+      "price": 1149,
+      "refPrice": null,
+      "shopPrice": 1149,
+      "priceFrom": "Intel 酷睿 i3 12100E 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:0GHz 核心数量:四核心",
+      "zolId": "1396489"
     },
     {
       "slug": "intel-xeon-silver-4214r",
@@ -5192,7 +5214,11 @@
       "slug": "intel-core-i5-12500t",
       "name": "Intel Core i5-12500T",
       "score": 7557,
-      "price": null
+      "price": 1219,
+      "refPrice": null,
+      "shopPrice": 1219,
+      "priceFrom": "Intel 酷睿 i5 12500T 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake-T 插槽类型:LGA 1700 CPU主频:2GHz 核心数量:六核心",
+      "zolId": "1394727"
     },
     {
       "slug": "intel-xeon-e5-2690-v4",
@@ -5306,7 +5332,11 @@
       "slug": "intel-core-i5-12500te",
       "name": "Intel Core i5-12500TE",
       "score": 7364,
-      "price": null
+      "price": 1219,
+      "refPrice": null,
+      "shopPrice": 1219,
+      "priceFrom": "Intel 酷睿 i5 12500TE 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:1.9GHz 核心数量:六核心",
+      "zolId": "1396478"
     },
     {
       "slug": "amd-ryzen-5-220",
@@ -5318,7 +5348,11 @@
       "slug": "intel-core-i5-12600t",
       "name": "Intel Core i5-12600T",
       "score": 7338,
-      "price": null
+      "price": 1219,
+      "refPrice": null,
+      "shopPrice": 1219,
+      "priceFrom": "Intel 酷睿 i5 12600T 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:六核心",
+      "zolId": "1394729"
     },
     {
       "slug": "intel-core-i7-6900k",
@@ -5330,7 +5364,11 @@
       "slug": "intel-core-i7-12700te",
       "name": "Intel Core i7-12700TE",
       "score": 7319,
-      "price": null
+      "price": 1763,
+      "refPrice": null,
+      "shopPrice": 1763,
+      "priceFrom": "Intel 酷睿 i7 12700TE 适用类型:台式机 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:1.4GHz 核心数量:十二核心",
+      "zolId": "1396474"
     },
     {
       "slug": "intel-xeon-e5-2673-v4",
@@ -5348,7 +5386,11 @@
       "slug": "intel-core-i9-9900",
       "name": "Intel Core i9-9900",
       "score": 7310,
-      "price": null
+      "price": 3400,
+      "refPrice": null,
+      "shopPrice": 3400,
+      "priceFrom": "Intel 酷睿i9 9900 适用类型:台式机 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:3.1GHz 核心数量:八核心 线程数量:十六线程",
+      "zolId": "1269838"
     },
     {
       "slug": "intel-core-i7-10700f",
@@ -5364,7 +5406,11 @@
       "slug": "intel-core-i3-12300",
       "name": "Intel Core i3-12300",
       "score": 7272,
-      "price": null
+      "price": 1149,
+      "refPrice": null,
+      "shopPrice": 1149,
+      "priceFrom": "Intel 酷睿 i3 12300 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:0GHz 核心数量:四核心",
+      "zolId": "1394654"
     },
     {
       "slug": "intel-xeon-e5-2695-v4",
@@ -5460,7 +5506,11 @@
       "slug": "intel-core-i5-12400t",
       "name": "Intel Core i5-12400T",
       "score": 7133,
-      "price": null
+      "price": 1219,
+      "refPrice": null,
+      "shopPrice": 1219,
+      "priceFrom": "Intel 酷睿 i5 12400T 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:1.8GHz 核心数量:六核心",
+      "zolId": "1394731"
     },
     {
       "slug": "amd-ryzen-threadripper-1920x",
@@ -5528,7 +5578,11 @@
       "slug": "intel-core-i3-13100e",
       "name": "Intel Core i3-13100E",
       "score": 7058,
-      "price": null
+      "price": 769,
+      "refPrice": null,
+      "shopPrice": 769,
+      "priceFrom": "Intel 酷睿 i3 13100E",
+      "zolId": "1440454"
     },
     {
       "slug": "intel-xeon-e5-2690-v3",
@@ -5564,7 +5618,11 @@
       "slug": "amd-ryzen-7-5700ge",
       "name": "AMD Ryzen 7 5700GE",
       "score": 6970,
-      "price": null
+      "price": 692,
+      "refPrice": null,
+      "shopPrice": 692,
+      "priceFrom": "AMD Ryzen 7 5700GE 适用类型:台式机 CPU系列:AMD Ryzen 7 5000 制作工艺:7纳米 插槽类型:Socket AM4 CPU主频:3.2GHz 核心数量:八核心 线程数量:十六线程",
+      "zolId": "1366837"
     },
     {
       "slug": "intel-xeon-e5-2683-v4",
@@ -5588,7 +5646,11 @@
       "slug": "intel-core-i3-12300t",
       "name": "Intel Core i3-12300T",
       "score": 6900,
-      "price": null
+      "price": 1149,
+      "refPrice": null,
+      "shopPrice": 1149,
+      "priceFrom": "Intel 酷睿 i3 12300T 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.3GHz 核心数量:四核心",
+      "zolId": "1394732"
     },
     {
       "slug": "amd-ryzen-5-3600",
@@ -5810,7 +5872,11 @@
       "slug": "intel-core-i9-9900t",
       "name": "Intel Core i9-9900T",
       "score": 6412,
-      "price": null
+      "price": 3400,
+      "refPrice": null,
+      "shopPrice": 3400,
+      "priceFrom": "Intel 酷睿i9 9900T 适用类型:台式机 制作工艺:14纳米 核心代号:Coffee Lake 插槽类型:LGA 1151 CPU主频:2.1GHz 核心数量:八核心 线程数量:十六线程",
+      "zolId": "1268093"
     },
     {
       "slug": "intel-xeon-silver-4214",
@@ -5850,7 +5916,11 @@
       "slug": "intel-core-i9-9980hk",
       "name": "Intel Core i9-9980HK @ 2.40GHz",
       "score": 6360,
-      "price": null
+      "price": 3400,
+      "refPrice": null,
+      "shopPrice": 3400,
+      "priceFrom": "Intel 酷睿i9 9980HK 适用类型:笔记本 制作工艺:14纳米 核心代号:Coffee Lake CPU主频:2.4GHz 核心数量:八核心 线程数量:十六线程 三级缓存:16MB",
+      "zolId": "1266566"
     },
     {
       "slug": "intel-xeon-e5-2680-v3",
@@ -5886,7 +5956,11 @@
       "slug": "amd-ryzen-5-5560u",
       "name": "AMD Ryzen 5 5560U",
       "score": 6292,
-      "price": null
+      "price": 692,
+      "refPrice": null,
+      "shopPrice": 692,
+      "priceFrom": "AMD Ryzen 5 5560U 适用类型:笔记本 CPU系列:AMD Ryzen 5 5000 制作工艺:7纳米 CPU主频:2.3GHz 核心数量:六核心 线程数量:十二线程 热设计功耗(TDP):15W",
+      "zolId": "1397504"
     },
     {
       "slug": "intel-xeon-e-2236",
@@ -5898,7 +5972,11 @@
       "slug": "intel-core-i5-10600",
       "name": "Intel Core i5-10600",
       "score": 6261,
-      "price": null
+      "price": 1059,
+      "refPrice": null,
+      "shopPrice": 1059,
+      "priceFrom": "Intel 酷睿i5 10600 适用类型:台式机 CPU系列:酷睿i5 10代系列 制作工艺:14纳米 核心代号:Comet Lake-S CPU主频:3.3GHz 核心数量:六核心 线程数量:十二线程",
+      "zolId": "1304638"
     },
     {
       "slug": "intel-xeon-silver-4215",
@@ -5942,7 +6020,11 @@
       "slug": "intel-core-i7-1260u",
       "name": "Intel Core i7-1260U",
       "score": 6202,
-      "price": null
+      "price": 1763,
+      "refPrice": null,
+      "shopPrice": 1763,
+      "priceFrom": "Intel 酷睿 i7 1260U 适用类型:笔记本 CPU系列:酷睿i7 12代系列 制作工艺:Intel 7 CPU主频:1.1GHz 核心数量:十核心 线程数量:十二线程 三级缓存:12MB",
+      "zolId": "1396526"
     },
     {
       "slug": "intel-core-i5-9600k",
@@ -6028,7 +6110,11 @@
       "slug": "intel-core-i3-12100t",
       "name": "Intel Core i3-12100T",
       "score": 6090,
-      "price": null
+      "price": 1149,
+      "refPrice": null,
+      "shopPrice": 1149,
+      "priceFrom": "Intel 酷睿 i3 12100T 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.2GHz 核心数量:四核心",
+      "zolId": "1394733"
     },
     {
       "slug": "intel-core-i9-9880h",
@@ -6050,7 +6136,11 @@
       "slug": "amd-ryzen-5-5600ge",
       "name": "AMD Ryzen 5 5600GE",
       "score": 6068,
-      "price": null
+      "price": 692,
+      "refPrice": null,
+      "shopPrice": 692,
+      "priceFrom": "AMD Ryzen 5 5600GE 适用类型:台式机 CPU系列:AMD Ryzen 5 5000 制作工艺:7纳米 插槽类型:Socket AM4 CPU主频:3.4GHz 核心数量:六核心 线程数量:十二线程",
+      "zolId": "1366841"
     },
     {
       "slug": "intel-xeon-gold-6128",
@@ -6108,7 +6198,11 @@
       "slug": "intel-core-i3-13100te",
       "name": "Intel Core i3-13100TE",
       "score": 5905,
-      "price": null
+      "price": 769,
+      "refPrice": null,
+      "shopPrice": 769,
+      "priceFrom": "Intel 酷睿 i3 13100TE",
+      "zolId": "1440457"
     },
     {
       "slug": "intel-xeon-silver-4116",
@@ -6240,7 +6334,11 @@
       "slug": "intel-core-i3-10325",
       "name": "Intel Core i3-10325",
       "score": 5712,
-      "price": null
+      "price": 699,
+      "refPrice": null,
+      "shopPrice": 699,
+      "priceFrom": "Intel 酷睿i3 10325 4核心/8线程，睿频至高可达4.7GHz，8MB三级缓存",
+      "zolId": "1384471"
     },
     {
       "slug": "intel-core-i7-6800k",
@@ -6270,7 +6368,11 @@
       "slug": "intel-core-i7-10700t",
       "name": "Intel Core i7-10700T",
       "score": 5654,
-      "price": null
+      "price": 2560,
+      "refPrice": null,
+      "shopPrice": 2560,
+      "priceFrom": "Intel 酷睿i7 10700T 适用类型:台式机 CPU系列:酷睿i7 10代系列 制作工艺:14纳米 核心代号:Comet Lake-S CPU主频:0GHz 核心数量:八核心 线程数量:十六线程",
+      "zolId": "1307621"
     },
     {
       "slug": "intel-core-i5-10500e",
@@ -6304,7 +6406,11 @@
       "slug": "intel-core-i7-10850h",
       "name": "Intel Core i7-10850H @ 2.70GHz",
       "score": 5532,
-      "price": null
+      "price": 2560,
+      "refPrice": null,
+      "shopPrice": 2560,
+      "priceFrom": "Intel 酷睿i7 10850H 适用类型:笔记本 CPU系列:酷睿i7 10代系列 制作工艺:14纳米 核心代号:Comet Lake-H CPU主频:2.7GHz 核心数量:六核心 线程数量:十二线程",
+      "zolId": "1317609"
     },
     {
       "slug": "amd-ryzen-5-pro-4650ge",
@@ -6502,7 +6608,11 @@
       "slug": "intel-core-i7-1068ng7",
       "name": "Intel Core i7-1068NG7 @ 2.30GHz",
       "score": 5239,
-      "price": null
+      "price": 2560,
+      "refPrice": null,
+      "shopPrice": 2560,
+      "priceFrom": "Intel 酷睿i7 1068NG7 适用类型:笔记本 CPU系列:酷睿i7 10代系列 制作工艺:10纳米 核心代号:Ice Lake CPU主频:2.3GHz 核心数量:四核心 线程数量:八线程",
+      "zolId": "1323072"
     },
     {
       "slug": "amd-ryzen-5-2600x",
@@ -6598,7 +6708,11 @@
       "slug": "intel-core-i5-10500h",
       "name": "Intel Core i5-10500H @ 2.50GHz",
       "score": 5134,
-      "price": null
+      "price": 1059,
+      "refPrice": null,
+      "shopPrice": 1059,
+      "priceFrom": "Intel 酷睿i5 10500H 适用类型:笔记本 CPU系列:酷睿i5 10代系列 制作工艺:14纳米 核心代号:Comet Lake-S CPU主频:2.5GHz 核心数量:六核心 线程数量:十二线程",
+      "zolId": "1310277"
     },
     {
       "slug": "intel-core-i7-1195g7",
@@ -6638,7 +6752,11 @@
       "slug": "intel-core-i3-13100t",
       "name": "Intel Core i3-13100T",
       "score": 5066,
-      "price": null
+      "price": 769,
+      "refPrice": null,
+      "shopPrice": 769,
+      "priceFrom": "Intel 酷睿 i3 13100T",
+      "zolId": "1440456"
     },
     {
       "slug": "intel-xeon-e5-2630-v3",
@@ -6662,7 +6780,11 @@
       "slug": "intel-core-i3-10320",
       "name": "Intel Core i3-10320",
       "score": 5057,
-      "price": null
+      "price": 699,
+      "refPrice": null,
+      "shopPrice": 699,
+      "priceFrom": "Intel 酷睿i3 10320 适用类型:台式机 CPU系列:酷睿i3 10代系列 制作工艺:14纳米 核心代号:Comet Lake-S 插槽类型:LGA 1200 CPU主频:3.8GHz 核心数量:四核心",
+      "zolId": "1321778"
     },
     {
       "slug": "intel-u300e",
@@ -6702,17 +6824,17 @@
       "slug": "intel-core-i7-9750h",
       "name": "Intel Core i7-9750H @ 2.60GHz",
       "score": 4978,
-      "price": 2049,
-      "refPrice": null,
-      "shopPrice": 2049,
-      "priceFrom": "Intel 酷睿i7 9750H 适用类型:笔记本 制作工艺:14纳米 CPU主频:2.6GHz 核心数量:六核心 线程数量:十二线程 三级缓存:12MB 总线规格:DMI3 8GT/s",
-      "zolId": "1266268"
+      "price": null
     },
     {
       "slug": "intel-core-i5-10600t",
       "name": "Intel Core i5-10600T",
       "score": 4970,
-      "price": null
+      "price": 1059,
+      "refPrice": null,
+      "shopPrice": 1059,
+      "priceFrom": "Intel 酷睿i5 10600T 适用类型:台式机 CPU系列:酷睿i5 10代系列 制作工艺:14纳米 插槽类型:LGA 1200 CPU主频:2.4GHz 核心数量:六核心 线程数量:十二线程",
+      "zolId": "1306239"
     },
     {
       "slug": "intel-core-i5-9500",
@@ -6780,7 +6902,11 @@
       "slug": "intel-core-i5-1038ng7",
       "name": "Intel Core i5-1038NG7 @ 2.00GHz",
       "score": 4901,
-      "price": null
+      "price": 1059,
+      "refPrice": null,
+      "shopPrice": 1059,
+      "priceFrom": "Intel 酷睿i5 1038NG7 适用类型:笔记本 CPU系列:酷睿i5 10代系列 制作工艺:10纳米 核心代号:Ice Lake CPU主频:2GHz 核心数量:四核心 线程数量:八线程",
+      "zolId": "1323073"
     },
     {
       "slug": "amd-ryzen-5-2600",
@@ -6826,7 +6952,11 @@
       "slug": "intel-core-i3-12100te",
       "name": "Intel Core i3-12100TE",
       "score": 4862,
-      "price": null
+      "price": 1149,
+      "refPrice": null,
+      "shopPrice": 1149,
+      "priceFrom": "Intel 酷睿 i3 12100TE 适用类型:台式机 CPU系列:酷睿i3 12代系列 制作工艺:Intel 7 核心代号:Alder Lake 插槽类型:LGA 1700 CPU主频:2.1GHz 核心数量:四核心",
+      "zolId": "1396491"
     },
     {
       "slug": "intel-core-i5-8400",
@@ -6912,7 +7042,11 @@
       "slug": "intel-core-i3-10300",
       "name": "Intel Core i3-10300",
       "score": 4748,
-      "price": null
+      "price": 699,
+      "refPrice": null,
+      "shopPrice": 699,
+      "priceFrom": "Intel 酷睿i3 10300 适用类型:台式机 CPU系列:酷睿i3 10代系列 制作工艺:14纳米 核心代号:Comet Lake 插槽类型:LGA 1200 CPU主频:3.7GHz 核心数量:四核心",
+      "zolId": "1306862"
     },
     {
       "slug": "intel-xeon-gold-5222",
@@ -6930,7 +7064,11 @@
       "slug": "intel-core-i5-10500t",
       "name": "Intel Core i5 10500T",
       "score": 4715,
-      "price": null
+      "price": 1059,
+      "refPrice": null,
+      "shopPrice": 1059,
+      "priceFrom": "Intel 酷睿i5 10500T 适用类型:台式机 CPU系列:酷睿i5 10代系列 制作工艺:14纳米 核心代号:Comet Lake-S 插槽类型:LGA 1200 CPU主频:2.3GHz 核心数量:六核心",
+      "zolId": "1307625"
     },
     {
       "slug": "intel-xeon-e3-1270-v6",
@@ -6960,7 +7098,11 @@
       "slug": "intel-core-i3-10305",
       "name": "Intel Core i3-10305",
       "score": 4654,
-      "price": null
+      "price": 699,
+      "refPrice": null,
+      "shopPrice": 699,
+      "priceFrom": "Intel 酷睿i3 10305",
+      "zolId": "1424486"
     },
     {
       "slug": "amd-ryzen-5-4600u",
