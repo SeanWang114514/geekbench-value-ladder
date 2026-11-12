@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-11-11T07:20:03.543Z",
-  "scoresUpdatedAt": "2026-11-11T07:20:03.543Z",
-  "pricesUpdatedAt": "2026-11-11T07:20:03.543Z",
-  "estimatesUpdatedAt": "2026-11-11T07:20:03.543Z",
+  "fetchedAt": "2026-11-12T07:50:36.027Z",
+  "scoresUpdatedAt": "2026-11-12T07:50:36.027Z",
+  "pricesUpdatedAt": "2026-11-12T07:50:36.027Z",
+  "estimatesUpdatedAt": "2026-11-12T07:50:36.027Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -14,11 +14,11 @@
       "slug": "nvidia-geforce-rtx-5090-d-v2",
       "name": "NVIDIA GeForce RTX 5090 D V2",
       "score": 387999,
-      "price": 16499,
-      "refPrice": 16499,
+      "price": 10999,
+      "refPrice": 10999,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "priceFrom": "万丽星舰GeForce RTX 5090 D v2 OC 24GB GDDR7 支持 DLSS 4，AI算力 2375 TOPS，24GB GDDR7",
+      "zolId": "2140395"
     },
     {
       "slug": "nvidia-geforce-rtx-5090",
@@ -34,11 +34,11 @@
       "slug": "nvidia-geforce-rtx-5090-d",
       "name": "NVIDIA GeForce RTX 5090 D",
       "score": 380701,
-      "price": 16499,
-      "refPrice": 16499,
+      "price": 10999,
+      "refPrice": 10999,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 5090 D WINDFORCE 32G 风之力散热系统，双BIOS模式，加固结构",
-      "zolId": "2119967"
+      "priceFrom": "万丽星舰GeForce RTX 5090 D v2 OC 24GB GDDR7 支持 DLSS 4，AI算力 2375 TOPS，24GB GDDR7",
+      "zolId": "2140395"
     },
     {
       "slug": "nvidia-geforce-rtx-4090",
@@ -48,12 +48,7 @@
       "refPrice": 12999,
       "shopPrice": null,
       "priceFrom": "技嘉GeForce RTX 4090 WINDFORCE 24G",
-      "zolId": "1430521",
-      "estimate": {
-        "price": 31000,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%204090%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "1430521"
     },
     {
       "slug": "nvidia-h200",
@@ -79,12 +74,7 @@
       "refPrice": 13279,
       "shopPrice": null,
       "priceFrom": "AX电竞叛客RTX 4090 D X3W 24G PunkMax散热，RGB LOGO灯，全尺寸金属背板",
-      "zolId": "2041665",
-      "estimate": {
-        "price": 31000,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%204090%20d%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "2041665"
     },
     {
       "slug": "nvidia-geforce-rtx-5070-ti",
@@ -310,11 +300,11 @@
       "slug": "amd-radeon-rx-9070-gre",
       "name": "AMD Radeon RX 9070 GRE",
       "score": 148473,
-      "price": 4050,
-      "refPrice": 4399,
-      "shopPrice": 4050,
-      "priceFrom": "瀚铠RX 9070 GRE 合金 白色 高品质PCB板，双风扇强劲散热，智能温控启停",
-      "zolId": "2127025"
+      "price": 4199,
+      "refPrice": 4199,
+      "shopPrice": null,
+      "priceFrom": "瀚铠Radeon RX 9070 GRE 星空 高品质PCB板，双风扇强劲散热，智能温控启停",
+      "zolId": "2127023"
     },
     {
       "slug": "goldfish-gfxstream",
@@ -1202,7 +1192,12 @@
       "refPrice": 898,
       "shopPrice": null,
       "priceFrom": "精影GTX 1660 SUPER 6G 高效游戏，畅爽体验，强劲散热",
-      "zolId": "1968973"
+      "zolId": "1968973",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20super%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "nvidia-geforce-gtx-1070-ti",
@@ -1236,7 +1231,12 @@
       "refPrice": 1199,
       "shopPrice": null,
       "priceFrom": "升技GTX 1660 TI 6G D6 风扇散热，超高频率，畅玩游戏",
-      "zolId": "1972508"
+      "zolId": "1972508",
+      "estimate": {
+        "price": 4975,
+        "source": "suning",
+        "searchUrl": "https://m.suning.com/search/gtx%201660%20ti%20%E6%98%BE%E5%8D%A1/"
+      }
     },
     {
       "slug": "lisuan-7g100-series-graphics",
@@ -2940,9 +2940,9 @@
       "slug": "intel-core-i5-14600kf",
       "name": "Intel Core i5-14600KF",
       "score": 15436,
-      "price": 1619,
+      "price": 1629,
       "refPrice": 2499,
-      "shopPrice": 1619,
+      "shopPrice": 1629,
       "priceFrom": "Intel 酷睿 i5 14600KF 14核20线程，睿频至高可达5.3Ghz，24M三级缓存",
       "zolId": "1929615"
     },
@@ -5120,9 +5120,9 @@
       "slug": "amd-ryzen-5-5600g",
       "name": "AMD Ryzen 5 5600G",
       "score": 7662,
-      "price": 692,
+      "price": 659,
       "refPrice": 1599,
-      "shopPrice": 692,
+      "shopPrice": 659,
       "priceFrom": "AMD Ryzen 5 5600G 6核心/12线程，4.4GHz加速频率，搭载Radeon Vega Graphic",
       "zolId": "1366838"
     },
