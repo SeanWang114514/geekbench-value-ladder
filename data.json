@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-11-13T07:27:32.231Z",
-  "scoresUpdatedAt": "2026-11-13T07:27:32.231Z",
-  "pricesUpdatedAt": "2026-11-13T07:27:32.231Z",
-  "estimatesUpdatedAt": "2026-11-13T07:27:32.231Z",
+  "fetchedAt": "2026-11-14T07:08:56.301Z",
+  "scoresUpdatedAt": "2026-11-14T07:08:56.301Z",
+  "pricesUpdatedAt": "2026-11-14T07:08:56.301Z",
+  "estimatesUpdatedAt": "2026-11-14T07:08:56.301Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -387,8 +387,8 @@
       "price": 3149,
       "refPrice": 3149,
       "shopPrice": null,
-      "priceFrom": "瀚铠Radeon RX 7700 XT 星空",
-      "zolId": "1995519"
+      "priceFrom": "盈通RX 7700 XT 12G D6 大地之神 PLUS 三风扇强劲散热，纯白配色，百搭",
+      "zolId": "2082441"
     },
     {
       "slug": "amd-radeon-pro-w7900",
@@ -2622,9 +2622,9 @@
       "slug": "intel-core-i7-14700k",
       "name": "Intel Core i7-14700K",
       "score": 18760,
-      "price": 2699,
+      "price": 3049,
       "refPrice": 3499,
-      "shopPrice": 2699,
+      "shopPrice": 3049,
       "priceFrom": "Intel 酷睿 i7 14700K 酷睿14代，20核28线程， 睿频至高可达5.6Ghz",
       "zolId": "1814492"
     },
@@ -2818,9 +2818,9 @@
       "slug": "intel-core-i9-14900",
       "name": "Intel Core i9-14900",
       "score": 16407,
-      "price": 2549,
+      "price": 3776,
       "refPrice": null,
-      "shopPrice": 2549,
+      "shopPrice": 3776,
       "priceFrom": "Intel 酷睿 i9 14900",
       "zolId": "1972477"
     },
