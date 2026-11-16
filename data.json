@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-11-15T07:19:57.050Z",
-  "scoresUpdatedAt": "2026-11-15T07:19:57.050Z",
-  "pricesUpdatedAt": "2026-11-15T07:19:57.050Z",
-  "estimatesUpdatedAt": "2026-11-15T07:19:57.050Z",
+  "fetchedAt": "2026-11-16T07:26:56.160Z",
+  "scoresUpdatedAt": "2026-11-16T07:26:56.160Z",
+  "pricesUpdatedAt": "2026-11-16T07:26:56.160Z",
+  "estimatesUpdatedAt": "2026-11-16T07:26:56.160Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -47,13 +47,8 @@
       "price": 12999,
       "refPrice": 12999,
       "shopPrice": null,
-      "priceFrom": "技嘉GeForce RTX 4090 WINDFORCE 24G",
-      "zolId": "1430521",
-      "estimate": {
-        "price": 31000,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%204090%20%E6%98%BE%E5%8D%A1/"
-      }
+      "priceFrom": "七彩虹战斧 GeForce RTX 4090 豪华版",
+      "zolId": "1430391"
     },
     {
       "slug": "nvidia-h200",
@@ -2950,9 +2945,9 @@
       "slug": "intel-core-i5-14600kf",
       "name": "Intel Core i5-14600KF",
       "score": 15436,
-      "price": 1619,
+      "price": 1629,
       "refPrice": 2499,
-      "shopPrice": 1619,
+      "shopPrice": 1629,
       "priceFrom": "Intel 酷睿 i5 14600KF 14核20线程，睿频至高可达5.3Ghz，24M三级缓存",
       "zolId": "1929615"
     },
@@ -5240,9 +5235,9 @@
       "slug": "intel-core-i3-13100f",
       "name": "Intel Core i3-13100F",
       "score": 7537,
-      "price": 769,
+      "price": 929,
       "refPrice": 949,
-      "shopPrice": 769,
+      "shopPrice": 929,
       "priceFrom": "Intel 酷睿 i3 13100F",
       "zolId": "1440455"
     },
