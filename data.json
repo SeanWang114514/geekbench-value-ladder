@@ -1,8 +1,8 @@
 {
-  "fetchedAt": "2026-11-18T08:01:45.189Z",
-  "scoresUpdatedAt": "2026-11-18T08:01:45.189Z",
-  "pricesUpdatedAt": "2026-11-18T08:01:45.189Z",
-  "estimatesUpdatedAt": "2026-11-18T08:01:45.189Z",
+  "fetchedAt": "2026-11-19T08:08:07.819Z",
+  "scoresUpdatedAt": "2026-11-19T08:08:07.819Z",
+  "pricesUpdatedAt": "2026-11-19T08:08:07.819Z",
+  "estimatesUpdatedAt": "2026-11-19T08:08:07.819Z",
   "sources": {
     "gpuBenchmark": "https://cpuranklist.com/gpu-geekbench.php",
     "cpuBenchmark": "https://cpuranklist.com/cpu-geekbench.php",
@@ -48,12 +48,7 @@
       "refPrice": 12999,
       "shopPrice": null,
       "priceFrom": "七彩虹战斧 GeForce RTX 4090 豪华版",
-      "zolId": "1430391",
-      "estimate": {
-        "price": 40875,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%204090%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "1430391"
     },
     {
       "slug": "nvidia-h200",
@@ -79,12 +74,7 @@
       "refPrice": 13279,
       "shopPrice": null,
       "priceFrom": "AX电竞叛客RTX 4090 D X3W 24G PunkMax散热，RGB LOGO灯，全尺寸金属背板",
-      "zolId": "2041665",
-      "estimate": {
-        "price": 40875,
-        "source": "suning",
-        "searchUrl": "https://m.suning.com/search/rtx%204090%20d%20%E6%98%BE%E5%8D%A1/"
-      }
+      "zolId": "2041665"
     },
     {
       "slug": "nvidia-geforce-rtx-5070-ti",
@@ -2622,9 +2612,9 @@
       "slug": "intel-core-i7-14700k",
       "name": "Intel Core i7-14700K",
       "score": 18760,
-      "price": 2699,
+      "price": 3049,
       "refPrice": 3499,
-      "shopPrice": 2699,
+      "shopPrice": 3049,
       "priceFrom": "Intel 酷睿 i7 14700K 酷睿14代，20核28线程， 睿频至高可达5.6Ghz",
       "zolId": "1814492"
     },
@@ -4390,9 +4380,9 @@
       "slug": "intel-core-i5-12400f",
       "name": "Intel Core i5-12400F",
       "score": 9101,
-      "price": 969,
+      "price": 989,
       "refPrice": 1210,
-      "shopPrice": 969,
+      "shopPrice": 989,
       "priceFrom": "Intel 酷睿 i5 12400F 适用类型:台式机 CPU系列:酷睿i5 12代系列 制作工艺:Intel 7 核心代号:Alder Lake-S 插槽类型:LGA 1700 CPU主频:2.5GHz 核心数量:六核心",
       "zolId": "1338644"
     },
@@ -5240,9 +5230,9 @@
       "slug": "intel-core-i3-13100f",
       "name": "Intel Core i3-13100F",
       "score": 7537,
-      "price": 929,
+      "price": 769,
       "refPrice": 949,
-      "shopPrice": 929,
+      "shopPrice": 769,
       "priceFrom": "Intel 酷睿 i3 13100F",
       "zolId": "1440455"
     },
